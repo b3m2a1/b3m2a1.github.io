@@ -10,26 +10,26 @@
 A Fake Object Framework |         b3m2a1
 
 </title>
-  <link rel="canonical" href="https://www.wolframcloud.com/objects/b3m2a1/home/a-fake-object-framework.html">
+  <link rel="canonical" href="https://b3m2a1.github.io/a-fake-object-framework.html">
 
-  <link rel="alternate" type="application/atom+xml" href="https://www.wolframcloud.com/objects/b3m2a1/home/feeds/all.atom.xml" title="Full Atom Feed">
+  <link rel="alternate" type="application/atom+xml" href="https://b3m2a1.github.io/feeds/all.atom.xml" title="Full Atom Feed">
 
-  <link rel="apple-touch-icon" href="https://www.wolframcloud.com/objects/b3m2a1/home/apple-touch-icon.png" sizes="180x180">
-  <link rel="icon" type="image/png" href="https://www.wolframcloud.com/objects/b3m2a1/home/favicon-32x32.png" sizes="32x32">
-  <link rel="icon" type="image/png" href="https://www.wolframcloud.com/objects/b3m2a1/home/favicon-16x16.png" sizes="16x16">
-  <link rel="manifest" href="https://www.wolframcloud.com/objects/b3m2a1/home/manifest.json">
+  <link rel="apple-touch-icon" href="https://b3m2a1.github.io/apple-touch-icon.png" sizes="180x180">
+  <link rel="icon" type="image/png" href="https://b3m2a1.github.io/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="https://b3m2a1.github.io/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="https://b3m2a1.github.io/manifest.json">
   <meta name="theme-color" content="#333333">
 
-  <link rel="stylesheet" href="https://www.wolframcloud.com/objects/b3m2a1/home/theme/css/bootstrap.css">
-  <link rel="stylesheet" href="https://www.wolframcloud.com/objects/b3m2a1/home/theme/css/font-awesome.css">
-  <link rel="stylesheet" href="https://www.wolframcloud.com/objects/b3m2a1/home/theme/css/style.css">
+  <link rel="stylesheet" href="https://b3m2a1.github.io/theme/css/bootstrap.css">
+  <link rel="stylesheet" href="https://b3m2a1.github.io/theme/css/font-awesome.css">
+  <link rel="stylesheet" href="https://b3m2a1.github.io/theme/css/style.css">
 
 
 <meta name="description" content="I promised in my post on chemistry and objects that I’d walk through the details of building an object framework in Mathematica so here we are. For those who would like to follow along, here is the package that implements this framework. Just as a quick refresher, there were …">
 
-<link href="https://www.wolframcloud.com/objects/b3m2a1/home/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
-<script src="https://www.wolframcloud.com/objects/b3m2a1/home/theme/prettify/src/prettify.js"></script>
-<!-- <script src="https://www.wolframcloud.com/objects/b3m2a1/home/theme/prettify/src/lang-mma.min.js"></script> -->
+<link href="https://b3m2a1.github.io/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
+<script src="https://b3m2a1.github.io/theme/prettify/src/prettify.js"></script>
+<!-- <script src="https://b3m2a1.github.io/theme/prettify/src/lang-mma.min.js"></script> -->
 
 <script>
   function moveWindow (){window.location.hash="main-content";}
@@ -82,11 +82,11 @@ A Fake Object Framework |         b3m2a1
   <header class="header">
     <div class="top-bar">
     <div class="site-image">
-      <img src=https://www.wolframcloud.com/objects/b3m2a1/home/img/site-image.png alt="b3m2a1">
+      <img src=https://b3m2a1.github.io/img/site-image.png alt="b3m2a1">
     </div>
     <div class="site-links bubble floating">
       <h1 class="title">
-          <a href="https://www.wolframcloud.com/objects/b3m2a1/home/">
+          <a href="https://b3m2a1.github.io/">
             b3m2a1
           </a>
         </h1>
@@ -95,19 +95,19 @@ A Fake Object Framework |         b3m2a1
           id="top-bar-link-row"
           >
             <li class="list-inline-item site-link">
-              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/pages/about.html">About</a>
+              <a href="https://b3m2a1.github.io/pages/about.html">About</a>
             </li>
             <li class="list-inline-item site-link">
-              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/pages/contact.html">Contact</a>
+              <a href="https://b3m2a1.github.io/pages/contact.html">Contact</a>
             </li>
             <li class="list-inline-item site-link">
-              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/categories.html">Categories</a>
+              <a href="https://b3m2a1.github.io/categories.html">Categories</a>
             </li>
             <li class="list-inline-item site-link">
-              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/tags.html">Tags</a>
+              <a href="https://b3m2a1.github.io/tags.html">Tags</a>
             </li>
             <li class="list-inline-item site-link">
-              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/archives.html">Archives</a>
+              <a href="https://b3m2a1.github.io/archives.html">Archives</a>
             </li>
         </ul>
     </div>
@@ -139,13 +139,13 @@ A Fake Object Framework |         b3m2a1
               </a>
             </li>
             <li class="right-bar-item">
-              <a href="https://www.wolframcloud.com/objects/b3m2a1.paclets/PacletServer/main.html" class="blogroll-link right-bar-link"
+              <a href="https://paclets.github.io/PacletServer" class="blogroll-link right-bar-link"
                 target="_blank">
-                Paclets
+                Paclet Server
               </a>
             </li>
             <li class="right-bar-item">
-              <a href="https://www.wolframcloud.com/objects/b3m2a1.docs/DocumentationSite/main.html" class="blogroll-link right-bar-link"
+              <a href="https://www.wolframcloud.com/objects/b3m2a1.docs/DocumentationServer/" class="blogroll-link right-bar-link"
                 target="_blank">
                 Docs
               </a>
@@ -168,14 +168,14 @@ A Fake Object Framework |         b3m2a1
       </li>
       <li class="list-inline-item">
         <i class="fa fa-folder-open-o"></i>
-        <a href="https://www.wolframcloud.com/objects/b3m2a1/home/category/posts.html">posts</a>
+        <a href="https://b3m2a1.github.io/category/posts.html">posts</a>
       </li>
       <li class="list-inline-item">
         <i class="fa fa-user-o"></i>
-        <a href="https://www.wolframcloud.com/objects/b3m2a1/home/author/b3m2a1.html">b3m2a1</a>      </li>
+        <a href="https://b3m2a1.github.io/author/b3m2a1.html">b3m2a1</a>      </li>
       <li class="list-inline-item">
         <i class="fa fa-files-o"></i>
-        <a href="https://www.wolframcloud.com/objects/b3m2a1/home/tag/mathematica.html">#mathematica</a>      </li>
+        <a href="https://b3m2a1.github.io/tag/mathematica.html">#mathematica</a>      </li>
     </ul>
   </header>
   <div class="content">
@@ -960,7 +960,7 @@ OFEnd[]
 (*Out:*)</code></pre>
 
 
-<p><img alt="posts-a-fake-object-framework-5533752296471534441" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/posts-a-fake-object-framework-5533752296471534441.png" /></p>
+<p><img alt="posts-a-fake-object-framework-5533752296471534441" src="https://b3m2a1.github.io/img/posts-a-fake-object-framework-5533752296471534441.png" /></p>
 <p><a id="playing-with-a-ballinabox" >&zwnj;</a></p>
 <h2>Playing with a ball-in-a-box</h2>
 <p>We’ll then just build one of these objects:</p>
@@ -969,7 +969,7 @@ OFEnd[]
 (*Out:*)</code></pre>
 
 
-<p><img alt="posts-a-fake-object-framework-9116754826795747734" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/posts-a-fake-object-framework-9116754826795747734.png" /></p>
+<p><img alt="posts-a-fake-object-framework-9116754826795747734" src="https://b3m2a1.github.io/img/posts-a-fake-object-framework-9116754826795747734.png" /></p>
 <p>And make it step like 10 times</p>
 <pre class="prettyprint"><code>ball[&quot;Step&quot;][10]
 
@@ -1000,7 +1000,7 @@ OFEnd[]
 (*Out:*)</code></pre>
 
 
-<p><img alt="posts-a-fake-object-framework-3943164318078536356" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/posts-a-fake-object-framework-3943164318078536356.gif" /></p>
+<p><img alt="posts-a-fake-object-framework-3943164318078536356" src="https://b3m2a1.github.io/img/posts-a-fake-object-framework-3943164318078536356.gif" /></p>
 <p>Randomize the position and velocity and do it again, but faster</p>
 <pre class="prettyprint"><code>ball[{&quot;Position&quot;, &quot;Velocity&quot;}] = {RandomReal[{-5, 5}, 2], 
    RandomReal[{-2.5, 2.5}, 2]};
@@ -1014,7 +1014,7 @@ With[{box = ball[&quot;Box&quot;]},
 (*Out:*)</code></pre>
 
 
-<p><img alt="posts-a-fake-object-framework-6727523626926870660" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/posts-a-fake-object-framework-6727523626926870660.gif" /></p>
+<p><img alt="posts-a-fake-object-framework-6727523626926870660" src="https://b3m2a1.github.io/img/posts-a-fake-object-framework-6727523626926870660.gif" /></p>
 <p>This is a basic example of the sort of thing OOP brings to the table and, with enough work, it’s pretty fast and nice enough to work with.</p>
   </div>
 </article>
@@ -1022,7 +1022,7 @@ With[{box = ball[&quot;Box&quot;]},
 <div id="disqus_thread"></div>
 <script>
   var disqus_config = function() {
-    this.page.url = 'https://www.wolframcloud.com/objects/b3m2a1/home/a-fake-object-framework.html';
+    this.page.url = 'https://b3m2a1.github.io/a-fake-object-framework.html';
       this.page.identifier = 'b3m2a1-home-26119950-8d56-478a-9339-dda09c8ae108';
 ;
   };
