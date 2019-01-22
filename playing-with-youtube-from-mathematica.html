@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+Playing with YouTube from Mathematica |         b3m2a1
+
+</title>
+  <link rel="canonical" href="https://www.wolframcloud.com/objects/b3m2a1/home/playing-with-youtube-from-mathematica.html">
+
+  <link rel="alternate" type="application/atom+xml" href="https://www.wolframcloud.com/objects/b3m2a1/home/feeds/all.atom.xml" title="Full Atom Feed">
+
+  <link rel="apple-touch-icon" href="https://www.wolframcloud.com/objects/b3m2a1/home/apple-touch-icon.png" sizes="180x180">
+  <link rel="icon" type="image/png" href="https://www.wolframcloud.com/objects/b3m2a1/home/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="https://www.wolframcloud.com/objects/b3m2a1/home/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="https://www.wolframcloud.com/objects/b3m2a1/home/manifest.json">
+  <meta name="theme-color" content="#333333">
+
+  <link rel="stylesheet" href="https://www.wolframcloud.com/objects/b3m2a1/home/theme/css/bootstrap.css">
+  <link rel="stylesheet" href="https://www.wolframcloud.com/objects/b3m2a1/home/theme/css/font-awesome.css">
+  <link rel="stylesheet" href="https://www.wolframcloud.com/objects/b3m2a1/home/theme/css/style.css">
+
+
+<meta name="description" content="Today I'm gonna quickly show off something I made for a friend (and about which I'd been thinking for some time). We're gonna use the YouTube API in Mathematica to do a have some fun (but not too much fun, mind you!). Installing the YouTube Connection My connection to the …">
+
+<link href="https://www.wolframcloud.com/objects/b3m2a1/home/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
+<script src="https://www.wolframcloud.com/objects/b3m2a1/home/theme/prettify/src/prettify.js"></script>
+<!-- <script src="https://www.wolframcloud.com/objects/b3m2a1/home/theme/prettify/src/lang-mma.min.js"></script> -->
+
+<script>
+  function moveWindow (){window.location.hash="main-content";}
+</script>
+
+
+<script>
+  (function(i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function() {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    a.async = 1;
+    a.src = g;
+    m = s.getElementsByTagName(o)[0];
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-103560228-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <script>
+    function openNav() {
+      var thumb = document.getElementById("nav-thumb");
+      var bar = document.getElementById("side-nav");
+      thumb.onclick= closeNav;
+      bar.classList.add("right-bar-open");
+      bar.classList.remove("right-bar-closed");
+      thumb.classList.add("nav-thumb-open");
+      thumb.classList.remove("nav-thumb-closed");
+    }
+
+    function closeNav() {
+      var thumb = document.getElementById("nav-thumb");
+      var bar = document.getElementById("side-nav");
+      thumb.onclick= openNav;
+      bar.classList.remove("right-bar-open");
+      bar.classList.add("right-bar-closed");
+      thumb.classList.remove("nav-thumb-open");
+      thumb.classList.add("nav-thumb-closed")
+    }
+  </script>
+
+
+</head>
+
+<body onload="PR.prettyPrint(); moveWindow()"
+>
+  <header class="header">
+    <div class="top-bar">
+    <div class="site-image">
+      <img src=https://www.wolframcloud.com/objects/b3m2a1/home/img/site-image.png alt="b3m2a1">
+    </div>
+    <div class="site-links bubble floating">
+      <h1 class="title">
+          <a href="https://www.wolframcloud.com/objects/b3m2a1/home/">
+            b3m2a1
+          </a>
+        </h1>
+        <ul
+          class="list-inline row site-link-row"
+          id="top-bar-link-row"
+          >
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/pages/about.html">About</a>
+            </li>
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/pages/contact.html">Contact</a>
+            </li>
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/categories.html">Categories</a>
+            </li>
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/tags.html">Tags</a>
+            </li>
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/archives.html">Archives</a>
+            </li>
+        </ul>
+    </div>
+    </div>
+  </header>
+
+  <div class="main" id="main-content">
+
+    <div class="right-bar right-bar-closed" id="side-nav">
+      <button
+        id="nav-thumb"
+        class="nav-thumb nav-thumb-closed"
+        onclick="openNav()"
+        >
+      </button>
+      <div class="blogroll bubble inset">
+        <p>Links</p>
+        <ul class="blogroll-links right-bar-links list-inline">
+            <li class="right-bar-item">
+              <a href="https://github.com/b3m2a1" class="blogroll-link right-bar-link"
+                target="_blank">
+                GitHub
+              </a>
+            </li>
+            <li class="right-bar-item">
+              <a href="https://mathematica.stackexchange.com/users/38205" class="blogroll-link right-bar-link"
+                target="_blank">
+                StackExchange
+              </a>
+            </li>
+            <li class="right-bar-item">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1.paclets/PacletServer/main.html" class="blogroll-link right-bar-link"
+                target="_blank">
+                Paclets
+              </a>
+            </li>
+            <li class="right-bar-item">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1.docs/DocumentationSite/main.html" class="blogroll-link right-bar-link"
+                target="_blank">
+                Docs
+              </a>
+            </li>
+          </ul>
+      </div>
+    </div>
+
+    <div class="left-content">
+      <div class="container">
+        <h1>Playing with YouTube from Mathematica
+</h1>
+        <hr>
+<article class="article">
+  <header>
+    <ul class="list-inline">
+      <li class="list-inline-item text-muted" title="2018-09-28T19:45:03-05:00">
+        <i class="fa fa-clock-o"></i>
+        Fri 28 September 2018
+      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="https://www.wolframcloud.com/objects/b3m2a1/home/category/posts.html">posts</a>
+      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-user-o"></i>
+        <a href="https://www.wolframcloud.com/objects/b3m2a1/home/author/b3m2a1.html">b3m2a1</a>      </li>
+    </ul>
+  </header>
+  <div class="content">
+    <p>Today I'm gonna quickly show off something I made for a friend (and about which I'd been thinking for some time). We're gonna use the YouTube API in Mathematica to do a have some fun (but not too much fun, mind you!).</p>
+<h3>Installing the YouTube Connection</h3>
+<p>My connection to the YouTube API is built on Mathematica's  <a href="https://reference.wolfram.com/language/ref/ServiceConnect.html"><code>ServiceConnect</code></a> framework. I've  <a href="https://www.wolframcloud.com/objects/b3m2a1/home/serviceconnections---mathematica-on-the-web.html">talked</a>  <a href="https://www.wolframcloud.com/objects/b3m2a1/home/questions-on-the-mathematica-stack-exchange.html#main-content">about</a>  <a href="https://www.wolframcloud.com/objects/b3m2a1/home/questions-on-the-mathematica-stack-exchange-part-2.html#main-content">these</a>  <a href="https://mathematica.stackexchange.com/questions/163638/how-can-i-access-nasa-images-and-apis">before</a> in  <a href="http://community.wolfram.com/groups/-/m/t/1261562">many</a>  <a href="https://mathematica.stackexchange.com/a/167702/38205">different</a>  <a href="https://mathematica.stackexchange.com/questions/163780/sophisticated-api-integrations-making-a-card-game-in-mathematica">contexts</a> but today we'll just use it. To install we pull the  <a href="https://www.wolframcloud.com/objects/b3m2a1.paclets/PacletServer/serviceconnectionyoutube.html#main-content">paclet off my server</a> :</p>
+<pre class="prettyprint"><code>PacletInstall[&quot;ServiceConnection_YouTube&quot;,
+  &quot;Site&quot;-&gt;
+    &quot;http://www.wolframcloud.com/objects/b3m2a1.paclets/PacletServer/&quot;
+  ]
+
+(*Out:*)</code></pre>
+
+
+<p><img alt="post22-8529256040837869960" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/post22-8529256040837869960.png" /></p>
+<h3>Authenticating with YouTube</h3>
+<p>One installed, we connect to the service as usual:</p>
+<pre class="prettyprint"><code>$so = ServiceConnect[&quot;YouTube&quot;]</code></pre>
+
+
+<p>This will open a dialog:</p>
+<p><img alt="post22-2534758878895670558" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/post22-2534758878895670558.png" /></p>
+<p>We'll click the sign in button, pick and account (I'll use my  <a href="https://www.wolframcloud.com/objects/b3m2a1/home/making-a-blog-in-30-minutes.html#main-content">new personal account steve.wolfraum@gmail.com</a> ):</p>
+<p><img alt="post22-6891487155877384696" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/post22-6891487155877384696.png" /></p>
+<p>When we click "Allow" either we'll be taken to a nicely formatted local page with an access code running via  <code>HTTPHandling`StartWebServer</code> or if that's being glitchy as it was right now, we'll copy the part of the URL starting with  <code>"code=4/..."</code> :</p>
+<p><img alt="post22-5755985516881850876" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/post22-5755985516881850876.png" /></p>
+<p>Finally, we're connected:</p>
+<pre class="prettyprint"><code>(*Out:*)</code></pre>
+
+
+<p><img alt="post22-6049558537553480280" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/post22-6049558537553480280.png" /></p>
+<h3>Getting Data</h3>
+<p>The majority of the currently supported methods have to do with getting data about YouTube:</p>
+<pre class="prettyprint"><code>$so[&quot;Requests&quot;]
+
+(*Out:*)
+
+{&quot;Authentication&quot;,&quot;DeleteVideo&quot;,&quot;ID&quot;,&quot;Information&quot;,&quot;LastRequest&quot;,&quot;ListCaptions&quot;,&quot;ListChannelActivity&quot;,&quot;ListChannels&quot;,&quot;ListChannelSections&quot;,&quot;ListComments&quot;,&quot;ListCommentThreads&quot;,&quot;ListPlaylistItems&quot;,&quot;ListPlaylists&quot;,&quot;ListSubscriptions&quot;,&quot;ListVideos&quot;,&quot;Name&quot;,&quot;RawRequests&quot;,&quot;RequestData&quot;,&quot;RequestParameters&quot;,&quot;Search&quot;,&quot;UpdateVideo&quot;,&quot;UploadVideo&quot;,&quot;VideoURL&quot;}</code></pre>
+
+
+<p>We'll start with a search, maybe. First let's see what parameters we have to work with:</p>
+<pre class="prettyprint"><code>$so[&quot;RequestParameters&quot;, &quot;Request&quot;-&gt;&quot;Search&quot;]
+
+(*Out:*)
+
+&lt;|&quot;Parameters&quot;-&gt;{&quot;q&quot;,&quot;part&quot;,&quot;forContentOwner&quot;,&quot;forDeveloper&quot;,&quot;forMine&quot;,&quot;relatedToVideoId&quot;,&quot;channelId&quot;,&quot;channelType&quot;,&quot;eventType&quot;,&quot;location&quot;,&quot;locationRadius&quot;,&quot;maxResults&quot;,&quot;onBehalfOfContentOwner&quot;,&quot;order&quot;,&quot;pageToken&quot;,&quot;publishedAfter&quot;,&quot;publishedBefore&quot;,&quot;q&quot;,&quot;regionCode&quot;,&quot;relevanceLanguage&quot;,&quot;safeSearch&quot;,&quot;topicId&quot;,&quot;type&quot;,&quot;videoCaption&quot;,&quot;videoCategoryId&quot;,&quot;videoDefinition&quot;,&quot;videoDimension&quot;,&quot;videoDuration&quot;,&quot;videoEmbeddable&quot;,&quot;videoLicense&quot;,&quot;videoSyndicated&quot;,&quot;videoType&quot;},&quot;Required&quot;-&gt;{&quot;part&quot;}|&gt;</code></pre>
+
+
+<p>Then we'll search for something bland, like "Steve Wolfraum". The YouTube API requires this  <code>"part"</code> parameter to know what to return to use. I like to get the  <code>"id"</code> and  <code>"snippet"</code> parts, but you can  <a href="https://developers.google.com/youtube/v3/getting-started#part">pick for yourself</a> which parts you want. Just comma-separate your values and you can get multiple different ones:</p>
+<pre class="prettyprint"><code>mySearch = $so[&quot;Search&quot;, &quot;q&quot;-&gt;&quot;Steve Wolfraum&quot;, &quot;part&quot;-&gt;&quot;id,snippet&quot;]
+
+(*Out:*)</code></pre>
+
+
+<p><img alt="post22-4316213154658629458" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/post22-4316213154658629458.png" /></p>
+<p>We see there are  <em>tons</em> of results for "my" name but we only get them five at a time. We can use the  <code>"nextPageToken"</code> to get the next page of results, though. We can bump up the number we get with the  <code>"maxResults"</code> parameter, but I see no need for that right now. Let's look at the first result here. I'll drill straight into that snippet parameter, as that's the most interesting part:</p>
+<pre class="prettyprint"><code>mySearch[&quot;items&quot;, 1, &quot;snippet&quot;]
+
+(*Out:*)</code></pre>
+
+
+<p><img alt="post22-498969337448306280" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/post22-498969337448306280.png" /></p>
+<p>And we see, sadly, that instead of getting results for my name, Steve Wolfraum, we get them for some random dude name Stephen Wolfram. Not to be deterred, let's at least get something out of this and see a thumbnail for all our results. Tragically, we can't download videos with the YouTube API, but at least we get thumbnails...hooray? To make things more fun, we'll also add a filter to all these results, as the raw thumbnails really aren't all that interesting.</p>
+<pre class="prettyprint"><code>ImageAdjust@LaplacianGaussianFilter[Import[#], 3]&amp;/@
+  Normal@mySearch[&quot;items&quot;, All, &quot;snippet&quot;, &quot;thumbnails&quot;, &quot;high&quot;, &quot;url&quot;]
+
+(*Out:*)</code></pre>
+
+
+<p><img alt="post22-8416895123856568403" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/post22-8416895123856568403.png" /></p>
+<p>Cool. There's some data. We can also pull out statistics and things, say for different videos broadcast on the Wolfram Research channel. First we'll get their channel ID:</p>
+<pre class="prettyprint"><code>wriChannel=
+  $so[&quot;Search&quot;, &quot;q&quot;-&gt;&quot;Wolfram Research&quot;, &quot;type&quot;-&gt;&quot;channel&quot;,
+    &quot;part&quot;-&gt;&quot;id&quot;, &quot;maxResults&quot;-&gt;&quot;1&quot;][&quot;items&quot;, 1, &quot;id&quot;, &quot;channelId&quot;]
+
+(*Out:*)
+
+&quot;UCJekgf6k62CQHdENWf2NgAQ&quot;</code></pre>
+
+
+<p>Now we'll use this to extract the 50 most popular videos:</p>
+<pre class="prettyprint"><code>wriVids=$so[&quot;Search&quot;, &quot;channelId&quot;-&gt;wriChannel, &quot;type&quot;-&gt;&quot;video&quot;, 
+  &quot;order&quot;-&gt;&quot;viewCount&quot;, &quot;part&quot;-&gt;&quot;id,snippet&quot;, &quot;maxResults&quot;-&gt;&quot;50&quot;]
+
+(*Out:*)</code></pre>
+
+
+<p><img alt="post22-5403531027782801587" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/post22-5403531027782801587.png" /></p>
+<p>And now we'll get view counts:</p>
+<pre class="prettyprint"><code>wriStats=$so[&quot;ListVideos&quot;, 
+  &quot;id&quot;-&gt;StringRiffle[Normal@wriVids[&quot;items&quot;, All, &quot;id&quot;, &quot;videoId&quot;], &quot;,&quot;], 
+  &quot;part&quot;-&gt;&quot;statistics&quot;
+  ]
+
+(*Out:*)</code></pre>
+
+
+<p><img alt="post22-4181911101890639189" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/post22-4181911101890639189.png" /></p>
+<p>And then we'll make a  <a href="https://reference.wolfram.com/language/ref/WordCloud.html"><code>WordCloud</code></a> of titles vs viewcounts:</p>
+<pre class="prettyprint"><code>WordCloud@
+  AssociationThread[
+    Normal@wriVids[&quot;items&quot;, All, &quot;snippet&quot;, &quot;title&quot;],
+    ToExpression@Normal@wriStats[&quot;items&quot;, All, &quot;statistics&quot;, &quot;viewCount&quot;]
+    ]
+
+(*Out:*)</code></pre>
+
+
+<p><img alt="post22-948349109694102953" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/post22-948349109694102953.png" /></p>
+<p>And we see as far as YouTube cares, there's really only one video WRI has made. But dropping that one we might see some more interesting structure:</p>
+<pre class="prettyprint"><code>WordCloud@
+  AssociationThread[
+    Rest@Normal@wriVids[&quot;items&quot;, All, &quot;snippet&quot;, &quot;title&quot;],
+    Rest@ToExpression@Normal@wriStats[&quot;items&quot;, All, &quot;statistics&quot;, &quot;viewCount&quot;]
+    ]
+
+(*Out:*)</code></pre>
+
+
+<p><img alt="post22-978266547142309807" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/post22-978266547142309807.png" /></p>
+<p>And it seems that people really like the basics and...really like seismic waves?</p>
+<p>I'll embed the first of those so we can see how good the really are:</p>
+<pre class="prettyprint"><code>$so[&quot;EmbedIFrame&quot;, &quot;id&quot;-&gt;wriVids[&quot;items&quot;, 3, &quot;id&quot;, &quot;videoId&quot;]]</code></pre>
+
+
+<iframe id="ytplayer" type="text/html" width="640" height="360"
+src="https://www.youtube.com/embed/2rYjlVPU9U4?autoplay=0"
+  frameborder="0"></iframe>
+
+<h3>Uploading Videos</h3>
+<p>A YouTube API wouldn't be much of a YouTube API if it couldn't upload videos, of course, so I cooked that in as well.</p>
+<p>Here's a sample of that. We'll first pull an animation off the  <a href="https://reference.wolfram.com/language/ref/Manipulate.html"><code>Manipulate</code></a> docs:</p>
+<pre class="prettyprint"><code>anim =
+  Export[
+    FileNameJoin@{$TemporaryDirectory, &quot;plot3d.flv&quot;},
+    Manipulate[
+      Plot3D[Sin[n x y], 
+        {x, 0, 3}, {y, 0, 3}, 
+        ViewPoint -&gt; Dynamic[{2, v, 2}], SphericalRegion -&gt; True, Ticks -&gt; None,
+        PerformanceGoal-&gt;&quot;Quality&quot;
+        ], 
+      {n, 1, 4}, 
+      {v, -2, 2}
+      ]
+    ];</code></pre>
+
+
+<p>Then we'll upload the video we made:</p>
+<pre class="prettyprint"><code>upload = $so[&quot;UploadVideo&quot;, &quot;part&quot;-&gt;&quot;id&quot;, &quot;BodyContent&quot;-&gt;anim];</code></pre>
+
+
+<p>Then we attach a title and things in a second request:</p>
+<pre class="prettyprint"><code>$so[&quot;UpdateVideo&quot;, &quot;id&quot; -&gt; upload[&quot;id&quot;],
+ &quot;part&quot; -&gt; &quot;snippet&quot;,
+  &quot;Title&quot; -&gt; &quot;Mathematica Examples: Plot 3D&quot;,
+ &quot;CategoryID&quot; -&gt; &quot;22&quot;
+ ]
+
+(*Out:*)</code></pre>
+
+
+<p><img alt="post22-4324612576805415951" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/post22-4324612576805415951.png" /></p>
+<p>And then now we'll embed that video we just made:</p>
+<pre class="prettyprint"><code>$so[&quot;EmbedIFrame&quot;, &quot;id&quot;-&gt;upload[&quot;id&quot;]]</code></pre>
+
+
+<iframe id="ytplayer" type="text/html" width="640" height="360"
+src="https://www.youtube.com/embed/Quzcr4Vuq_Q?autoplay=0"
+  frameborder="0"></iframe>
+  </div>
+</article>
+<hr>
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function() {
+    this.page.url = 'https://www.wolframcloud.com/objects/b3m2a1/home/playing-with-youtube-from-mathematica.html';
+      this.page.identifier = 'playing-with-youtube-from-mathematica'
+;
+  };
+  (function() {
+    var d = document;
+    var s = d.createElement('script');
+    s.src = '//b3m2a1-home.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript class="text-muted">
+  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <p class="col-sm-6 text-sm-right text-muted acknowledgement">
+      Generated by
+      <a href="https://github.com/getpelican/pelican" target="_blank">Pelican</a> /
+      Forked from <a href="https://github.com/nairobilug/pelican-alchemy" target="_blank">alchemy</a>
+    </p>
+  </footer>
+
+</body>
+
+</html>

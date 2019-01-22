@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+ServiceConnections - Mathematica on the Web |         b3m2a1
+
+</title>
+  <link rel="canonical" href="https://www.wolframcloud.com/objects/b3m2a1/home/serviceconnections---mathematica-on-the-web.html">
+
+  <link rel="alternate" type="application/atom+xml" href="https://www.wolframcloud.com/objects/b3m2a1/home/feeds/all.atom.xml" title="Full Atom Feed">
+
+  <link rel="apple-touch-icon" href="https://www.wolframcloud.com/objects/b3m2a1/home/apple-touch-icon.png" sizes="180x180">
+  <link rel="icon" type="image/png" href="https://www.wolframcloud.com/objects/b3m2a1/home/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="https://www.wolframcloud.com/objects/b3m2a1/home/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="https://www.wolframcloud.com/objects/b3m2a1/home/manifest.json">
+  <meta name="theme-color" content="#333333">
+
+  <link rel="stylesheet" href="https://www.wolframcloud.com/objects/b3m2a1/home/theme/css/bootstrap.css">
+  <link rel="stylesheet" href="https://www.wolframcloud.com/objects/b3m2a1/home/theme/css/font-awesome.css">
+  <link rel="stylesheet" href="https://www.wolframcloud.com/objects/b3m2a1/home/theme/css/style.css">
+
+
+<meta name="description" content="This is a an amalgamation of three Stack Exchange answers Mathematica has a nice system for building API connections. It’s clean, object oriented, and built off of the function ServiceConnect . The basic idea is that one connects to a service, creates an object representing that connection and caching its …">
+
+<link href="https://www.wolframcloud.com/objects/b3m2a1/home/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
+<script src="https://www.wolframcloud.com/objects/b3m2a1/home/theme/prettify/src/prettify.js"></script>
+<!-- <script src="https://www.wolframcloud.com/objects/b3m2a1/home/theme/prettify/src/lang-mma.min.js"></script> -->
+
+<script>
+  function moveWindow (){window.location.hash="main-content";}
+</script>
+
+
+<script>
+  (function(i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function() {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    a.async = 1;
+    a.src = g;
+    m = s.getElementsByTagName(o)[0];
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-103560228-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <script>
+    function openNav() {
+      var thumb = document.getElementById("nav-thumb");
+      var bar = document.getElementById("side-nav");
+      thumb.onclick= closeNav;
+      bar.classList.add("right-bar-open");
+      bar.classList.remove("right-bar-closed");
+      thumb.classList.add("nav-thumb-open");
+      thumb.classList.remove("nav-thumb-closed");
+    }
+
+    function closeNav() {
+      var thumb = document.getElementById("nav-thumb");
+      var bar = document.getElementById("side-nav");
+      thumb.onclick= openNav;
+      bar.classList.remove("right-bar-open");
+      bar.classList.add("right-bar-closed");
+      thumb.classList.remove("nav-thumb-open");
+      thumb.classList.add("nav-thumb-closed")
+    }
+  </script>
+
+
+</head>
+
+<body onload="PR.prettyPrint(); moveWindow()"
+>
+  <header class="header">
+    <div class="top-bar">
+    <div class="site-image">
+      <img src=https://www.wolframcloud.com/objects/b3m2a1/home/img/site-image.png alt="b3m2a1">
+    </div>
+    <div class="site-links bubble floating">
+      <h1 class="title">
+          <a href="https://www.wolframcloud.com/objects/b3m2a1/home/">
+            b3m2a1
+          </a>
+        </h1>
+        <ul
+          class="list-inline row site-link-row"
+          id="top-bar-link-row"
+          >
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/pages/about.html">About</a>
+            </li>
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/pages/contact.html">Contact</a>
+            </li>
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/categories.html">Categories</a>
+            </li>
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/tags.html">Tags</a>
+            </li>
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/archives.html">Archives</a>
+            </li>
+        </ul>
+    </div>
+    </div>
+  </header>
+
+  <div class="main" id="main-content">
+
+    <div class="right-bar right-bar-closed" id="side-nav">
+      <button
+        id="nav-thumb"
+        class="nav-thumb nav-thumb-closed"
+        onclick="openNav()"
+        >
+      </button>
+      <div class="blogroll bubble inset">
+        <p>Links</p>
+        <ul class="blogroll-links right-bar-links list-inline">
+            <li class="right-bar-item">
+              <a href="https://github.com/b3m2a1" class="blogroll-link right-bar-link"
+                target="_blank">
+                GitHub
+              </a>
+            </li>
+            <li class="right-bar-item">
+              <a href="https://mathematica.stackexchange.com/users/38205" class="blogroll-link right-bar-link"
+                target="_blank">
+                StackExchange
+              </a>
+            </li>
+            <li class="right-bar-item">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1.paclets/PacletServer/main.html" class="blogroll-link right-bar-link"
+                target="_blank">
+                Paclets
+              </a>
+            </li>
+            <li class="right-bar-item">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1.docs/DocumentationSite/main.html" class="blogroll-link right-bar-link"
+                target="_blank">
+                Docs
+              </a>
+            </li>
+          </ul>
+      </div>
+    </div>
+
+    <div class="left-content">
+      <div class="container">
+        <h1>ServiceConnections - Mathematica on the Web
+</h1>
+        <hr>
+<article class="article">
+  <header>
+    <ul class="list-inline">
+      <li class="list-inline-item text-muted" title="2017-07-24T22:09:34-05:00">
+        <i class="fa fa-clock-o"></i>
+        Mon 24 July 2017
+      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="https://www.wolframcloud.com/objects/b3m2a1/home/category/posts.html">posts</a>
+      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-user-o"></i>
+        <a href="https://www.wolframcloud.com/objects/b3m2a1/home/author/b3m2a1.html">b3m2a1</a>      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-files-o"></i>
+        <a href="https://www.wolframcloud.com/objects/b3m2a1/home/tag/mathematica.html">#mathematica</a>      </li>
+    </ul>
+  </header>
+  <div class="content">
+    <h3>This is a an amalgamation of  <a href="https://mathematica.stackexchange.com/a/147196/38205">three</a>   <a href="https://mathematica.stackexchange.com/a/147452/38205">Stack Exchange</a>   <a href="https://mathematica.stackexchange.com/a/147547/38205">answers</a></h3>
+<p>Mathematica has a nice system for building API connections. It’s clean, object oriented, and built off of the function  <a href="https://reference.wolfram.com/language/ref/ServiceConnect.html"><code>ServiceConnect</code></a> . The basic idea is that one connects to a service, creates an object representing that connection and caching its state, and then uses that object to send and parse calls.</p>
+<p>Then digging in the  <a href="https://www.wolframcloud.com/objects/b3m2a1.paclets/reference/PacletManager/ref/%24UserBasePacletsDirectory.html"><code>$UserBasePacletsDirectory</code></a>  one day I stumbled upon a bunch of paclets whose names were things like ServiceConnection_ServiceName. And that made me think that I could build my own (moreover I’d had success doing the same with the curated data framework already).</p>
+<p>If you just want to start building your own I only ever build them using the  <code>CustomServiceConnection</code>  I stuck into my  <a href="http://www.wolframcloud.com/objects/b3m2a1.paclets/paclets/PacletServer/main.html#BTools">primary package.</a></p>
+<p><a id="service-connection-paclets" >&zwnj;</a></p>
+<h1>Service Connection Paclets</h1>
+<p>These paclets are pretty bare bones, to take a look at one of them:</p>
+<pre class="prettyprint"><code>PacletOpen[&quot;ServiceConnection_ChemSpider&quot;]</code></pre>
+
+
+<p><img alt="image-posts-serviceconnections--mathematica-on-the-web-2309314407486505745" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/posts-serviceconnections--mathematica-on-the-web-2309314407486505745.png" /></p>
+<p>Some of these things have an extra file, $ServiceName.m, but in general this appears to be pretty standard. We’ll dig through this an see how it works.</p>
+<p><a id="load.m" >&zwnj;</a></p>
+<h2>load.m</h2>
+<p>This file is trivial. For ChemSpider I have:</p>
+<pre class="prettyprint"><code>PacletManager`Package`getPacletWithProgress[&quot;ServiceConnection_\
+ChemSpider&quot;]
+
+Get[&quot;ChemSpiderLoad`&quot;]</code></pre>
+
+
+<p>Basically it just configures the loader. Easy. Let’s move on.</p>
+<p><a id="chemspiderload.m" >&zwnj;</a></p>
+<h2>ChemSpiderLoad.m</h2>
+<p>This is also super simple. I have:</p>
+<pre class="prettyprint"><code>(* Mathematica Package *)
+
+BeginPackage[&quot;ChemSpiderLoad`&quot;]
+(* Exported symbols added here with SymbolName::usage *)
+
+Begin[&quot;`Private`&quot;] (* Begin Private Context *)
+
+If[! ListQ[System`$Services], Get[&quot;OAuth`&quot;]]
+
+Block[{dir = DirectoryName[System`Private`$InputFileName]},
+  KeyClient`addKeyservice[&quot;ChemSpider&quot;, dir]
+ ]
+
+
+End[] (* End Private Context *)
+EndPackage[]</code></pre>
+
+
+<p>The main thing to note here is that  <a href="https://www.wolframcloud.com/objects/b3m2a1.paclets/reference/KeyClient/ref/addKeyservice.html"><code>KeyClient`addKeyservice</code></a>  chilling there. It’s one of three different clients whoever wrote the framework has provided, the big one being the  <a href="https://www.wolframcloud.com/objects/b3m2a1.paclets/reference/OAuthClient/guide/OAuthClient.html"><code>OAuthClient`</code></a> .</p>
+<p><a id="chemspider.m" >&zwnj;</a></p>
+<h2>ChemSpider.m</h2>
+<p>This is the meat of the paclet. Basically you provide the system with all the needed to format an object via  <code>ServiceConnect</code> .</p>
+<p>Let’s forget our  <a href="https://www.youtube.com/watch?v=k33ZQ4I4p24">do-re-mis</a>  (sorry Julie) and not start at the very beginning. Instead we’ll start at the very end where we see this:</p>
+<pre class="prettyprint"><code>(* Return three functions to define oauthservicedata, \
+oauthcookeddata, oauthsendmessage  *)
+\
+{ChemSpiderAPI`Private`chemspiderdata, \
+ChemSpiderAPI`Private`chemspidercookeddata, \
+ChemSpiderAPI`Private`chemspidersendmessage}</code></pre>
+
+
+<p>This is what’s returned (and all of what’s returned) by the package. So these three functions define the entire service. Actually, it’s really the first two that define the service, that last one generally only ever appears in a line like this:</p>
+<pre class="prettyprint"><code>chemspidersendmessage[___] := $Failed</code></pre>
+
+
+<p>Except in the Twilio connection where it does something. But it’s never been worth it for me to figure it out. So moving on!</p>
+<p><a id="chemspiderdata" >&zwnj;</a></p>
+<h2>chemspiderdata</h2>
+<p>This is the core service data function. It defines the all of the service parameters and how the connection should be formatted. Here’s the primary data definition from the file:</p>
+<pre class="prettyprint"><code>chemspiderdata[] = {
+    &quot;ServiceName&quot;       -&gt; &quot;ChemSpider&quot;,
+
+
+  &quot;URLFetchFun&quot;  :&gt; (With[{params = Lookup[{##2}, &quot;Parameters&quot;, {}]},
+                URLFetch[#1, &quot;ContentData&quot;,
+
+       Sequence @@ 
+        FilterRules[{##2}, Except[&quot;Parameters&quot; | &quot;Headers&quot;]], 
+                    &quot;Parameters&quot; -&gt; params /. &quot;apikey&quot; -&gt; &quot;token&quot;,
+                    &quot;Headers&quot; -&gt; {}]] &amp;),
+
+
+  &quot;ClientInfo&quot;  :&gt; 
+   OAuthDialogDump`Private`MultipleKeyDialog[
+    &quot;ChemSpider&quot;, {&quot;Security Token&quot; -&gt; &quot;token&quot;},
+
+    &quot;https://www.chemspider.com/UserProfile.aspx&quot;, 
+    &quot;http://www.rsc.org/help-legal/legal/terms-conditions/&quot;],
+        &quot;Gets&quot;    -&gt; {&quot;Search&quot;, &quot;CompoundInformation&quot;, 
+    &quot;CompoundThumbnail&quot;, &quot;Databases&quot;, &quot;ExtendedCompoundInformation&quot;, 
+    &quot;AllSpectraInformation&quot;, &quot;CompoundSpectraInformation&quot;, 
+    &quot;SpectrumInformation&quot;, &quot;InChIKeyQ&quot;, &quot;GetIdentifier&quot;(*,
+    &quot;MOLToInChI&quot;,&quot;MOLToInChIKey&quot;,&quot;IDToMOL&quot;,&quot;RecordToMOL&quot;,
+    &quot;MOLToID&quot;*)},
+        &quot;RawGets&quot;   -&gt; {&quot;RawGetDatabases&quot;, &quot;RawGetExtendedCompoundInfo&quot;, 
+    &quot;RawGetRecordMOL&quot;, &quot;RawSearchByFormula2&quot;, &quot;RawSearchByMass2&quot;,
+                &quot;RawAsyncSimpleSearch&quot;, &quot;RawAsyncSimpleSearchOrdered&quot;, 
+    &quot;RawGetAsyncSearchResults&quot;, &quot;RawGetCompoundInfo&quot;, 
+    &quot;RawGetCompoundThumbnail&quot;, &quot;RawMol2CSID&quot;, &quot;RawSimpleSearch&quot;, 
+    &quot;RawGetAllSpectraInfo&quot;,
+                &quot;RawGetCompoundSpectraInfo&quot;, &quot;RawGetSpectrumInfo&quot;, 
+    &quot;RawCSIDToMol&quot;, &quot;RawIsValidInChIKey&quot;, &quot;RawMolToInChI&quot;, 
+    &quot;RawMolToInChIKey&quot;, &quot;RawInChIToMol&quot;, &quot;RawInChIToInChIKey&quot;, 
+    &quot;RawInChIToCSID&quot;, &quot;RawInChIKeyToMol&quot;, &quot;RawInChIKeyToInChI&quot;, 
+    &quot;RawInChIKeyToCSID&quot;},
+        &quot;Posts&quot;    -&gt; {},
+        &quot;RawPosts&quot;   -&gt; {},
+        &quot;Information&quot;  -&gt; 
+   &quot;Import ChemSpider API data to the Wolfram Language&quot;
+        }</code></pre>
+
+
+<p>There are a few groupings here that should stand out.</p>
+<h3>ServiceName / Information</h3>
+<p>These two are basic AF. They’re plain strings that just give the service a name and a one-line description.</p>
+<h3>Gets / RawGets &amp; Posts / RawPosts</h3>
+<p>These give the names of the requests that will eventually be passable into  <a href="https://reference.wolfram.com/language/ref/ServiceExecute.html"><code>ServiceExecute</code></a>  as well as the names of the core requests that will be called to provide data to those.</p>
+<p>I’ll detail how these work  <a href="#request-formatting">later</a></p>
+<h3>ClientInfo</h3>
+<p>This is the data that defines how authentication should be done. Looking at the one we have here: </p>
+<pre class="prettyprint"><code>&quot;ClientInfo&quot; :&gt;
+  OAuthDialogDump`Private`MultipleKeyDialog[&quot;ChemSpider&quot;,
+    {&quot;Security Token&quot; -&gt; &quot;token&quot;},
+    &quot;https://www.chemspider.com/UserProfile.aspx&quot;,
+    &quot;http://www.rsc.org/help-legal/legal/terms-conditions/&quot;
+    ]</code></pre>
+
+
+<p>It’s calling a function that pops open a dialog with a button that sends you to the URL in the third argument, asks for the field(s) given in the second argument, and is named according to the first.</p>
+<p>As I mentioned before there are two main clients for these connections and, as best I can tell, this is the core authorization function of the  <a href="https://www.wolframcloud.com/objects/b3m2a1.paclets/reference/KeyClient/guide/KeyClient.html"><code>KeyClient`</code></a> . I think it is so called because it uses an API key, rather than the  <a href="https://stormpath.com/blog/what-the-heck-is-oauth">OAuth flow</a> .</p>
+<p>For a standard OAuth implementation we’ll pull from the Facebook connection (note that I chopped a lot of unrelated stuff out):</p>
+<pre class="prettyprint"><code>{
+  &quot;AuthorizeEndpoint&quot; -&gt; &quot;https://graph.facebook.com/oauth/authorize&quot;, 
+  &quot;AccessEndpoint&quot; -&gt; 
+  &quot;https://graph.facebook.com/oauth/access_token&quot;,
+  &quot;RedirectURI&quot;       -&gt; 
+  &quot;https://www.wolfram.com/oauthlanding?service=Facebook&quot;,
+  &quot;VerifierLabel&quot;     -&gt; &quot;code&quot;,
+  &quot;AuthenticationDialog&quot; -&gt; (OAuthClient`tokenOAuthDialog[#, 
+     &quot;Facebook&quot;, fbicon] &amp;),
+  &quot;ClientInfo&quot;        -&gt; {&quot;Wolfram&quot;, &quot;Token&quot;},
+  &quot;AccessTokenExtractor&quot;  -&gt; &quot;JSON/2.0&quot;
+  }</code></pre>
+
+
+<p>If it’s not clear this is an OAuth 2.0 flow, but most services these days use OAuth 2.0 so I have yet to dig and figure out how an OAuth 1.0 service would be set up.</p>
+<p>Note that we provide an  <code>"AuthorizeEndpoint"</code> ,  <code>"AccessEndpoint"</code> ,  <code>"RedirectURI"</code>  and  <code>"VerifierLabel"</code> . For some, like the Google Drive API, there are yet a few parameters to add, but they should be straight-forward and guessable.</p>
+<p>The function  <a href="https://www.wolframcloud.com/objects/b3m2a1.paclets/reference/OAuthClient/ref/tokenOAuthDialog.html"><code>OAuthClient`tokenOAuthDialog</code></a>  calls the code that actually implements the flow, sending you to authorize the site and then passing you off to a redirect URL to copy the token.</p>
+<p>Modern paclets use the  <a href="http://reference.wolfram.com/language/guide/Channel-BasedCommunication.html.en">Channel Framework</a>  to provide a seamless way to get a token, presumably by listening into a channel to which is provided as the redirect URI. This is someone one could implement oneself easily enough.</p>
+<h3>URLFetchFunc</h3>
+<p>This is simply the function that’s used to process calls. It defaults to  <a href="https://reference.wolfram.com/language/ref/URLFetch.html"><code>URLFetch</code></a>  but can be an arbitrary function, as is done here, replacing the  <code>"Parameters"</code>  and  <code>"Headers"</code>  options.</p>
+<p><a id="request-formatting" >&zwnj;</a></p>
+<p><a id="request-formatting" >&zwnj;</a></p>
+<h2>Request Formatting</h2>
+<p>Continuing on, we move to the requests themselves. There are two types of requests. The first are the “raw” requests which are the raw importers from the APIs. These provide info to the  <code>"URLFetchFunc"</code></p>
+<h3>Raw Requests</h3>
+<p>We’ll look at a sample raw request spec:</p>
+<pre class="prettyprint"><code>chemspiderdata[&quot;RawGetRecordMol&quot;] := {
+    &quot;URL&quot;    -&gt; 
+   &quot;http://www.chemspider.com/MassSpecAPI.asmx/GetRecordMol&quot;,
+          &quot;HTTPSMethod&quot;  -&gt; &quot;GET&quot;,
+          &quot;Parameters&quot;  -&gt; {&quot;csid&quot;, &quot;calc3d&quot;},
+          &quot;RequiredParameters&quot; -&gt; {&quot;csid&quot;, &quot;calc3d&quot;},
+          &quot;ResultsFunction&quot; -&gt; chemspiderimport
+          }</code></pre>
+
+
+<p>We can see we’re give a URL, HTTP verb, query parameters, required parameters, and an import function (defaults to  <code>"URLFetchFunc"</code> ).</p>
+<p>These are all pretty straightforward, but it’s worth noting that these can look rather different. Here’s another example, this time from Facebook:</p>
+<pre class="prettyprint"><code>$facebookphotopermissions = {};
+facebookdata[&quot;RawUserPhotos&quot;] = {
+
+  &quot;URL&quot;    -&gt;  (ToString@
+      StringForm[&quot;https://graph.facebook.com/v2.3/`1`/photos&quot;, 
+       formatuser[##]] &amp;),
+          &quot;PathParameters&quot; -&gt; {&quot;UserID&quot;},
+          &quot;Parameters&quot;  -&gt; {&quot;limit&quot;},
+          &quot;HTTPSMethod&quot;  -&gt; &quot;GET&quot;,
+          &quot;ResultsFunction&quot; -&gt; facebookimport,
+          &quot;RequiredPermissions&quot; :&gt; $facebookphotopermissions
+      }</code></pre>
+
+
+<p>Note that the  <code>"URL"</code>  is now a function. I tend to use  <a href="https://reference.wolfram.com/language/ref/URLBuild.html"><code>URLBuild</code></a>  over the  <a href="https://reference.wolfram.com/language/ref/StringForm.html"><code>StringForm</code></a>  calls one tends to see in the paclets. </p>
+<p>Also we now have  <code>"PathParameters"</code>  which get passed to  <code>"URL"</code>  (note that  <code>"PathParameters"</code>  can be added to the  <code>"RequiredParameters"</code>  list).</p>
+<p>And we have  <code>"RequiredPermissions"</code>  which is there for requesting permissions incrementally. I’ve never used. Not sure how it works.</p>
+<p>Note that the raw request needs to be a) defined in the basic  <code>$servicenamedata</code>  function and b) needs to be added to the  <code>"RawGets"</code> / <code>"RawPosts"</code>  section of the  <code>"ClientInfo"</code> .</p>
+<h3>Exposed Requests</h3>
+<p>These raw requests aren’t accessible to the user via  <code>ServiceExecute</code> , though. Those exposed requests come via the  <code>$servicenamecookeddata</code>  function that’s returned as the second argument of the service data list.</p>
+<p>Here’s a sample from the Facebook connection:</p>
+<pre class="prettyprint"><code>facebookcookeddata[&quot;PageData&quot;, id_, args_] := Block[
+   {rawdata, params, data},
+   params = filterparameters[args, getallparameters[&quot;RawPageData&quot;]];
+    params = 
+   params /. 
+    HoldPattern[Rule[a_, b_Integer]] :&gt; Rule[a, ToString[b]];
+   If[FreeQ[params, &quot;PageID&quot;], 
+   Message[ServiceExecute::nparam, &quot;PageID&quot;]; Throw[$Failed]];
+   rawdata = 
+   OAuthClient`rawoauthdata[id, &quot;RawPageData&quot;, 
+    Join[params, {&quot;fields&quot; -&gt; 
+       StringJoin[Riffle[facebookpagefields, &quot;,&quot;]]}]];      
+   data = facebookimport[rawdata];
+   Association[
+   Replace[Normal[data], 
+     HoldPattern[Rule[a_String, b_]] :&gt; Rule[a, pagedataparse[b, a]], 
+     Infinity] /. Thread[facebookpagefields -&gt; facebookpageNames]]   
+  ]</code></pre>
+
+
+<p>Note that this is a real function, not just a list of parameters. And in fact these requests can be arbitrary functions that never go to the web. In all of my connections I add extra meta requests that tell me about the object itself, such as what parameters its requests can take.</p>
+<p>But the basic format looks like this:</p>
+<pre class="prettyprint"><code>$servicenamecookeddata[&quot;Request&quot;, id_, args_] :=
+  Block[
+    {rawdata, params},
+    params = preProcessArguments[args];
+    rawdata = OAuthClient`rawoauthdata[id, &quot;RawRequest&quot;, params];    
+    postProcessData[rawdata]
+   ]</code></pre>
+
+
+<p>Where that  <a href="https://www.wolframcloud.com/objects/b3m2a1.paclets/reference/OAuthClient/ref/rawoauthdata.html"><code>OAuthClient`rawoauthdata</code></a>  will be  <a href="https://www.wolframcloud.com/objects/b3m2a1.paclets/reference/KeyClient/ref/rawkeydata.html"><code>KeyClient`rawkeydata</code></a>  for services that use API keys.</p>
+<p>And analogously to the raw request, this request a) needs to defined in  <code>$servicenamecookeddata</code>  and b) needs to be added to the  <code>"Gets"</code> / <code>"Posts"</code>  section of the  <code>"ClientInfo"</code> .</p>
+<p><a id="custom-service-connection" >&zwnj;</a></p>
+<h1>Custom Service Connection</h1>
+<p>All of this is nice to know for making them by hand, but generally it’s not worth it to fill all that out just to get an API connection. That’s why I built a function that can fill all of that out from a template. The basic idea is that there are template files that will programmatically configure a service connection if given the appropriate parameters and so the function simply needs to format the parameters appropriately.</p>
+<p><a id="template-files" >&zwnj;</a></p>
+<h2>Template Files</h2>
+<p>We’ll ignore load.m because it’s so basic.</p>
+<h3>$ServiceConnectionLoad.m</h3>
+<p>The main thing we change here is to add the block:</p>
+<pre class="prettyprint"><code>Block[{dir = DirectoryName[System`Private`$InputFileName]},
+  Switch[$ServiceConnectionClientName,
+     &quot;OAuthClient&quot; | &quot;oauthclient&quot; | &quot;OauthClient&quot;,
+      OAuthClient`addOAuthservice,
+     &quot;KeyClient&quot; | &quot;keyclient&quot;,
+      KeyClient`addKeyservice,
+     &quot;OtherClient&quot; | &quot;otherclient&quot;,
+      OtherClient`addOtherservice
+     ][&quot;$ServiceConnection&quot;, dir]
+  ]</code></pre>
+
+
+<p>Where the client name will be provided by the user and formatted by the function.</p>
+<h3>$ServiceConnectionFunctions.m</h3>
+<p>This is a standard file that is in many service connections (although not either of the two we looked at). Looking at some of what we have in the template:</p>
+<pre class="prettyprint"><code>$ServiceConnectionHelperNames
+(* OAuth loopback *)
+$serviceconnectionprivateoauthpagelink::usage =
+   &quot;A local redirect URI that tells the user what the access code to \
+copy is&quot;;
+$serviceconnectionprivateoauthcloudlink::usage =
+   &quot;A cloud exported redirect URI that tells the user what the access \
+code to copy is&quot;;
+$serviceconnectionprivateoauthtokenfile::usage =
+   &quot;A fake OAuth token for when a real OAuth token isn't needed by \
+the OAuth client is desired&quot;;
+$$serviceconnectionaccesscodecloudlink::usage =
+  &quot;A static cloud object URL for getting code copied&quot;
+$$serviceconnectionaccesstokencloudlink::usage =
+  &quot;A static cloud object URL for getting an access_token copied&quot;
+(* Request Formatting *)
+$serviceconnectionreformatbodydata::usage =
+   &quot;Reformats the BodyData parameter of a request. Used by default \
+for KeyClient&quot;;
+$serviceconnectionreformatmultipartbodydata::usage =
+   &quot;Reformats BodyData into a MultipartData made of metadata and \
+content fragment&quot;;
+$serviceconnectionpatchedurlfetchblock::usage =
+   &quot;A block that patches $$serviceconnectionurlfetchpatch into \
+URLFetch&quot;;
+$serviceconnectionpatchmultipartparams::usage =
+   &quot;A block that sets the patching for multipart data&quot;;
+$$serviceconnectionlastrequest::usage =
+   &quot;A symbol that temporariliy gets the request association when \
+using URLFetch override&quot;;</code></pre>
+
+
+<p>We see there’s a block for custom functions:  <code>$ServiceConnectionHelperNames</code>  but also a bunch of stuff that will be common to all these connections (although renamed to avoid shadowing).</p>
+<p>There’s stuff for forcing parameters into a  <code>URLFetch</code>  which can be important for things like multi-part requests, and some functions for configuring call-back URLs plus two such URLs for code and access_token copying. In the future stuff could be added for using the channel framework to automatically pull in auth tokens, etc.</p>
+<p>This file is where most of the customization happens.</p>
+<h3>$ServiceConnection.m</h3>
+<p>This file provides a programmatic template for formatting these connections. The basic premise is that requests will be formatted as lists of rules, and the package will loop over these lists, filling out and customizing the  <code>$servicenamedata</code>  and  <code>$servicenamecookeddata</code>  functions.</p>
+<p>In the cooked data functions it determines whether a request has a raw request underpinning it and, if so, uses a version of:</p>
+<pre class="prettyprint"><code>$servicenamecookeddata[&quot;Request&quot;, id_, args_] :=
+  Block[
+    {rawdata, params},
+    params = preProcessArguments[args];
+    rawdata = OAuthClient`rawoauthdata[id, &quot;RawRequest&quot;, params];    
+    postProcessData[rawdata]
+   ]</code></pre>
+
+
+<p>with pre and post provided</p>
+<p>If there’s no raw request, it provides some basic  <code>"RequiredParameters"</code>  checking and some other useful stuff, but basically just calls the function on the object and request parameters.</p>
+<h3>Paclet Creation</h3>
+<p>Then the function just packs up the paclet with the appropriate PacletInfo.m so it can be installed.</p>
+<p><a id="template-notebook" >&zwnj;</a></p>
+<h2>Template Notebook</h2>
+<p>Given that there’re lots of parameters to track and fill out it makes sense to run this as a  <a href="https://raw.githubusercontent.com/b3m2a1/mathematica-BTools/master/Templates/ServiceConnectionTemplate.nb" download>template notebook</a> .</p>
+<p>The template is divided into sections roughly corresponding to the sections of the $ServiceConnection.m file, they are:</p>
+<ul>
+<li>
+<p>Basics - the name of the service, the prefix to stick onto function names, and the basic description</p>
+</li>
+<li>
+<p>Connection Info - the  <code>"ClientInfo"</code>  setup, 4 different templates are provided for this</p>
+</li>
+<li>
+<p>Helper Functions - functions to be inserted into the $ServiceConnectionFunctions.m file for access throughout the connection. A few common functions are provided.</p>
+</li>
+<li>
+<p>Raw Import Functions - the setup for the RawRequests each is formatted like:</p>
+<p>$importFuncs["Raw" &lt;&gt; &lt; name &gt;] =
+  With[{
+    base = $serviceBase,
+    stdParams = $serviceBaseParameters
+    },
+   {
+    "URL" -&gt;(<em><URL> or (URLBuild[{&lt; Params &gt;,<Slots>, &lt;
+    Params&gt; ...}]&amp;) for processes one can use <code>key</code> to insert a \
+keyword parameter</em>),
+    "Method" -&gt;(<em> "Get", "Post", "Delete", etc. Defaults to "Get"</em>),
+    "Path" -&gt;(<em> 
+    Parameters that will be inserted in the URL (in sequential order) \
+</em>),
+    "Parameters" -&gt;(<em> 
+    Parameters that will be passed as Parameters to the URLFetch \
+function </em>),
+    "Required" -&gt; (<em> the arguments that will be required </em>),
+    "Headers" -&gt; (<em> Headers that will be passed by default </em>),
+    "Function" -&gt;(<em> The function used to import the results </em>)
+    }
+   ];</p>
+</li>
+<li>
+<p>Cooked Functions - the functions that implement the actual requests. These look like:</p>
+<p>$cookedFuncs[&lt; Name &gt;] = {
+   "Call" -&gt; Raw &lt; Name &gt;,
+   "Pre" -&gt; &lt; Preprocess Parameters Function &gt;,
+   "Import" -&gt; &lt; Import Function &gt;,
+   "Post" -&gt; &lt; Post Process Dataset &gt;
+   };</p>
+</li>
+<li>
+<p>Paclet Creation - the setup for the paclet (with a section for adding a service connection icon). This section finally calls  <code>CustomServiceConnection</code>  to build the paclet.</p>
+</li>
+</ul>
+<p><a id="testing" >&zwnj;</a></p>
+<h2>Testing</h2>
+<p>The template notebook also provides a testing section so you can check that your connection is working as it should. The core of this is a function that will reload your paclet data:</p>
+<pre class="prettyprint"><code>ServiceConnections`Private`findandloadServicePaclet[$serviceName]</code></pre>
+
+
+<p>But if you need to change your client info (say you added a request) this actually won’t suffice as the system calls  <a href="https://reference.wolfram.com/language/ref/Once.html"><code>Once</code></a> . For that, instead, you’ll need to actually clear the stored data:</p>
+<pre class="prettyprint"><code>With[{func = $client &lt;&gt; &quot;Client`Private`&quot; &lt;&gt; ToLowerCase[$client] &lt;&gt; 
+    &quot;$servicedata&quot;},
+ Quiet[
+  Once[func[$serviceName]] =.;
+  $so // ServiceDisconnect
+  ]
+ ]</code></pre>
+
+
+<p><a id="paclet-distribution" >&zwnj;</a></p>
+<h2>Paclet Distribution</h2>
+<p>Once you’ve stress tested your connection, you can move on to distributing it to others. This uses  <code>PacletUpload</code>  to place the paclet in the cloud where others can access it:</p>
+<pre class="prettyprint"><code>PacletUpload[&quot;ServiceConnection_&quot; &lt;&gt; $serviceName] // 
+   Key[&quot;PacletFiles&quot;] // First // First</code></pre>
+
+
+<p>Then all others need to do is call  <a href="https://www.wolframcloud.com/objects/b3m2a1.paclets/reference/PacletManager/ref/PacletInstall.html"><code>PacletInstall</code></a>  on that link and they’ll be able to use your connection with  <code>ServiceConnect</code> .</p>
+  </div>
+</article>
+<hr>
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function() {
+    this.page.url = 'https://www.wolframcloud.com/objects/b3m2a1/home/serviceconnections---mathematica-on-the-web.html';
+      this.page.identifier = 'b3m2a1-home-ecfbd9f3-deea-4e81-b898-14678638e4d9';
+;
+  };
+  (function() {
+    var d = document;
+    var s = d.createElement('script');
+    s.src = '//b3m2a1-home.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript class="text-muted">
+  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <p class="col-sm-6 text-sm-right text-muted acknowledgement">
+      Generated by
+      <a href="https://github.com/getpelican/pelican" target="_blank">Pelican</a> /
+      Forked from <a href="https://github.com/nairobilug/pelican-alchemy" target="_blank">alchemy</a>
+    </p>
+  </footer>
+
+</body>
+
+</html>

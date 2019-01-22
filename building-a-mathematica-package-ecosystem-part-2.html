@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+Building a Mathematica Package Ecosystem, Part 2. |         b3m2a1
+
+</title>
+  <link rel="canonical" href="https://www.wolframcloud.com/objects/b3m2a1/home/building-a-mathematica-package-ecosystem-part-2.html">
+
+  <link rel="alternate" type="application/atom+xml" href="https://www.wolframcloud.com/objects/b3m2a1/home/feeds/all.atom.xml" title="Full Atom Feed">
+
+  <link rel="apple-touch-icon" href="https://www.wolframcloud.com/objects/b3m2a1/home/apple-touch-icon.png" sizes="180x180">
+  <link rel="icon" type="image/png" href="https://www.wolframcloud.com/objects/b3m2a1/home/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="https://www.wolframcloud.com/objects/b3m2a1/home/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="https://www.wolframcloud.com/objects/b3m2a1/home/manifest.json">
+  <meta name="theme-color" content="#333333">
+
+  <link rel="stylesheet" href="https://www.wolframcloud.com/objects/b3m2a1/home/theme/css/bootstrap.css">
+  <link rel="stylesheet" href="https://www.wolframcloud.com/objects/b3m2a1/home/theme/css/font-awesome.css">
+  <link rel="stylesheet" href="https://www.wolframcloud.com/objects/b3m2a1/home/theme/css/style.css">
+
+
+<meta name="description" content="So a few days ago I talked about building a package ecosystem in Mathematica by extending the built-in package manager. In that post I identified two things that ought to be extended to improve how packages are used in the Mathematica community: The package manager needs to be more automated …">
+
+<link href="https://www.wolframcloud.com/objects/b3m2a1/home/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
+<script src="https://www.wolframcloud.com/objects/b3m2a1/home/theme/prettify/src/prettify.js"></script>
+<!-- <script src="https://www.wolframcloud.com/objects/b3m2a1/home/theme/prettify/src/lang-mma.min.js"></script> -->
+
+<script>
+  function moveWindow (){window.location.hash="main-content";}
+</script>
+
+
+<script>
+  (function(i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function() {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    a.async = 1;
+    a.src = g;
+    m = s.getElementsByTagName(o)[0];
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-103560228-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <script>
+    function openNav() {
+      var thumb = document.getElementById("nav-thumb");
+      var bar = document.getElementById("side-nav");
+      thumb.onclick= closeNav;
+      bar.classList.add("right-bar-open");
+      bar.classList.remove("right-bar-closed");
+      thumb.classList.add("nav-thumb-open");
+      thumb.classList.remove("nav-thumb-closed");
+    }
+
+    function closeNav() {
+      var thumb = document.getElementById("nav-thumb");
+      var bar = document.getElementById("side-nav");
+      thumb.onclick= openNav;
+      bar.classList.remove("right-bar-open");
+      bar.classList.add("right-bar-closed");
+      thumb.classList.remove("nav-thumb-open");
+      thumb.classList.add("nav-thumb-closed")
+    }
+  </script>
+
+
+</head>
+
+<body onload="PR.prettyPrint(); moveWindow()"
+>
+  <header class="header">
+    <div class="top-bar">
+    <div class="site-image">
+      <img src=https://www.wolframcloud.com/objects/b3m2a1/home/img/site-image.png alt="b3m2a1">
+    </div>
+    <div class="site-links bubble floating">
+      <h1 class="title">
+          <a href="https://www.wolframcloud.com/objects/b3m2a1/home/">
+            b3m2a1
+          </a>
+        </h1>
+        <ul
+          class="list-inline row site-link-row"
+          id="top-bar-link-row"
+          >
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/pages/about.html">About</a>
+            </li>
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/pages/contact.html">Contact</a>
+            </li>
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/categories.html">Categories</a>
+            </li>
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/tags.html">Tags</a>
+            </li>
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/archives.html">Archives</a>
+            </li>
+        </ul>
+    </div>
+    </div>
+  </header>
+
+  <div class="main" id="main-content">
+
+    <div class="right-bar right-bar-closed" id="side-nav">
+      <button
+        id="nav-thumb"
+        class="nav-thumb nav-thumb-closed"
+        onclick="openNav()"
+        >
+      </button>
+      <div class="blogroll bubble inset">
+        <p>Links</p>
+        <ul class="blogroll-links right-bar-links list-inline">
+            <li class="right-bar-item">
+              <a href="https://github.com/b3m2a1" class="blogroll-link right-bar-link"
+                target="_blank">
+                GitHub
+              </a>
+            </li>
+            <li class="right-bar-item">
+              <a href="https://mathematica.stackexchange.com/users/38205" class="blogroll-link right-bar-link"
+                target="_blank">
+                StackExchange
+              </a>
+            </li>
+            <li class="right-bar-item">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1.paclets/PacletServer/main.html" class="blogroll-link right-bar-link"
+                target="_blank">
+                Paclets
+              </a>
+            </li>
+            <li class="right-bar-item">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1.docs/DocumentationSite/main.html" class="blogroll-link right-bar-link"
+                target="_blank">
+                Docs
+              </a>
+            </li>
+          </ul>
+      </div>
+    </div>
+
+    <div class="left-content">
+      <div class="container">
+        <h1>Building a Mathematica Package Ecosystem, Part 2.
+</h1>
+        <hr>
+<article class="article">
+  <header>
+    <ul class="list-inline">
+      <li class="list-inline-item text-muted" title="2017-09-04T23:16:18-05:00">
+        <i class="fa fa-clock-o"></i>
+        Mon 04 September 2017
+      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="https://www.wolframcloud.com/objects/b3m2a1/home/category/posts.html">posts</a>
+      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-user-o"></i>
+        <a href="https://www.wolframcloud.com/objects/b3m2a1/home/author/b3m2a1.html">b3m2a1</a>      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-files-o"></i>
+        <a href="https://www.wolframcloud.com/objects/b3m2a1/home/tag/mathematica.html">#mathematica</a>      </li>
+    </ul>
+  </header>
+  <div class="content">
+    <p>So a few days ago I talked about building a package ecosystem in Mathematica by extending the built-in package manager. In that post I identified two things that ought to be extended to improve how packages are used in the Mathematica community: </p>
+<ol>
+<li>
+<p>The package manager needs to be more automated and paclet servers need to be clearer about what they have</p>
+</li>
+<li>
+<p>Creating and distributing documentation should be more convenient</p>
+</li>
+</ol>
+<p>We had some tools to simplify the first one some. Now we’ll move on to the second.</p>
+<p>Let’s start off by acknowledging that Mathematica has a very nice documentation set-up. Every function has a documentation page with usage, details, and examples, related functions, and related guides. It’s pretty high-quality stuff. You can write your own using the  <a href="https://www.wolfram.com/workbench/">Wolfram Workbench Eclipse plugin</a>  that is the easy route. Or you could do what I did and rewrite a documentation generator from scratch. The former has many benefits in that it’s:</p>
+<ul>
+<li>
+<p>A lot less work</p>
+</li>
+<li>
+<p>Wolfram sanctioned</p>
+</li>
+<li>
+<p>Somewhat more likely to be maintained</p>
+</li>
+</ul>
+<p>The latter has benefits in that it’s customizable and, unfortunately, possible to keep more up-to-date than the plugin, as Wolfram’s documentation format sometimes changes faster than they release plugin versions. But there’s also one benefit that perhaps isn’t as obvious: we can easily extend it to support automatic documentation generation. That last one will be key to simplifying the documentation process.</p>
+<p><a id="automatic-function-documentation" style="width:0;height:0;margin:0;padding:0;">&zwnj;</a></p>
+<h2>Automatic Function Documentation</h2>
+<p>We’ll start by taking a look at what is required to build out decent documentation for a given function:</p>
+<h3>Extracting Usage Data</h3>
+<p>Our usage data will simply be the left-hand-side of the  <code>OwnValues</code> ,  <code>DownValues</code> ,  <code>SubValues</code> , and  <code>UpValues</code> . This is all easily accessible. Harder is to then convert this into something readable. The strategy will be all about reducing pattern complexity. There are a few things that will need to happen here:</p>
+<ul>
+<li>
+<p><code>HoldPattern</code>  expressions will need to be converted to their interior expressions</p>
+</li>
+<li>
+<p><code>Pattern</code> ,  <code>Optional</code> ,  <code>PatternTest</code> , and  <code>Condition</code>  expressions will need to be converted to their left-hand-sides</p>
+</li>
+<li>
+<p><code>Alternatives</code>  should reduce to their first case</p>
+</li>
+<li>
+<p><code>Blank</code> -type patterns should be replaced by their types</p>
+</li>
+</ul>
+<p>The function we’ll need for this will then basically be an extended  <code>ReplaceRepeated</code>  that handles all these conditions and applies them to the  <code>*Values</code>  functions. It’s not really worth posting the content of the function itself here, so I won’t.</p>
+<h3>Extracting Details Data</h3>
+<p>Our details data will essentially list scrape-able info for general convenience. We’ll want the following:</p>
+<ul>
+<li>
+<p>What types of usages a function has</p>
+</li>
+<li>
+<p>Whether a function has  <code>FormatValues</code>  or not</p>
+</li>
+<li>
+<p>What  <code>Options</code>  it inherits from common functions</p>
+</li>
+<li>
+<p>What  <code>Options</code>  it has that aren’t inherited</p>
+</li>
+<li>
+<p>What  <code>Messages</code>  it supports</p>
+</li>
+</ul>
+<p>The only interesting thing here is how to determine what  <code>Options</code>  are new to the function. But even this isn’t hard. We simply take a list of functions from which  <code>Options</code>  are commonly inherited and just look at  <code>Options</code>  names intersections one by one.</p>
+<h3>Configuring Examples</h3>
+<p>This is a more interesting problem and one that I haven’t yet fully figured out how to handle. Something that makes this tough is that we obviously generally can’t tell what a function will do before we test it, so passing it naive examples could have disastrous consequences. My answer to this was to provide a sample example for each distinct usage which would be left unevaluated. This means we have a new pattern-reduction problem on our hands. This time we’ll apply the following set of rules:</p>
+<ul>
+<li>
+<p>Untyped (i.e. without a  <code>Head</code>  specified)  <code>Blank</code>  patterns reduce to 0, 1 or 2 symbols, depending on the type of blank pattern</p>
+</li>
+<li>
+<p>Typed  <code>Blank</code>  patterns reduce to 0, 1 or 2 objects of the  <code>Head</code> , depending on the type of blank pattern</p>
+</li>
+<li>
+<p><code>PatternTest</code>  generally reduces to the left-hand-side, except when a known type-test is on the right-hand-side, in which case it reduces to that type as many times as the left-hand side specifies</p>
+</li>
+<li>
+<p><code>Pattern</code>  reduces to its right-hand side unless its right-hand side is a  <code>Blank</code> , in which case it becomes the pattern left-hand side as a symbol</p>
+</li>
+<li>
+<p><code>Optional</code>  becomes its optional value</p>
+</li>
+<li>
+<p><code>Alternatives</code>  becomes the first alternative</p>
+</li>
+</ul>
+<p>Note that these rules could be extended yet further. They just provide a nice starting point.</p>
+<h3>Finding Similarly Named Functions</h3>
+<p>With all that in place we’ll lastly want to auto-determine what functions are similar to our function by name, taking advantage of the camel-casing that is the default in Mathematica. In general we can assume that a function that shares the first “camel-hump” with our function is related enough to note. On top of that we’ll want to only use functions that are in the same context, as functions in other contexts are not obviously related. </p>
+<h3>Sample Page</h3>
+<p>We’ll generate a page for the function that does this itself:</p>
+<pre class="prettyprint"><code>GenerateSymbolPages@GenerateSymbolPages
+
+(*Out:*)</code></pre>
+
+
+<p><img alt="post-9-1262940102178453808" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/post-9-1262940102178453808.png" /></p>
+<p>The weakest point of all of this is the examples, but on the other hand it takes only a few seconds to generate that page (and only that because of inefficiencies in over-calling the front-end). That’s significant savings, particularly for someone like me who’s not sure what functions, if any, others will find useful.</p>
+<p><a id="automatic-context-documentation" style="width:0;height:0;margin:0;padding:0;">&zwnj;</a></p>
+<h2>Automatic Context Documentation</h2>
+<p>Auto-generation becomes most useful when we consider using it to go beyond generating documentation for a single function to something like generating documentation for an entire package or context. For that I wrote a function  <code>GenerateDocumentation</code> . It takes a lists of contexts and builds documentation for each that also links to the others. A good example of its utility something like this, where we build documentation for two complementary, undocumented packages:</p>
+<pre class="prettyprint"><code>GenerateDocumentation[{
+   &quot;MQTTLink`&quot;,
+   &quot;HTTPHandling`&quot;
+   }]
+
+(*Out:*)</code></pre>
+
+
+<p><img alt="post-9-2892288905153870383" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/post-9-2892288905153870383.png" /></p>
+<p><a id="documentation-deployment" style="width:0;height:0;margin:0;padding:0;">&zwnj;</a></p>
+<h2>Documentation Deployment</h2>
+<p>With documentation like this built, we’ll now want some way to make it accessible to others. Here we’ll use the fact that WRI distributes documentation in just such a fashion as HTML pages. We’ll use some of WRI’s tools to build the HTML directly and then distribute this.</p>
+<h3>Basic HTML Distribution</h3>
+<p>The tools WRI packages require significant correction to get in a useful working order, but I’ve done most of this work myself so that others don’t need to. I packaged it up in a function I called  <code>GenerateHTMLDocumentation</code> . Since  <code>GenerateDocumentation</code>  builds out documentation paclets, we can find these via  <code>PacletFind</code> :</p>
+<pre class="prettyprint"><code>PacletFind[&quot;HTTPHandling&quot;]
+
+(*Out:*)</code></pre>
+
+
+<p><img alt="post-9-3249245892677581363" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/post-9-3249245892677581363.png" /></p>
+<p>We’ll note that one of these has version number 0. That’s the one we want. Version 0 is almost never going to be a release version, so it’s a pretty safe documentation paclet version.</p>
+<p>We can then build the HTML docs for a paclet like this and deploy them to the cloud at the same time:</p>
+<pre class="prettyprint"><code>GenerateHTMLDocumentation[PacletFind[&quot;HTTPHandling&quot;][[2]],
+   CloudDeploy -&gt; True] // Replace[#, {c_, ___} :&gt; c, 1] &amp;
+
+(*Out:*)
+
+{CloudObject[
+ &quot;https://www.wolframcloud.com/objects/b3m2a1.docs/reference/\
+HTTPHandling/guide/HTTPHandling.html&quot;], CloudObject[
+ &quot;https://www.wolframcloud.com/objects/b3m2a1.docs/reference/\
+HTTPHandling/ref/StartWebServer.html&quot;], CloudObject[
+ &quot;https://www.wolframcloud.com/objects/b3m2a1.docs/reference/\
+HTTPHandling/ref/WebServer.html&quot;], CloudObject[
+ &quot;https://www.wolframcloud.com/objects/b3m2a1.docs/reference/\
+HTTPHandling/ref/$MQTTBroker.html&quot;], CloudObject[
+ &quot;https://www.wolframcloud.com/objects/b3m2a1.docs/reference/\
+HTTPHandling/ref/$WebServers.html&quot;]}</code></pre>
+
+
+<p>This is all we need to get the most basic stuff up-and-running.</p>
+<h3>Building a Documentation Site</h3>
+<p>On the other hand we may find ourselves wanting more. We might want a general landing page where we can see  <em><em>all</em></em>  of our docs. For this, we’ll need to first build out a documentation overview. This process isn’t entirely set-in-stone, so most of the functionality remains in the package scope. But it can demonstrate at least  <em><em>a</em></em>  way to do this. Our basic idea will be to take a set of directories, extract what’s known about the documentation they have, and build a landing page for it. The basic call looks like this:</p>
+<pre class="prettyprint"><code>Export[
+  FileNameJoin@{
+     BTools`Private`$DocPacletsDirectory,
+     &quot;Documentation&quot;,
+     &quot;English&quot;,
+     &quot;Guides&quot;,
+     &quot;DocumentationOverview.nb&quot;
+     },
+  BTools`Private`Hidden`DocumentationMultiPackageOverviewNotebook[
+    BTools`Private`$DocPacletsDirectory,
+    Except@FileBaseName[BTools`Private`$DocPacletsDirectory]
+    ]
+  ]
+
+(*Out:*)
+
+&quot;~/Library/Mathematica/ApplicationData/DocGen/DocPaclets/\
+Documentation/English/Guides/DocumentationOverview.nb&quot;</code></pre>
+
+
+<p>Then we can build and deploy this overview:</p>
+<pre class="prettyprint"><code>GenerateHTMLDocumentation[
+ BTools`Private`$DocPacletsDirectory,
+ CloudDeploy -&gt; True
+ ]
+
+(*Out:*)
+
+{
+CloudObject[
+ &quot;https://www.wolframcloud.com/objects/b3m2a1.docs/reference/guide/\
+DocumentationOverview.html&quot;]}</code></pre>
+
+
+<p>Finally, we’ll build a small wrapper site on top of all of this:</p>
+<pre class="prettyprint"><code>DocumentationSiteBuild[&quot;AutoDeploy&quot; -&gt; True];</code></pre>
+
+
+<p>It uses the same SiteBuilder framework as the paclet site, but the resources are different. Then we go to  <a href="https://www.wolframcloud.com/objects/b3m2a1.docs/main.html">its main page</a>  and we can see why this is useful. It provides us with a way to display our doc pages with extra site info, particularly with links to our paclet site.</p>
+<p>Here is a screen shot of the site home:</p>
+<p><img alt="post-9-3823310612676356258" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/post-9-3823310612676356258.png" /></p>
+<p>It is no more than an iframe on that landing page, but it provides a much nicer, more integrated framework. And hopefully all of this together—how automatic it is, how little burden it puts on the user—means we’ll start to see more, easier to use paclets and some development in the Mathematica paclet ecosystem</p>
+  </div>
+</article>
+<hr>
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function() {
+    this.page.url = 'https://www.wolframcloud.com/objects/b3m2a1/home/building-a-mathematica-package-ecosystem-part-2.html';
+      this.page.identifier = 'b3m2a1-home-787603a8-8278-4f67-b457-32c8ed6a547a';
+;
+  };
+  (function() {
+    var d = document;
+    var s = d.createElement('script');
+    s.src = '//b3m2a1-home.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript class="text-muted">
+  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <p class="col-sm-6 text-sm-right text-muted acknowledgement">
+      Generated by
+      <a href="https://github.com/getpelican/pelican" target="_blank">Pelican</a> /
+      Forked from <a href="https://github.com/nairobilug/pelican-alchemy" target="_blank">alchemy</a>
+    </p>
+  </footer>
+
+</body>
+
+</html>

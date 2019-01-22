@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+Adding a Paclet to the Mathematica Paclet Server |         b3m2a1
+
+</title>
+  <link rel="canonical" href="https://www.wolframcloud.com/objects/b3m2a1/home/adding-a-paclet-to-the-mathematica-paclet-server.html">
+
+  <link rel="alternate" type="application/atom+xml" href="https://www.wolframcloud.com/objects/b3m2a1/home/feeds/all.atom.xml" title="Full Atom Feed">
+
+  <link rel="apple-touch-icon" href="https://www.wolframcloud.com/objects/b3m2a1/home/apple-touch-icon.png" sizes="180x180">
+  <link rel="icon" type="image/png" href="https://www.wolframcloud.com/objects/b3m2a1/home/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="https://www.wolframcloud.com/objects/b3m2a1/home/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="https://www.wolframcloud.com/objects/b3m2a1/home/manifest.json">
+  <meta name="theme-color" content="#333333">
+
+  <link rel="stylesheet" href="https://www.wolframcloud.com/objects/b3m2a1/home/theme/css/bootstrap.css">
+  <link rel="stylesheet" href="https://www.wolframcloud.com/objects/b3m2a1/home/theme/css/font-awesome.css">
+  <link rel="stylesheet" href="https://www.wolframcloud.com/objects/b3m2a1/home/theme/css/style.css">
+
+
+<meta name="description" content="This'll be a short-and-sweet explanation of how to add a paclet to the Mathematica Paclet Server . The hope is that it shows how easy these things can be. To showcase this I'll add my Ems package that I showcased in my post Making a Blog in 30 Minutes . The first …">
+
+<link href="https://www.wolframcloud.com/objects/b3m2a1/home/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
+<script src="https://www.wolframcloud.com/objects/b3m2a1/home/theme/prettify/src/prettify.js"></script>
+<!-- <script src="https://www.wolframcloud.com/objects/b3m2a1/home/theme/prettify/src/lang-mma.min.js"></script> -->
+
+<script>
+  function moveWindow (){window.location.hash="main-content";}
+</script>
+
+
+<script>
+  (function(i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function() {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    a.async = 1;
+    a.src = g;
+    m = s.getElementsByTagName(o)[0];
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-103560228-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <script>
+    function openNav() {
+      var thumb = document.getElementById("nav-thumb");
+      var bar = document.getElementById("side-nav");
+      thumb.onclick= closeNav;
+      bar.classList.add("right-bar-open");
+      bar.classList.remove("right-bar-closed");
+      thumb.classList.add("nav-thumb-open");
+      thumb.classList.remove("nav-thumb-closed");
+    }
+
+    function closeNav() {
+      var thumb = document.getElementById("nav-thumb");
+      var bar = document.getElementById("side-nav");
+      thumb.onclick= openNav;
+      bar.classList.remove("right-bar-open");
+      bar.classList.add("right-bar-closed");
+      thumb.classList.remove("nav-thumb-open");
+      thumb.classList.add("nav-thumb-closed")
+    }
+  </script>
+
+
+</head>
+
+<body onload="PR.prettyPrint(); moveWindow()"
+>
+  <header class="header">
+    <div class="top-bar">
+    <div class="site-image">
+      <img src=https://www.wolframcloud.com/objects/b3m2a1/home/img/site-image.png alt="b3m2a1">
+    </div>
+    <div class="site-links bubble floating">
+      <h1 class="title">
+          <a href="https://www.wolframcloud.com/objects/b3m2a1/home/">
+            b3m2a1
+          </a>
+        </h1>
+        <ul
+          class="list-inline row site-link-row"
+          id="top-bar-link-row"
+          >
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/pages/about.html">About</a>
+            </li>
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/pages/contact.html">Contact</a>
+            </li>
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/categories.html">Categories</a>
+            </li>
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/tags.html">Tags</a>
+            </li>
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/archives.html">Archives</a>
+            </li>
+        </ul>
+    </div>
+    </div>
+  </header>
+
+  <div class="main" id="main-content">
+
+    <div class="right-bar right-bar-closed" id="side-nav">
+      <button
+        id="nav-thumb"
+        class="nav-thumb nav-thumb-closed"
+        onclick="openNav()"
+        >
+      </button>
+      <div class="blogroll bubble inset">
+        <p>Links</p>
+        <ul class="blogroll-links right-bar-links list-inline">
+            <li class="right-bar-item">
+              <a href="https://github.com/b3m2a1" class="blogroll-link right-bar-link"
+                target="_blank">
+                GitHub
+              </a>
+            </li>
+            <li class="right-bar-item">
+              <a href="https://mathematica.stackexchange.com/users/38205" class="blogroll-link right-bar-link"
+                target="_blank">
+                StackExchange
+              </a>
+            </li>
+            <li class="right-bar-item">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1.paclets/PacletServer/main.html" class="blogroll-link right-bar-link"
+                target="_blank">
+                Paclets
+              </a>
+            </li>
+            <li class="right-bar-item">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1.docs/DocumentationSite/main.html" class="blogroll-link right-bar-link"
+                target="_blank">
+                Docs
+              </a>
+            </li>
+          </ul>
+      </div>
+    </div>
+
+    <div class="left-content">
+      <div class="container">
+        <h1>Adding a Paclet to the Mathematica Paclet Server
+</h1>
+        <hr>
+<article class="article">
+  <header>
+    <ul class="list-inline">
+      <li class="list-inline-item text-muted" title="2018-09-27T22:48:30-05:00">
+        <i class="fa fa-clock-o"></i>
+        Thu 27 September 2018
+      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="https://www.wolframcloud.com/objects/b3m2a1/home/category/posts.html">posts</a>
+      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-user-o"></i>
+        <a href="https://www.wolframcloud.com/objects/b3m2a1/home/author/b3m2a1.html">b3m2a1</a>      </li>
+    </ul>
+  </header>
+  <div class="content">
+    <p>This'll be a short-and-sweet explanation of how to add a paclet to the  <a href="https://paclets.github.io/PacletServer/">Mathematica Paclet Server</a> . The hope is that it shows how easy these things can be.</p>
+<p>To showcase this I'll add my  <a href="https://github.com/b3m2a1/Ems">Ems</a> package that I showcased in my post  <a href="https://www.wolframcloud.com/objects/b3m2a1/home/making-a-blog-in-30-minutes.html">Making a Blog in 30 Minutes</a> . The first step is to install the interface paclet off the paclet server. To do this we'll go to  <a href="https://paclets.github.io/PacletServer/publicpacletserver.html">its page</a> and copy the installation instructions given there:</p>
+<pre class="prettyprint"><code>PacletInstall[
+  &quot;PublicPacletServer&quot;,
+  &quot;Site&quot;-&gt;
+    &quot;http://raw.githubusercontent.com/paclets/PacletServer/master&quot;
+  ]
+
+(*Out:*)</code></pre>
+
+
+<p><img alt="post21-6722923238009970110" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/post21-6722923238009970110.png" /></p>
+<p>Now, we load this package</p>
+<pre class="prettyprint"><code>&lt;&lt;PublicPacletServer`</code></pre>
+
+
+<p>Then since Ems is already on my personal server I can just point the registration there:</p>
+<pre class="prettyprint"><code>PublicPacletServer[&quot;RegisterPaclet&quot;,
+  &lt;|
+    &quot;Name&quot;-&gt;&quot;Ems&quot;,
+    &quot;Author&quot;-&gt;&quot;b3m2a1 &lt;b3m2a1@gmail.com&gt;&quot;,
+    &quot;URL&quot;-&gt;&quot;http://www.wolframcloud.com/objects/b3m2a1.paclets/PacletServer&quot;,
+    &quot;Update&quot;-&gt;&quot;DownloadOnce&quot;
+    |&gt;
+  ]
+
+(*Out:*)</code></pre>
+
+
+<p><img alt="post21-2385149726991367475" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/post21-2385149726991367475.png" /></p>
+<p>If I wanted it to download from GitHub, since I already have it on my GitHub instead I could also have just done:</p>
+<pre class="prettyprint"><code>PublicPacletServer[&quot;RegisterPaclet&quot;, &quot;Ems&quot;]</code></pre>
+
+
+<p>Which would have done the same.</p>
+<p>Now we can look at the  <a href="https://github.com/paclets/PacletServer/issues/39">request that was made</a> :</p>
+<p><img alt="post21-4494400686262893646" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/post21-4494400686262893646.png" /></p>
+<p>And that's basically all that needs to be done. At that point the ball is firmly in my court and so we'll just go through what  <em>I</em> do now to get the request fulfilled.</p>
+<p>First I open up the  <a href="https://github.com/paclets/PacletServer/blob/master/ReviewQueue/IncludedPaclets.wl">IncludedPaclets.wl</a> file that lists the paclets that are registered to download. Then I add an entry based odd the info provided:</p>
+<p><img alt="post21-7329852412831181232" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/post21-7329852412831181232.png" /></p>
+<p>And then I open  <a href="https://github.com/paclets/PacletServer/blob/master/build/build.nb">build.nb</a> which handles all the builds of the server and find the line that says: </p>
+<pre class="prettyprint"><code>PublicPacletServerRebuild[];</code></pre>
+
+
+<p>And just run that. The server rebuilds, the paclets download, and in the end it pushes everything to GitHub. Simple as that.</p>
+<p>Before rebuilding, though, we'll have some actually do one more thing which is to submit a paclet update (as packages do, in fact, need updates!). For this to work, the paclet first had to have been registered, but after that all we need to do is make use of the  <code>"RequestPacletUpdate"</code> method of the  <code>PublicPacletServer</code> . I just recently decided to add some more object-oriented syntax for it, so we'll make use of that to request the update that will get the new version of the paclet that supports that onto the server:</p>
+<pre class="prettyprint"><code>PublicPacletServer@&quot;RequestPacletUpdate&quot;[&quot;PublicPacletServer&quot;]
+
+(*Out:*)</code></pre>
+
+
+<p><img alt="post21-1211660871057209269" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/post21-1211660871057209269.png" /></p>
+<p>Looking at the old registration page we see that an update has been requested:</p>
+<p><img alt="post21-8343592441183779473" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/post21-8343592441183779473.png" /></p>
+<p>And I handle this much like I handle all the others, except I go to the entry in the included paclets file and change the  <code>"DownloadNever"</code> to a  <code>"DownloadOnce"</code> :</p>
+<p><img alt="post21-2905139062477497817" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/post21-2905139062477497817.png" /></p>
+<p>With that in place, I'll go back to the build notebook and do a proper build:</p>
+<p><img alt="post21-7732348920836887034" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/post21-7732348920836887034.png" /></p>
+<p>And a few seconds later the  <a href="https://paclets.github.io/PacletServer/ems.html">new content</a> is on the  <a href="https://paclets.github.io/PacletServer/">paclet server</a></p>
+<p><img alt="post21-5312486852621690036" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/post21-5312486852621690036.png" /></p>
+<p>Hopefully this was enough to give you the confidence to submit your own paclets too. And always feel free to open an issue or otherwise comment on the repo if there's something you'd like further clarification on.</p>
+  </div>
+</article>
+<hr>
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function() {
+    this.page.url = 'https://www.wolframcloud.com/objects/b3m2a1/home/adding-a-paclet-to-the-mathematica-paclet-server.html';
+      this.page.identifier = 'adding-a-paclet-to-the-mathematica-paclet-server'
+;
+  };
+  (function() {
+    var d = document;
+    var s = d.createElement('script');
+    s.src = '//b3m2a1-home.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript class="text-muted">
+  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <p class="col-sm-6 text-sm-right text-muted acknowledgement">
+      Generated by
+      <a href="https://github.com/getpelican/pelican" target="_blank">Pelican</a> /
+      Forked from <a href="https://github.com/nairobilug/pelican-alchemy" target="_blank">alchemy</a>
+    </p>
+  </footer>
+
+</body>
+
+</html>

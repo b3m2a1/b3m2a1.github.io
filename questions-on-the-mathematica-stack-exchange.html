@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+Questions on The Mathematica Stack Exchange |         b3m2a1
+
+</title>
+  <link rel="canonical" href="https://www.wolframcloud.com/objects/b3m2a1/home/questions-on-the-mathematica-stack-exchange.html">
+
+  <link rel="alternate" type="application/atom+xml" href="https://www.wolframcloud.com/objects/b3m2a1/home/feeds/all.atom.xml" title="Full Atom Feed">
+
+  <link rel="apple-touch-icon" href="https://www.wolframcloud.com/objects/b3m2a1/home/apple-touch-icon.png" sizes="180x180">
+  <link rel="icon" type="image/png" href="https://www.wolframcloud.com/objects/b3m2a1/home/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="https://www.wolframcloud.com/objects/b3m2a1/home/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="https://www.wolframcloud.com/objects/b3m2a1/home/manifest.json">
+  <meta name="theme-color" content="#333333">
+
+  <link rel="stylesheet" href="https://www.wolframcloud.com/objects/b3m2a1/home/theme/css/bootstrap.css">
+  <link rel="stylesheet" href="https://www.wolframcloud.com/objects/b3m2a1/home/theme/css/font-awesome.css">
+  <link rel="stylesheet" href="https://www.wolframcloud.com/objects/b3m2a1/home/theme/css/style.css">
+
+
+<meta name="description" content="Having built out a framework for developing custom hook-ins to ServiceConnect it’s worth now seeing what we can do with that. There are lots of interesting APIs to connect to, of course, but we’ll start with a relatively simple one, the Stack Exchange API . The API is simple …">
+
+<link href="https://www.wolframcloud.com/objects/b3m2a1/home/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
+<script src="https://www.wolframcloud.com/objects/b3m2a1/home/theme/prettify/src/prettify.js"></script>
+<!-- <script src="https://www.wolframcloud.com/objects/b3m2a1/home/theme/prettify/src/lang-mma.min.js"></script> -->
+
+<script>
+  function moveWindow (){window.location.hash="main-content";}
+</script>
+
+
+<script>
+  (function(i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function() {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    a.async = 1;
+    a.src = g;
+    m = s.getElementsByTagName(o)[0];
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-103560228-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <script>
+    function openNav() {
+      var thumb = document.getElementById("nav-thumb");
+      var bar = document.getElementById("side-nav");
+      thumb.onclick= closeNav;
+      bar.classList.add("right-bar-open");
+      bar.classList.remove("right-bar-closed");
+      thumb.classList.add("nav-thumb-open");
+      thumb.classList.remove("nav-thumb-closed");
+    }
+
+    function closeNav() {
+      var thumb = document.getElementById("nav-thumb");
+      var bar = document.getElementById("side-nav");
+      thumb.onclick= openNav;
+      bar.classList.remove("right-bar-open");
+      bar.classList.add("right-bar-closed");
+      thumb.classList.remove("nav-thumb-open");
+      thumb.classList.add("nav-thumb-closed")
+    }
+  </script>
+
+
+</head>
+
+<body onload="PR.prettyPrint(); moveWindow()"
+>
+  <header class="header">
+    <div class="top-bar">
+    <div class="site-image">
+      <img src=https://www.wolframcloud.com/objects/b3m2a1/home/img/site-image.png alt="b3m2a1">
+    </div>
+    <div class="site-links bubble floating">
+      <h1 class="title">
+          <a href="https://www.wolframcloud.com/objects/b3m2a1/home/">
+            b3m2a1
+          </a>
+        </h1>
+        <ul
+          class="list-inline row site-link-row"
+          id="top-bar-link-row"
+          >
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/pages/about.html">About</a>
+            </li>
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/pages/contact.html">Contact</a>
+            </li>
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/categories.html">Categories</a>
+            </li>
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/tags.html">Tags</a>
+            </li>
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/archives.html">Archives</a>
+            </li>
+        </ul>
+    </div>
+    </div>
+  </header>
+
+  <div class="main" id="main-content">
+
+    <div class="right-bar right-bar-closed" id="side-nav">
+      <button
+        id="nav-thumb"
+        class="nav-thumb nav-thumb-closed"
+        onclick="openNav()"
+        >
+      </button>
+      <div class="blogroll bubble inset">
+        <p>Links</p>
+        <ul class="blogroll-links right-bar-links list-inline">
+            <li class="right-bar-item">
+              <a href="https://github.com/b3m2a1" class="blogroll-link right-bar-link"
+                target="_blank">
+                GitHub
+              </a>
+            </li>
+            <li class="right-bar-item">
+              <a href="https://mathematica.stackexchange.com/users/38205" class="blogroll-link right-bar-link"
+                target="_blank">
+                StackExchange
+              </a>
+            </li>
+            <li class="right-bar-item">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1.paclets/PacletServer/main.html" class="blogroll-link right-bar-link"
+                target="_blank">
+                Paclets
+              </a>
+            </li>
+            <li class="right-bar-item">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1.docs/DocumentationSite/main.html" class="blogroll-link right-bar-link"
+                target="_blank">
+                Docs
+              </a>
+            </li>
+          </ul>
+      </div>
+    </div>
+
+    <div class="left-content">
+      <div class="container">
+        <h1>Questions on The Mathematica Stack Exchange
+</h1>
+        <hr>
+<article class="article">
+  <header>
+    <ul class="list-inline">
+      <li class="list-inline-item text-muted" title="2017-07-25T22:41:45-05:00">
+        <i class="fa fa-clock-o"></i>
+        Tue 25 July 2017
+      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="https://www.wolframcloud.com/objects/b3m2a1/home/category/posts.html">posts</a>
+      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-user-o"></i>
+        <a href="https://www.wolframcloud.com/objects/b3m2a1/home/author/b3m2a1.html">b3m2a1</a>      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-files-o"></i>
+        <a href="https://www.wolframcloud.com/objects/b3m2a1/home/tag/mathematica.html">#mathematica</a>      </li>
+    </ul>
+  </header>
+  <div class="content">
+    <p>Having built out a framework for developing custom hook-ins to  <a href="https://reference.wolfram.com/language/ref/ServiceConnect.html"><code>ServiceConnect</code></a>  it’s worth now seeing what we can do with that. There are lots of interesting APIs to connect to, of course, but we’ll start with a relatively simple one, the  <a href="https://api.stackexchange.com/">Stack Exchange API</a> . The API is simple, as is the authentication procedure, and it’s easy to understand the data we pull out, making it a good test case. We’ll start by connecting via my service connection. If you don’t have the connection you can install it like this:</p>
+<pre class="prettyprint"><code>PacletInstall@
+   URLBuild@{
+      &quot;http://www.wolframcloud.com/objects/b3m2a1.paclets/paclets/\
+PacletServer/Paclets&quot;,
+      &quot;ServiceConnection_StackExchange-1.0.0.paclet&quot;
+      };</code></pre>
+
+
+<p>With that installed you can proceed to connect:</p>
+<pre class="prettyprint"><code>$so = ServiceConnect[&quot;StackExchange&quot;]</code></pre>
+
+
+<p>This will pop open an authentication dialog, where you click on the Go to StackExchange button, authorize the connection, and it redirects you to a URL where it displays the code to copy in:</p>
+<p><img alt="image-posts-questions-on-the-mathematica-stack-exchange-3093928153281616400" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/posts-questions-on-the-mathematica-stack-exchange-3093928153281616400.png" /></p>
+<p>Copying that in and clicking Done</p>
+<p><img alt="image-posts-questions-on-the-mathematica-stack-exchange-3799677074761150792" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/posts-questions-on-the-mathematica-stack-exchange-3799677074761150792.png" /></p>
+<p>And we're rewarded with our connection</p>
+<pre class="prettyprint"><code>(*Out:*)</code></pre>
+
+
+<p><img alt="image-posts-questions-on-the-mathematica-stack-exchange-5256820125531561304" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/posts-questions-on-the-mathematica-stack-exchange-5256820125531561304.png" /></p>
+<p>Now we can start to do stuff of real interest.</p>
+<p><a id="importing-the-stack-exchange" >&zwnj;</a></p>
+<h2>Importing the Stack Exchange</h2>
+<p>Eventually we’ll get to some proper analysis of Stack Exchange data with this connection, but first we’ll look at the connection itself.</p>
+<p>As with all the connections it supports the  <code>"Requests"</code>  meta request:</p>
+<pre class="prettyprint"><code>$so[&quot;Requests&quot;]
+
+(*Out:*)
+
+{&quot;AnswerQuestion&quot;,&quot;Answers&quot;,&quot;Authentication&quot;,&quot;Comment&quot;,&quot;ID&quot;,&quot;Information&quot;,&quot;Logout&quot;,&quot;Me&quot;,&quot;Messages&quot;,&quot;Name&quot;,&quot;Notifications&quot;,&quot;QueryContinue&quot;,&quot;QueryIterate&quot;,&quot;QuestionAnswers&quot;,&quot;QuestionComments&quot;,&quot;Questions&quot;,&quot;QuotaMax&quot;,&quot;QuotaRemaining&quot;,&quot;RawRequests&quot;,&quot;RequestData&quot;,&quot;RequestParameters&quot;,&quot;Search&quot;,&quot;SiteEvents&quot;,&quot;SiteInfo&quot;,&quot;Sites&quot;,&quot;UnreadMessages&quot;,&quot;UnreadNotifications&quot;,&quot;UserID&quot;,&quot;Users&quot;}</code></pre>
+
+
+<p>And we can see that, as with all my connections, it supports the  <code>"RequestsParameters"</code>  request. We’ll give that a look on the  <code>"Questions"</code>  request:</p>
+<pre class="prettyprint"><code>$so[&quot;RequestParameters&quot;, &quot;Request&quot; -&gt; &quot;Questions&quot;]
+
+(*Out:*)
+
+&lt;|&quot;Parameters&quot;-&gt;{&quot;id&quot;,&quot;site&quot;,&quot;page&quot;,&quot;pagesize&quot;,&quot;fromdate&quot;,&quot;todate&quot;,&quot;order&quot;,&quot;min&quot;,&quot;max&quot;,&quot;sort&quot;,&quot;tagged&quot;},&quot;Required&quot;-&gt;{&quot;site&quot;}|&gt;</code></pre>
+
+
+<p>And we’ll give this a quick test, we’ll use the Mathematica Stack Exchange as our  <code>"site"</code> , and we’ll restrict the  <code>"pagesize"</code>  to 10 (for readability I dropped most of the data):</p>
+<pre class="prettyprint"><code>$so[&quot;Questions&quot;, &quot;site&quot; -&gt; &quot;mathematica&quot;, &quot;pagesize&quot; -&gt; &quot;10&quot;][All,
+  &lt;|
+    &quot;title&quot; -&gt; &quot;title&quot;,
+    &quot;user&quot; -&gt; Function[Key[&quot;display_name&quot;]@#owner],
+    &quot;creation_date&quot; -&gt; Function[FromUnixTime@#[&quot;creation_date&quot;]],
+    &quot;score&quot; -&gt; &quot;score&quot;
+    |&gt;
+  ]
+
+(*Out:*)</code></pre>
+
+
+<p><img alt="image-posts-questions-on-the-mathematica-stack-exchange-1994354746241883665" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/posts-questions-on-the-mathematica-stack-exchange-1994354746241883665.png" /></p>
+<p>We can see there’s info on users, creation / modification dates, titles, scores, etc. So this alone is a pretty rich dataset to work with.</p>
+<p>So on the topic of actually importing it, we see in the request listing there’re these requests  <code>"QueryContinue"</code>  and  <code>"QueryIterate"</code>  and if we look at what we get for  <code>"QueryContinue"</code> :</p>
+<pre class="prettyprint"><code>$so[&quot;QueryContinue&quot;]
+
+(*Out:*)
+
+True</code></pre>
+
+
+<p>It tells us there’s more to import (obviously -- the Stack Exchange itself tells us it has about 45k questions on it).</p>
+<p>So then looking at the parameters of  <code>"QueryIterate"</code></p>
+<pre class="prettyprint"><code>$so[&quot;RequestParameters&quot;, &quot;Request&quot; -&gt; &quot;QueryIterate&quot;]
+
+(*Out:*)
+
+&lt;|&quot;Parameters&quot;-&gt;{__},&quot;Required&quot;-&gt;{&quot;Request&quot;}|&gt;</code></pre>
+
+
+<p>It informs us it can take any parameters and the only required parameter is a  <code>"Request"</code> . So we can set up an importer for  <em><em>all</em></em>  the data:</p>
+<pre class="prettyprint"><code>$data =
+   $so[&quot;QueryIterate&quot;,
+     &quot;Request&quot; -&gt; &quot;Questions&quot;,
+     &quot;site&quot; -&gt; &quot;mathematica&quot;
+     ];
+$data // Length
+
+(*Out:*)
+
+44812</code></pre>
+
+
+<p>Seems about right. Now for future use let’s export this up to the cloud.</p>
+<pre class="prettyprint"><code>CloudExport[$data, &quot;MX&quot;, &quot;mse_question_list.mx&quot;, 
+ Permissions -&gt; &quot;Public&quot;]
+
+(*Out:*)
+
+CloudObject[https://www.wolframcloud.com/objects/user-affd7b1c-ecb6-4ccc-8cc4-4d107e2bf04a/mse_question_list.mx]</code></pre>
+
+
+<p>And with the question data downloaded we can proceed to analyzing it.</p>
+<p><a id="dates-of-the-stack-exchange" >&zwnj;</a></p>
+<h2>Dates of the Stack Exchange</h2>
+<p>If you want to just start in on working with the data, start with this:</p>
+<pre class="prettyprint"><code>$data =
+   CloudImport@
+      &quot;https://www.wolframcloud.com/objects/b3m2a1/mse_question_list.\
+mx&quot;;</code></pre>
+
+
+<p>First let’s just see what we have:</p>
+<pre class="prettyprint"><code>First@$data // Keys // Normal
+
+(*Out:*)
+
+{&quot;tags&quot;,&quot;owner&quot;,&quot;is_answered&quot;,&quot;view_count&quot;,&quot;answer_count&quot;,&quot;score&quot;,&quot;last_activity_date&quot;,&quot;creation_date&quot;,&quot;question_id&quot;,&quot;link&quot;,&quot;title&quot;}</code></pre>
+
+
+<p>So maybe we’ll start with looking at posting dates. These things are in  <a href="https://en.wikipedia.org/wiki/Unix_time">Unix time</a>  so we’ll need to use the  <a href="https://reference.wolfram.com/language/ref/FromUnixTime.html"><code>FromUnixTime</code></a>  function to convert them to  <a href="https://reference.wolfram.com/language/ref/DateObject.html"><code>DateObject</code></a> .</p>
+<pre class="prettyprint"><code>$dates =
+   FromUnixTime /@ $data[All, &quot;creation_date&quot;];</code></pre>
+
+
+<p>And we’ll just start with a  <a href="https://reference.wolfram.com/language/ref/DateHistogram.html"><code>DateHistogram</code></a></p>
+<pre class="prettyprint"><code>DateHistogram[$dates]
+
+(*Out:*)</code></pre>
+
+
+<p><img alt="image-posts-questions-on-the-mathematica-stack-exchange-9146256119295269744" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/posts-questions-on-the-mathematica-stack-exchange-9146256119295269744.png" /></p>
+<p>Pretty plain. Shows a consistent increase over time with an interesting plateau through 2013. If we find the release date for Version 10, by finding the introduction date of  <a href="https://reference.wolfram.com/language/ref/Entity.html"><code>Entity</code></a> , which was new as of 10.0:</p>
+<pre class="prettyprint"><code>WolframLanguageData[&quot;Entity&quot;, &quot;DateIntroduced&quot;]
+
+(*Out:*)</code></pre>
+
+
+<p><img alt="image-posts-questions-on-the-mathematica-stack-exchange-7485597023808812247" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/posts-questions-on-the-mathematica-stack-exchange-7485597023808812247.png" /></p>
+<p>And then show it on our plot:</p>
+<pre class="prettyprint"><code>Show[
+ DateHistogram[$dates],
+ TimelinePlot[{DateObject[{2014, 7, 9}, &quot;Day&quot;, &quot;Gregorian&quot;, -4.]}]
+ ]
+
+(*Out:*)</code></pre>
+
+
+<p><img alt="image-posts-questions-on-the-mathematica-stack-exchange-4738311787476834651" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/posts-questions-on-the-mathematica-stack-exchange-4738311787476834651.png" /></p>
+<p>We see it lines up pretty much exactly with the spike in questions asked, interestingly if we do the same with Version 11:</p>
+<pre class="prettyprint"><code>WolframLanguageData[&quot;NetTrain&quot;, &quot;DateIntroduced&quot;]
+
+(*Out:*)</code></pre>
+
+
+<p><img alt="image-posts-questions-on-the-mathematica-stack-exchange-3436858114160092188" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/posts-questions-on-the-mathematica-stack-exchange-3436858114160092188.png" /></p>
+<pre class="prettyprint"><code>Show[
+ DateHistogram[$dates],
+  TimelinePlot[{
+     DateObject[{2014, 7, 9}, &quot;Day&quot;, &quot;Gregorian&quot;, -4.],
+     DateObject[{2016, 8, 8}, &quot;Day&quot;, &quot;Gregorian&quot;, -4.]
+     }]
+  ]
+
+(*Out:*)</code></pre>
+
+
+<p><img alt="image-posts-questions-on-the-mathematica-stack-exchange-3945214832595082092" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/posts-questions-on-the-mathematica-stack-exchange-3945214832595082092.png" /></p>
+<p>We don’t see quite the same spike. This might simply reflect the lack of time since the release, however. It took about a year for 10 to hit peak question, it seems.</p>
+<p>In any case let’s just look at all of the introduction dates since 2011:</p>
+<pre class="prettyprint"><code>Show[
+ DateHistogram[$dates],
+  TimelinePlot[{
+     EntityValue[
+         &quot;WolframLanguageSymbol&quot;,
+         &quot;DateIntroduced&quot;
+         ] // DeleteDuplicates //
+
+    Select[GreaterThan[
+      DateObject[{2011, 1, 1}, &quot;Day&quot;, &quot;Gregorian&quot;, -4.]]]
+     }]
+  ]
+
+(*Out:*)</code></pre>
+
+
+<p><img alt="image-posts-questions-on-the-mathematica-stack-exchange-3688012773878789350" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/posts-questions-on-the-mathematica-stack-exchange-3688012773878789350.png" /></p>
+<p>The first thing to note is that WRI must have changed their versioning system starting with 10.0 (lots of point releases compared to 9.0). The second is that there’s a clear spike whenever a new major version is released, which I think shows that WRI is in fact putting in a lot of new functionality each release. And also that lots of it is glitchy...</p>
+<p>Unfortunately here we’re missing lots of the data from before Mathematica StackExchange was a thing, so let’s quickly import those questions we’re missing:</p>
+<pre class="prettyprint"><code>$soaddition =
+   Join[
+     $so[&quot;QueryIterate&quot;,
+       &quot;Request&quot; -&gt; &quot;Questions&quot;,
+       &quot;site&quot; -&gt; &quot;stackoverflow&quot;,
+       &quot;tagged&quot; -&gt; &quot;wolfram-language&quot;
+       ],
+     $so[&quot;QueryIterate&quot;,
+       &quot;Request&quot; -&gt; &quot;Questions&quot;,
+       &quot;site&quot; -&gt; &quot;stackoverflow&quot;,
+       &quot;tagged&quot; -&gt; &quot;wolfram-mathematica&quot;
+       ]
+     ];
+$soaddition // Length
+
+(*Out:*)
+
+3697</code></pre>
+
+
+<p>And we see were were only missing a paltry ~3.5k questions on our stack of ~45k. But we’ll add them in and see how things change:</p>
+<pre class="prettyprint"><code>Show[
+  DateHistogram[
+    Join[$dates, FromUnixTime /@ $soaddition[All, &quot;creation_date&quot;]]
+    ],
+  TimelinePlot[{
+     EntityValue[
+         &quot;WolframLanguageSymbol&quot;,
+         &quot;DateIntroduced&quot;
+         ] // DeleteDuplicates //
+
+    Select[GreaterThan[
+      DateObject[{2009, 1, 1}, &quot;Day&quot;, &quot;Gregorian&quot;, -4.]]]
+     }]
+  ]
+
+(*Out:*)</code></pre>
+
+
+<p><img alt="image-posts-questions-on-the-mathematica-stack-exchange-4234924400970162935" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/posts-questions-on-the-mathematica-stack-exchange-4234924400970162935.png" /></p>
+<p>And so maybe there was a spike for version 8.0, but if there was it is nearly indiscernible in the context of our entire dataset so lets look at in its own context:</p>
+<pre class="prettyprint"><code>Show[
+  DateHistogram[FromUnixTime /@ $soaddition[All, &quot;creation_date&quot;]],
+  TimelinePlot[{
+     EntityValue[
+         &quot;WolframLanguageSymbol&quot;,
+         &quot;DateIntroduced&quot;
+         ] // DeleteDuplicates //
+
+    Select[GreaterThan[
+      DateObject[{2009, 1, 1}, &quot;Day&quot;, &quot;Gregorian&quot;, -4.]]]
+     }]
+  ]
+
+(*Out:*)</code></pre>
+
+
+<p><img alt="image-posts-questions-on-the-mathematica-stack-exchange-7112474962939824089" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/posts-questions-on-the-mathematica-stack-exchange-7112474962939824089.png" /></p>
+<p>And there we can see the spike, before the Mathematica Stack Exchange develops and crushes it.</p>
+<p>That is, I think, enough for now, but at some future date we’ll come back to this and look at how / if posting time of day / year correlates to question score.</p>
+  </div>
+</article>
+<hr>
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function() {
+    this.page.url = 'https://www.wolframcloud.com/objects/b3m2a1/home/questions-on-the-mathematica-stack-exchange.html';
+      this.page.identifier = 'b3m2a1-home-ba55961d-05de-4253-bd7d-cc50ad4e9030';
+;
+  };
+  (function() {
+    var d = document;
+    var s = d.createElement('script');
+    s.src = '//b3m2a1-home.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript class="text-muted">
+  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <p class="col-sm-6 text-sm-right text-muted acknowledgement">
+      Generated by
+      <a href="https://github.com/getpelican/pelican" target="_blank">Pelican</a> /
+      Forked from <a href="https://github.com/nairobilug/pelican-alchemy" target="_blank">alchemy</a>
+    </p>
+  </footer>
+
+</body>
+
+</html>

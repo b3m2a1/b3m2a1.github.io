@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+Creating a Mathematica Package Repository |         b3m2a1
+
+</title>
+  <link rel="canonical" href="https://www.wolframcloud.com/objects/b3m2a1/home/creating-a-mathematica-package-repository.html">
+
+  <link rel="alternate" type="application/atom+xml" href="https://www.wolframcloud.com/objects/b3m2a1/home/feeds/all.atom.xml" title="Full Atom Feed">
+
+  <link rel="apple-touch-icon" href="https://www.wolframcloud.com/objects/b3m2a1/home/apple-touch-icon.png" sizes="180x180">
+  <link rel="icon" type="image/png" href="https://www.wolframcloud.com/objects/b3m2a1/home/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="https://www.wolframcloud.com/objects/b3m2a1/home/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="https://www.wolframcloud.com/objects/b3m2a1/home/manifest.json">
+  <meta name="theme-color" content="#333333">
+
+  <link rel="stylesheet" href="https://www.wolframcloud.com/objects/b3m2a1/home/theme/css/bootstrap.css">
+  <link rel="stylesheet" href="https://www.wolframcloud.com/objects/b3m2a1/home/theme/css/font-awesome.css">
+  <link rel="stylesheet" href="https://www.wolframcloud.com/objects/b3m2a1/home/theme/css/style.css">
+
+
+<meta name="description" content="This post is going to detail how I set up one of my recent projects—and a project I hope outlasts my direct involvement in it. We're going to talk about how to set up a custom paclet server in GitHub. ‌ Paclet Servers Revisited I talked about paclet servers a …">
+
+<link href="https://www.wolframcloud.com/objects/b3m2a1/home/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
+<script src="https://www.wolframcloud.com/objects/b3m2a1/home/theme/prettify/src/prettify.js"></script>
+<!-- <script src="https://www.wolframcloud.com/objects/b3m2a1/home/theme/prettify/src/lang-mma.min.js"></script> -->
+
+<script>
+  function moveWindow (){window.location.hash="main-content";}
+</script>
+
+
+<script>
+  (function(i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function() {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    a.async = 1;
+    a.src = g;
+    m = s.getElementsByTagName(o)[0];
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-103560228-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <script>
+    function openNav() {
+      var thumb = document.getElementById("nav-thumb");
+      var bar = document.getElementById("side-nav");
+      thumb.onclick= closeNav;
+      bar.classList.add("right-bar-open");
+      bar.classList.remove("right-bar-closed");
+      thumb.classList.add("nav-thumb-open");
+      thumb.classList.remove("nav-thumb-closed");
+    }
+
+    function closeNav() {
+      var thumb = document.getElementById("nav-thumb");
+      var bar = document.getElementById("side-nav");
+      thumb.onclick= openNav;
+      bar.classList.remove("right-bar-open");
+      bar.classList.add("right-bar-closed");
+      thumb.classList.remove("nav-thumb-open");
+      thumb.classList.add("nav-thumb-closed")
+    }
+  </script>
+
+
+</head>
+
+<body onload="PR.prettyPrint(); moveWindow()"
+>
+  <header class="header">
+    <div class="top-bar">
+    <div class="site-image">
+      <img src=https://www.wolframcloud.com/objects/b3m2a1/home/img/site-image.png alt="b3m2a1">
+    </div>
+    <div class="site-links bubble floating">
+      <h1 class="title">
+          <a href="https://www.wolframcloud.com/objects/b3m2a1/home/">
+            b3m2a1
+          </a>
+        </h1>
+        <ul
+          class="list-inline row site-link-row"
+          id="top-bar-link-row"
+          >
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/pages/about.html">About</a>
+            </li>
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/pages/contact.html">Contact</a>
+            </li>
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/categories.html">Categories</a>
+            </li>
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/tags.html">Tags</a>
+            </li>
+            <li class="list-inline-item site-link">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1/home/archives.html">Archives</a>
+            </li>
+        </ul>
+    </div>
+    </div>
+  </header>
+
+  <div class="main" id="main-content">
+
+    <div class="right-bar right-bar-closed" id="side-nav">
+      <button
+        id="nav-thumb"
+        class="nav-thumb nav-thumb-closed"
+        onclick="openNav()"
+        >
+      </button>
+      <div class="blogroll bubble inset">
+        <p>Links</p>
+        <ul class="blogroll-links right-bar-links list-inline">
+            <li class="right-bar-item">
+              <a href="https://github.com/b3m2a1" class="blogroll-link right-bar-link"
+                target="_blank">
+                GitHub
+              </a>
+            </li>
+            <li class="right-bar-item">
+              <a href="https://mathematica.stackexchange.com/users/38205" class="blogroll-link right-bar-link"
+                target="_blank">
+                StackExchange
+              </a>
+            </li>
+            <li class="right-bar-item">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1.paclets/PacletServer/main.html" class="blogroll-link right-bar-link"
+                target="_blank">
+                Paclets
+              </a>
+            </li>
+            <li class="right-bar-item">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1.docs/DocumentationSite/main.html" class="blogroll-link right-bar-link"
+                target="_blank">
+                Docs
+              </a>
+            </li>
+          </ul>
+      </div>
+    </div>
+
+    <div class="left-content">
+      <div class="container">
+        <h1>Creating a Mathematica Package Repository
+</h1>
+        <hr>
+<article class="article">
+  <header>
+    <ul class="list-inline">
+      <li class="list-inline-item text-muted" title="2018-05-01T22:29:20-05:00">
+        <i class="fa fa-clock-o"></i>
+        Tue 01 May 2018
+      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="https://www.wolframcloud.com/objects/b3m2a1/home/category/posts.html">posts</a>
+      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-user-o"></i>
+        <a href="https://www.wolframcloud.com/objects/b3m2a1/home/author/b3m2a1.html">b3m2a1</a>      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-files-o"></i>
+        <a href="https://www.wolframcloud.com/objects/b3m2a1/home/tag/packages.html">#packages</a>      </li>
+    </ul>
+  </header>
+  <div class="content">
+    <p>This post is going to detail how I set up one of my recent projects—and a project I hope outlasts my direct involvement in it.</p>
+<p>We're going to talk about how to set up a custom paclet server in GitHub.</p>
+<p><a id="paclet-servers-revisited" style="width:0;height:0;margin:0;padding:0;">&zwnj;</a></p>
+<h2>Paclet Servers Revisited</h2>
+<p>I talked about paclet servers a while back in  <a href="building-a-mathematica-package-ecosystem-part-1.html">this post</a> . Now we get to build on all of that work. Fundamentally, all we're going to be doing is building a paclet server via the method discussed there, but instead of deploying to the Wolfram Cloud, and opaque, unknown (and hence untrusted),  <a href="http://community.wolfram.com/groups/-/m/t/1250045">severely</a>   <a href="http://community.wolfram.com/groups/-/m/t/1250055">lacking</a>  system we'll deploy to GitHub, the defacto standard for code sharing and highly open and trusted system.</p>
+<p>To do this, we'll mostly treat things as before, but it might be worth revisiting what we did before.</p>
+<h3>Using the Paclet Manager</h3>
+<p>We're going to hook in to Mathematica's built-in package manager, called the  <code>PacletManager</code> . It's called that because Mathematica packages are distributed as  <code>.paclet</code>  files (which are just structured zip files with a  <code>Paclet</code>  expression cooked in).</p>
+<p>If people know the server where a paclet is stored, they can install it as easy as:</p>
+<pre class="prettyprint"><code>PacletInstall[
+  &quot;PacletName&quot;,
+  &quot;Site&quot;-&gt;&quot;http://paclet.site/Server&quot;
+  ]</code></pre>
+
+
+<p>And so we're trying to make that accessible.</p>
+<h3>Paclet Server Components</h3>
+<p>To do that we need to expose a  <code>Paclets</code>  directory where all of our paclet files will be stored and a  <code>PacletSite.mz</code>  file that details the paclets that are stored there.</p>
+<p>Happily, I'd already built out the tool-chains for those previously, so I just had to adapt those to this project. The function that handles this is call  <code>PacletServerAdd</code> . It takes a paclet and stores it in that  <code>Paclets</code>  directory and updates the  <code>PacletSite.mz</code>  file to reflect this</p>
+<h3>Paclet Server Website</h3>
+<p>The other part of a good paclet server is the interface that tells people what's on it. For my own stuff I built out a set of paclet server pages that detail what's available for download, the details of these, etc. As of the time I'm writing this for us this looks like:</p>
+<p><img alt="18creatingamathematicapackagerepository-7826302109937894265" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/18creatingamathematicapackagerepository-7826302109937894265.png" /></p>
+<p>Although the design is subject to change.</p>
+<p>What's important is that it details everything that's there and it's customizable for our needs moving forward.</p>
+<p>Each paclet has a page that is derived from the data in the  <code>PacletSite.mz</code>  file (which in turn reflects the data in the  <code>PacletInfo.m</code>  files cooked into each paclet). All we do here is take the parameters from the file, shove them into a notebook via some  <code>CellTags</code>  driven replacements, and then export that notebook to Markdown. From there the static site builder takes over. An example of one of those pages is:</p>
+<p><img alt="18creatingamathematicapackagerepository-2481485970852989325" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/18creatingamathematicapackagerepository-2481485970852989325.png" /></p>
+<p>Scrolling further down the page will give you all the details about who made it (me) what version it is, what extensions it has, etc.</p>
+<p><a id="building-the-paclet-server" style="width:0;height:0;margin:0;padding:0;">&zwnj;</a></p>
+<h2>Building the Paclet Server</h2>
+<p>We'll walk through most of the steps involved in this so that potentially others can make use of a similar flow. First we need to get everything working with GitHub.</p>
+<h3>Making a GitHub Organization</h3>
+<p>Since this is supposed to be a community effort I didn't want it attached to my personal GitHub. Better would be if it's associated with a  <a href="https://blog.github.com/2010-06-29-introducing-organizations/">GitHub organization</a> . So I made an organization that  halirutan helpfully suggested I call  <a href="https://github.com/paclets">paclets</a>  and made a  <a href="https://github.com/paclets/PacletServer">repository for hosting our server</a> .</p>
+<p><img alt="18creatingamathematicapackagerepository-7139290626530984083" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/18creatingamathematicapackagerepository-7139290626530984083.png" /></p>
+<h3>Configuring the Repo</h3>
+<p>To set up the repository I just cloned it locally, then started adding paclets to it via  <code>PacletServerAdd</code> . The standard way I'd call it is</p>
+<pre class="prettyprint"><code>PacletServerAdd[&quot;path/to/server&quot;, &quot;PacletName&quot;]</code></pre>
+
+
+<p>Which adds the paclet for the folder and sets up things as they ought to be.</p>
+<p>Then I call</p>
+<pre class="prettyprint"><code>PacletServerBuild[&quot;path/to/server&quot;]</code></pre>
+
+
+<p>Which builds out the website and all the necessary components.</p>
+<p>Finally I push this back to GitHub via an interface to its API (and also to git) that I wrote up. That generally looks like:</p>
+<pre class="prettyprint"><code>Git[&quot;Add&quot;, &quot;path/to/server&quot;, &quot;All&quot;-&gt;True];
+Git[&quot;Commit&quot;, &quot;path/to/server&quot;, &quot;Message&quot;-&gt;TemplateApply[&quot;Rebuilt on ``&quot;, DateString[]]];
+GitHub[&quot;Push&quot;, &quot;path/to/server&quot;]</code></pre>
+
+
+<p>And simple as that out server is built</p>
+<h3>Making a ReviewQueue</h3>
+<p>To make things nice for collaboration we'll want a way for people to submit things via GitHub on their own.</p>
+<p>The way we're currently doing this is via a review queue mechanism working off of GitHub's pull request machinery.</p>
+<p>A user forks the repo, adds a paclet to the  <code>ReviewQueue</code>  directory, and then we check to make sure it's formatted correctly before building it into the server.</p>
+<p>To simplify this I cooked up a  <a href="https://github.com/paclets/PacletServer/blob/master/build/src/BuildScript.m">build script</a>  and  <a href="https://github.com/paclets/PacletServer/blob/master/build/build.nb">build notebook</a> . These load and submit the things in review queue (although checking that all the parts are there for the actual paclet is still best done by hand).</p>
+<p>I won't go into too much detail on the queue though, because I built an interface paclet to try to hide the all the steps in working with the queue.</p>
+<h3>Protections in Place</h3>
+<p>As with all packages, it's impossible to be sure that a paclet won't be harmful. To minimize the risk people face in using the server we added a  <a href="https://paclets.github.io/PacletServer/pages/log.html">change log</a>  that extracts who committed and changed which paclets.</p>
+<p>If a user you don't trust has recently changed a paclet, don't install it. We even put this in bold face anywhere we provide installation code.</p>
+<p><img alt="18creatingamathematicapackagerepository-4293929817718253197" src="https://www.wolframcloud.com/objects/b3m2a1/home/img/18creatingamathematicapackagerepository-4293929817718253197.png" /></p>
+<p><a id="building-an-interface-paclet" style="width:0;height:0;margin:0;padding:0;">&zwnj;</a></p>
+<h2>Building an Interface Paclet</h2>
+<p>This has been the toughest part of the entire project. I wanted to make it so that people could submit their paclets directly in Mathematica, the fewer the lines of code necessary the better.</p>
+<p>To this effect I set up a paclet which is on the server and  <a href="https://paclets.github.io/PacletServer/publicpacletserver.html">you can install</a>  to get the job done. The paclet is called (rather uncreatively)  <code>"PublicPacletServer"</code> . I talked about it some  <a href="http://community.wolfram.com/groups/-/m/t/1330267">here</a> . To use it you install it based on what was on that link and load it like</p>
+<pre class="prettyprint"><code>&lt;&lt;PublicPacletServer`</code></pre>
+
+
+<p>It will expose a single function  <code>PublicPacletServer</code>  which provides access to the server and submission process. If you have a paclet you've been working on you can simply run:</p>
+<pre class="prettyprint"><code>PublicPacletServer[&quot;SubmitPaclet&quot;, &quot;YourPacletName&quot;]</code></pre>
+
+
+<p>And it will search for your paclet and submit it if it can find it and build it. If not you can also supply the path to your paclet and it will build and submit your paclet automatically.</p>
+<p>This submits the paclet to your review queue. To get it onto the public server you'll submit a request to merge your paclet in. The way you do that is via:</p>
+<pre class="prettyprint"><code>PublicPacletServer[&quot;SubmitPullRequest&quot;]</code></pre>
+
+
+<p>And then once your paclet has passed review it will be added.</p>
+<p>This simple interface hides some complicated innards, though.</p>
+<h3>Creating a Fork</h3>
+<p>The heart of this workflow is forking the original server. This is a way that git knows which repository is the main / parent repository and makes it possible to easily merge changes up or down this tree.</p>
+<p>GitHub itself provides an  <a href="https://developer.github.com/v3/repos/forks/">API for creating forks</a> . I used this to make sure that no one has to download the entire server just to upload their package. What I do is I check whether you have a fork already by comparing your repositories to the forks of the main repository. You can check whether you have a fork by running</p>
+<pre class="prettyprint"><code>PublicPacletServer[&quot;ForkedQ&quot;]
+
+(*Out:*)
+
+True</code></pre>
+
+
+<p>If you have a fork,  <code>"SubmitPaclet"</code>  will add it to the review queue for it. If not, it'll tell you to make a fork by running</p>
+<pre class="prettyprint"><code>PublicPacletServer[&quot;Fork&quot;]
+
+(*Out:*)
+
+&quot;b3m2a1/PacletServer&quot;</code></pre>
+
+
+<h3>Submitting a Paclet</h3>
+<p>The paclet submission process hooks into GitHub's  <a href="https://developer.github.com/v3/repos/contents/">API for single file uploads</a> . It uses a toolchain I built for automatically finding and building a paclet (in fact the same one used by  <code>PacletServerAdd</code> ) to build out a paclet then pushes it through the API to your fork's  <code>ReviewQueue</code>  directory.</p>
+<h3>Submitting a Pull Request</h3>
+<p>This is something I expected to be incredibly simple. There's a  <a href="https://developer.github.com/v3/pulls/">pull request API</a>  that I do use in the end for submitting the request, but it turns out not all pull requests are valid. If there are changes on both the head and child repositories that conflict the child repository will need to merge the changes on the head repository before its changes can be pushed. To try to cover this case I run the  <a href="https://developer.github.com/v3/repos/merging/">merges API</a>  on a  <a href="https://developer.github.com/v3/git/refs/">reference</a>  extracted from the main repository. If that sounds like a whole bunch of jargon, that's because it is. Suffice it to say, for the most part you won't need this, but I tried to protect you if you do.</p>
+<h3>Future Directions</h3>
+<p>This paclet is most certainly in beta (it's currently only a  <code>0.0.1</code>  release). There are a number of features I still need to add, such as </p>
+<ul>
+<li>
+<p>Better support for cloning</p>
+</li>
+<li>
+<p>Support for end users to build the server themselves</p>
+</li>
+<li>
+<p>Review queue validation</p>
+</li>
+<li>
+<p>A paclet submission GUI</p>
+</li>
+<li>
+<p>Encapsulating functionality in a paclet</p>
+</li>
+</ul>
+<p>If you'd like to help with any of these, feel free to  <a href="https://github.com/b3m2a1/mathematica-PublicPacletServer">clone the repo</a>  and collaborate.</p>
+<p>In the meantime, I hope this encourages you to submit your paclets to the repository. We'd love to have them.</p>
+  </div>
+</article>
+<hr>
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function() {
+    this.page.url = 'https://www.wolframcloud.com/objects/b3m2a1/home/creating-a-mathematica-package-repository.html';
+      this.page.identifier = 'creating-a-mathematica-package-repository'
+;
+  };
+  (function() {
+    var d = document;
+    var s = d.createElement('script');
+    s.src = '//b3m2a1-home.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript class="text-muted">
+  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <p class="col-sm-6 text-sm-right text-muted acknowledgement">
+      Generated by
+      <a href="https://github.com/getpelican/pelican" target="_blank">Pelican</a> /
+      Forked from <a href="https://github.com/nairobilug/pelican-alchemy" target="_blank">alchemy</a>
+    </p>
+  </footer>
+
+</body>
+
+</html>
