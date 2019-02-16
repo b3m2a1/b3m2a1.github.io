@@ -7,9 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <title>
-posts | b3m2a1
+Making a Paclet with BTools |         b3m2a1
+
 </title>
-  <link rel="canonical" href="https://b3m2a1.github.io/category/posts3.html">
+  <link rel="canonical" href="https://b3m2a1.github.io/making-a-paclet-with-btools.html">
 
   <link rel="alternate" type="application/atom+xml" href="https://b3m2a1.github.io/feeds/all.atom.xml" title="Full Atom Feed">
 
@@ -23,6 +24,16 @@ posts | b3m2a1
   <link rel="stylesheet" href="https://b3m2a1.github.io/theme/css/font-awesome.css">
   <link rel="stylesheet" href="https://b3m2a1.github.io/theme/css/style.css">
 
+
+<meta name="description" content="Today we're gonna look at something I've been meaning to document for a long time now. Over the past two or so years I've developed a framework to simplify the development process. In the post, I'm gonna show you how to actually use it. To make it easier to use …">
+
+<link href="https://b3m2a1.github.io/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
+<script src="https://b3m2a1.github.io/theme/prettify/src/prettify.js"></script>
+<!-- <script src="https://b3m2a1.github.io/theme/prettify/src/lang-mma.min.js"></script> -->
+
+<script>
+  function moveWindow (){window.location.hash="main-content";}
+</script>
 
 
 <script>
@@ -66,7 +77,8 @@ posts | b3m2a1
 
 </head>
 
-<body onload=>
+<body onload="PR.prettyPrint(); moveWindow()"
+>
   <header class="header">
     <div class="top-bar">
     <div class="site-image">
@@ -144,141 +156,74 @@ posts | b3m2a1
 
     <div class="left-content">
       <div class="container">
-        <h1>posts
+        <h1>Making a Paclet with BTools
 </h1>
         <hr>
+<article class="article">
+  <header>
+    <ul class="list-inline">
+      <li class="list-inline-item text-muted" title="2019-02-16T13:53:56-06:00">
+        <i class="fa fa-clock-o"></i>
+        Sat 16 February 2019
+      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="https://b3m2a1.github.io/category/posts.html">posts</a>
+      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-user-o"></i>
+        <a href="https://b3m2a1.github.io/author/b3m2a1.html">b3m2a1</a>      </li>
+    </ul>
+  </header>
+  <div class="content">
+    <p>Today we're gonna look at something I've been meaning to document for a long time now. Over the past two or so years I've developed a framework to simplify the development process. In the post, I'm gonna show you how to actually use it.</p>
+<p>To make it easier to use all this I have a video showing how I do things:</p>
+<iframe width="560" height="315" 
+ src="https://www.youtube.com/embed/EN0VUogBqk0" frameborder="0" allow="accelerometer; 
+ autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 
-<article class="row teaser">
-  <header class="col-sm-4 text-muted">
-    <ul>
-      <li title="2017-07-29T02:57:18-05:00">
-        <i class="fa fa-clock-o"></i>
-        Sat 29 July 2017
-      </li>
-      <li>
-        <i class="fa fa-folder-open-o"></i>
-        <a href="https://b3m2a1.github.io/category/posts.html">posts</a>
-      </li>
-      <li>
-        <i class="fa fa-user-o"></i>
-        <a href="https://b3m2a1.github.io/author/b3m2a1.html">b3m2a1</a>      </li>
-    </ul>
-  </header>
-  <div class="col-sm-8">
-    <h4 class="title"><a href="https://b3m2a1.github.io/psi4-4-mathematica.html">Psi4 4 Mathematica</a></h4>
-    <div class="content">
-      We’ll return to doing fake chemistry , but this time we’ll work with something that very real chemists have built, namely the open-source quantum chemistry package Psi4 the package itself is voluminous, doing many things I don’t understand and never really will, but it does do some things …
-    </div>
+<p><a id="installingbtools" class="Subsection" style="width:0;height:0;margin:0;padding:0;">&zwnj;</a></p>
+<h2>Installing BTools</h2>
+<p>The easiest way to install BTools is to load it off the  <a href="https://paclets.github.io/PacletServer/">paclet server</a> . Head over to its paclet page and copy the installation instructions there:</p>
+<pre class="prettyprint"><code>&lt;&lt; https://paclets.github.io/PacletServer/Install.wl
+PublicPacletInstall[&quot;BTools&quot;]</code></pre>
+
+
+<p><a id="makinganew" class="Subsection" style="width:0;height:0;margin:0;padding:0;">&zwnj;</a></p>
+<h2>Making a New Package</h2>
+<p>With BTools installed you'll then go up to the palettes menu and open up the App Manager palette that it provides. (see the video for more details)</p>
+<p>From the palette you'll click the New App button on the bottom. It'll have a bunch of other buttons in it. Ignore those. They haven't really done anything since 2017. This'll open up a little window. Put your app name in there and click the "New App" button.</p>
+<p>The package will appear in the drop-down menu provided. You can open it up by clicking on its name (the left side of the drop down is a button).</p>
+<p><a id="addingcontent" class="Subsubsection" style="width:0;height:0;margin:0;padding:0;">&zwnj;</a></p>
+<h3>Adding Content</h3>
+<p>This part is pretty much just manual. Add the .m files or .wl files you want in the appropriate directories. One quirk of the BTools package loader is that it controls the context naming structure so make sure to only declare symbols before the  <code>Begin["`Private`"]</code> and not try to give them a specific context.</p>
+<p>The nice thing about this is that you don't have to worry about how to load any of your subpackages. BTools will figure that out and set up auto-completions for you. I'll go into this further later, but as an example take a look at how things are defined in my  <a href="https://github.com/b3m2a1/mathematica-ChemTools/tree/master/Packages">ChemTools</a> package or in the  <a href="https://github.com/b3m2a1/mathematica-PublicPacletServer/tree/master/Packages">PublicPacletServer</a> interface package.</p>
+<p><a id="buildingthepaclet" class="Subsection" style="width:0;height:0;margin:0;padding:0;">&zwnj;</a></p>
+<h2>Building the Paclet</h2>
+<p>Go to the Dist tab on the App Manager palette and press "Bundle Paclet". This will create a paclet and open it up for you. At that point you can do with it as you will.</p>
+<p>If you've set up a paclet server the PacletServerBuilder stuff in BTools (or the Paclet Server Manager palette) you can push to that, too, with Publish. Same for pushing to GitHub if you set up a GitHub repo for the package. You can even push a new GitHub release with the Publish Release button.</p>
   </div>
 </article>
 <hr>
-<article class="row teaser">
-  <header class="col-sm-4 text-muted">
-    <ul>
-      <li title="2017-07-27T00:47:55-05:00">
-        <i class="fa fa-clock-o"></i>
-        Thu 27 July 2017
-      </li>
-      <li>
-        <i class="fa fa-folder-open-o"></i>
-        <a href="https://b3m2a1.github.io/category/posts.html">posts</a>
-      </li>
-      <li>
-        <i class="fa fa-user-o"></i>
-        <a href="https://b3m2a1.github.io/author/b3m2a1.html">b3m2a1</a>      </li>
-    </ul>
-  </header>
-  <div class="col-sm-8">
-    <h4 class="title"><a href="https://b3m2a1.github.io/-pretend-chemistry-and-fake-objects.html">Pretend Chemistry and Fake Objects</a></h4>
-    <div class="content">
-      I enjoy pretending to work with data whenever possible, be it a data scientist digging scraping and analyzing data from Stack Exchange or a looking at JPL spectra, but by far my favorite data to pretend to work with is wholly pretend chemical data. In fact, I like that so …
-    </div>
-  </div>
-</article>
-<hr>
-<article class="row teaser">
-  <header class="col-sm-4 text-muted">
-    <ul>
-      <li title="2017-07-25T22:41:45-05:00">
-        <i class="fa fa-clock-o"></i>
-        Tue 25 July 2017
-      </li>
-      <li>
-        <i class="fa fa-folder-open-o"></i>
-        <a href="https://b3m2a1.github.io/category/posts.html">posts</a>
-      </li>
-      <li>
-        <i class="fa fa-user-o"></i>
-        <a href="https://b3m2a1.github.io/author/b3m2a1.html">b3m2a1</a>      </li>
-    </ul>
-  </header>
-  <div class="col-sm-8">
-    <h4 class="title"><a href="https://b3m2a1.github.io/questions-on-the-mathematica-stack-exchange.html">Questions on The Mathematica Stack Exchange</a></h4>
-    <div class="content">
-      Having built out a framework for developing custom hook-ins to ServiceConnect it’s worth now seeing what we can do with that. There are lots of interesting APIs to connect to, of course, but we’ll start with a relatively simple one, the Stack Exchange API . The API is simple …
-    </div>
-  </div>
-</article>
-<hr>
-<article class="row teaser">
-  <header class="col-sm-4 text-muted">
-    <ul>
-      <li title="2017-07-24T22:09:34-05:00">
-        <i class="fa fa-clock-o"></i>
-        Mon 24 July 2017
-      </li>
-      <li>
-        <i class="fa fa-folder-open-o"></i>
-        <a href="https://b3m2a1.github.io/category/posts.html">posts</a>
-      </li>
-      <li>
-        <i class="fa fa-user-o"></i>
-        <a href="https://b3m2a1.github.io/author/b3m2a1.html">b3m2a1</a>      </li>
-    </ul>
-  </header>
-  <div class="col-sm-8">
-    <h4 class="title"><a href="https://b3m2a1.github.io/serviceconnections---mathematica-on-the-web.html">ServiceConnections - Mathematica on the Web</a></h4>
-    <div class="content">
-      This is a an amalgamation of three Stack Exchange answers Mathematica has a nice system for building API connections. It’s clean, object oriented, and built off of the function ServiceConnect . The basic idea is that one connects to a service, creates an object representing that connection and caching its …
-    </div>
-  </div>
-</article>
-<hr>
-<article class="row teaser">
-  <header class="col-sm-4 text-muted">
-    <ul>
-      <li title="2017-07-23T03:27:43-05:00">
-        <i class="fa fa-clock-o"></i>
-        Sun 23 July 2017
-      </li>
-      <li>
-        <i class="fa fa-folder-open-o"></i>
-        <a href="https://b3m2a1.github.io/category/posts.html">posts</a>
-      </li>
-      <li>
-        <i class="fa fa-user-o"></i>
-        <a href="https://b3m2a1.github.io/author/b3m2a1.html">b3m2a1</a>      </li>
-    </ul>
-  </header>
-  <div class="col-sm-8">
-    <h4 class="title"><a href="https://b3m2a1.github.io/building-websites-with-mathematica.html">Building Websites with Mathematica</a></h4>
-    <div class="content">
-      For this website's inaugural post I thought I'd detail how it was built. It starts, I suppose, with an HTML templating package I wrote. For various things I'd needed to host static HTML pages in the Wolfram Cloud. My basic process there was to write some block like: $htmlTemplate= " `` " And …
-    </div>
-  </div>
-</article>
-<hr>
-<ul class="pagination">
-  <li class="page-item">
-    <a class="page-link" href="https://b3m2a1.github.io/category/posts2.html">
-      <span aria-hidden="true">&laquo;</span>
-      <span class="sr-only">Previous</span>
-    </a>
-  </li>
-  <li class="page-item disabled">
-    <span class="page-link">3 of 3</span>
-  </li>
-</ul>
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function() {
+    this.page.url = 'https://b3m2a1.github.io/making-a-paclet-with-btools.html';
+      this.page.identifier = 'making-a-paclet-with-btools'
+;
+  };
+  (function() {
+    var d = document;
+    var s = d.createElement('script');
+    s.src = '//b3m2a1-home.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript class="text-muted">
+  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
       </div>
     </div>
 
