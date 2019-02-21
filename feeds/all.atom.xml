@@ -1,5 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>b3m2a1</title><link href="https://b3m2a1.github.io/" rel="alternate"></link><link href="https://b3m2a1.github.io/feeds/all.atom.xml" rel="self"></link><id>https://b3m2a1.github.io/</id><updated>2019-02-16T15:01:15-06:00</updated><entry><title>Making a Paclet with BTools</title><link href="https://b3m2a1.github.io/making-a-paclet-with-btools.html" rel="alternate"></link><published>2019-02-16T13:53:56-06:00</published><updated>2019-02-16T15:01:15-06:00</updated><author><name>b3m2a1</name></author><id>tag:b3m2a1.github.io,2019-02-16:/making-a-paclet-with-btools.html</id><summary type="html">&lt;p&gt;Today we're gonna look at something I've been meaning to document for a long time now. Over the past two or so years I've developed a framework to simplify the development process. In the post, I'm gonna show you how to actually use it.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>b3m2a1</title><link href="https://b3m2a1.github.io/" rel="alternate"></link><link href="https://b3m2a1.github.io/feeds/all.atom.xml" rel="self"></link><id>https://b3m2a1.github.io/</id><updated>2019-02-20T18:19:15-06:00</updated><entry><title>Getting Started with SimpleDocs: The Simpler Docs Palette</title><link href="https://b3m2a1.github.io/getting-started-with-simpledocs-the-simpler-docs-palette.html" rel="alternate"></link><published>2019-02-20T15:59:20-06:00</published><updated>2019-02-20T18:19:15-06:00</updated><author><name>b3m2a1</name></author><id>tag:b3m2a1.github.io,2019-02-20:/getting-started-with-simpledocs-the-simpler-docs-palette.html</id><summary type="html">&lt;p&gt;&lt;a id="installingsimpledocs" class="Subsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Installing SimpleDocs&lt;/h2&gt;
+&lt;p&gt;The easiest way to get SimpleDocs is off the  &lt;a href="https://paclets.github.io/PacletServer/simpledocs.html"&gt;paclet server&lt;/a&gt; . Copy the installation code there and you'll have a fresh new copy of SimpleDocs. For convenience I've duplicated that here:&lt;/p&gt;
+&lt;pre class="prettyprint"&gt;&lt;code&gt;&amp;lt;&amp;lt; https://paclets.github.io/PacletServer/Install.wl
+PublicPacletInstall[&amp;quot;SimpleDocs&amp;quot;]&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;pre &gt;
+&lt;code&gt;
+(*Out:*)
+
+&lt;span&gt;
+ &lt;img src='https://b3m2a1.github.io/img/post26-6661166580179857863.png'
+     alt='post26-6661166580179857863' /&gt;
+&lt;/span&gt;
+&lt;/code&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;&lt;a id="usingthepalette" class="Subsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Using the Palette&lt;/h2&gt;
+&lt;p&gt;Rather than describing all …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a id="installingsimpledocs" class="Subsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Installing SimpleDocs&lt;/h2&gt;
+&lt;p&gt;The easiest way to get SimpleDocs is off the  &lt;a href="https://paclets.github.io/PacletServer/simpledocs.html"&gt;paclet server&lt;/a&gt; . Copy the installation code there and you'll have a fresh new copy of SimpleDocs. For convenience I've duplicated that here:&lt;/p&gt;
+&lt;pre class="prettyprint"&gt;&lt;code&gt;&amp;lt;&amp;lt; https://paclets.github.io/PacletServer/Install.wl
+PublicPacletInstall[&amp;quot;SimpleDocs&amp;quot;]&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;pre &gt;
+&lt;code&gt;
+(*Out:*)
+
+&lt;span&gt;
+ &lt;img src='https://b3m2a1.github.io/img/post26-6661166580179857863.png'
+     alt='post26-6661166580179857863' /&gt;
+&lt;/span&gt;
+&lt;/code&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;&lt;a id="usingthepalette" class="Subsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Using the Palette&lt;/h2&gt;
+&lt;p&gt;Rather than describing all the functions of the palette in text, I decided just to make a video. It allows me to give a better, briefer explanation.&lt;/p&gt;
+&lt;iframe id="ytplayer" type="text/html" width="640" height="360"
+src="https://www.youtube.com/embed/7PRiVUlLKDU?autoplay=0"
+  frameborder="0"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;&lt;a id="openingawebsite" class="Subsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Opening a Website&lt;/h2&gt;
+&lt;p&gt;There's currently no button in the palette to open the local site that's built out, but we can do that using the package itself, like so:&lt;/p&gt;
+&lt;pre class="prettyprint"&gt;&lt;code&gt;&amp;lt;&amp;lt; SimpleDocs`
+SimpleDocs@&amp;quot;ViewLocalSite&amp;quot;[&amp;quot;Tutorials&amp;quot;];&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;p&gt;This will open the website we've built out on the local host. You can then take this website and deploy it using  &lt;a href="https://pages.github.com/"&gt;GitHub Pages&lt;/a&gt; pretty easily by feeding it into a repo.  &lt;a href="https://github.com/b3m2a1/Ems/wiki"&gt;Ems&lt;/a&gt; is used to actually build the websites, so you can customize your website with the  &lt;code&gt;SiteConfig.wl&lt;/code&gt; file that Ems uses.&lt;/p&gt;</content></entry><entry><title>Making a Paclet with BTools</title><link href="https://b3m2a1.github.io/making-a-paclet-with-btools.html" rel="alternate"></link><published>2019-02-16T13:53:56-06:00</published><updated>2019-02-16T15:01:15-06:00</updated><author><name>b3m2a1</name></author><id>tag:b3m2a1.github.io,2019-02-16:/making-a-paclet-with-btools.html</id><summary type="html">&lt;p&gt;Today we're gonna look at something I've been meaning to document for a long time now. Over the past two or so years I've developed a framework to simplify the development process. In the post, I'm gonna show you how to actually use it.&lt;/p&gt;
 &lt;p&gt;To make it easier to use …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Today we're gonna look at something I've been meaning to document for a long time now. Over the past two or so years I've developed a framework to simplify the development process. In the post, I'm gonna show you how to actually use it.&lt;/p&gt;
 &lt;p&gt;To make it easier to use all this I have a video showing how I do things:&lt;/p&gt;
 &lt;iframe width="560" height="315" 

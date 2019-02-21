@@ -7,10 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <title>
-Authors         b3m2a1
+Getting Started with SimpleDocs: The Simpler Docs Palette |         b3m2a1
 
 </title>
-  <link rel="canonical" href="https://b3m2a1.github.io/authors.html">
+  <link rel="canonical" href="https://b3m2a1.github.io/getting-started-with-simpledocs-the-simpler-docs-palette.html">
 
   <link rel="alternate" type="application/atom+xml" href="https://b3m2a1.github.io/feeds/all.atom.xml" title="Full Atom Feed">
 
@@ -23,6 +23,17 @@ Authors         b3m2a1
   <link rel="stylesheet" href="https://b3m2a1.github.io/theme/css/bootstrap.css">
   <link rel="stylesheet" href="https://b3m2a1.github.io/theme/css/font-awesome.css">
   <link rel="stylesheet" href="https://b3m2a1.github.io/theme/css/style.css">
+
+
+<meta name="description" content="‌ Installing SimpleDocs The easiest way to get SimpleDocs is off the paclet server . Copy the installation code there and you'll have a fresh new copy of SimpleDocs. For convenience I've duplicated that here: << https://paclets.github.io/PacletServer/Install.wl PublicPacletInstall["SimpleDocs"] (*Out:*) ‌ Using the Palette Rather than describing all …">
+
+<link href="https://b3m2a1.github.io/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
+<script src="https://b3m2a1.github.io/theme/prettify/src/prettify.js"></script>
+<!-- <script src="https://b3m2a1.github.io/theme/prettify/src/lang-mma.min.js"></script> -->
+
+<script>
+  function moveWindow (){window.location.hash="main-content";}
+</script>
 
 
 <script>
@@ -66,7 +77,8 @@ Authors         b3m2a1
 
 </head>
 
-<body onload=>
+<body onload="PR.prettyPrint(); moveWindow()"
+>
   <header class="header">
     <div class="top-bar">
     <div class="site-image">
@@ -144,15 +156,80 @@ Authors         b3m2a1
 
     <div class="left-content">
       <div class="container">
-        <h1>Authors
+        <h1>Getting Started with SimpleDocs: The Simpler Docs Palette
 </h1>
         <hr>
-<table class="table table-bordered table-striped table-hover">
-  <tr>
-    <td><a href="https://b3m2a1.github.io/author/b3m2a1.html">b3m2a1</a></td>
-    <td>26</td>
-  </tr>
-</table>
+<article class="article">
+  <header>
+    <ul class="list-inline">
+      <li class="list-inline-item text-muted" title="2019-02-20T15:59:20-06:00">
+        <i class="fa fa-clock-o"></i>
+        Wed 20 February 2019
+      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="https://b3m2a1.github.io/category/posts.html">posts</a>
+      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-user-o"></i>
+        <a href="https://b3m2a1.github.io/author/b3m2a1.html">b3m2a1</a>      </li>
+    </ul>
+  </header>
+  <div class="content">
+    <p><a id="installingsimpledocs" class="Subsection" style="width:0;height:0;margin:0;padding:0;">&zwnj;</a></p>
+<h2>Installing SimpleDocs</h2>
+<p>The easiest way to get SimpleDocs is off the  <a href="https://paclets.github.io/PacletServer/simpledocs.html">paclet server</a> . Copy the installation code there and you'll have a fresh new copy of SimpleDocs. For convenience I've duplicated that here:</p>
+<pre class="prettyprint"><code>&lt;&lt; https://paclets.github.io/PacletServer/Install.wl
+PublicPacletInstall[&quot;SimpleDocs&quot;]</code></pre>
+
+
+<pre >
+<code>
+(*Out:*)
+
+<span>
+ <img src='https://b3m2a1.github.io/img/post26-6661166580179857863.png'
+     alt='post26-6661166580179857863' />
+</span>
+</code>
+</pre>
+
+<p><a id="usingthepalette" class="Subsection" style="width:0;height:0;margin:0;padding:0;">&zwnj;</a></p>
+<h2>Using the Palette</h2>
+<p>Rather than describing all the functions of the palette in text, I decided just to make a video. It allows me to give a better, briefer explanation.</p>
+<iframe id="ytplayer" type="text/html" width="640" height="360"
+src="https://www.youtube.com/embed/7PRiVUlLKDU?autoplay=0"
+  frameborder="0"></iframe>
+
+<p><a id="openingawebsite" class="Subsection" style="width:0;height:0;margin:0;padding:0;">&zwnj;</a></p>
+<h2>Opening a Website</h2>
+<p>There's currently no button in the palette to open the local site that's built out, but we can do that using the package itself, like so:</p>
+<pre class="prettyprint"><code>&lt;&lt; SimpleDocs`
+SimpleDocs@&quot;ViewLocalSite&quot;[&quot;Tutorials&quot;];</code></pre>
+
+
+<p>This will open the website we've built out on the local host. You can then take this website and deploy it using  <a href="https://pages.github.com/">GitHub Pages</a> pretty easily by feeding it into a repo.  <a href="https://github.com/b3m2a1/Ems/wiki">Ems</a> is used to actually build the websites, so you can customize your website with the  <code>SiteConfig.wl</code> file that Ems uses.</p>
+  </div>
+</article>
+<hr>
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function() {
+    this.page.url = 'https://b3m2a1.github.io/getting-started-with-simpledocs-the-simpler-docs-palette.html';
+      this.page.identifier = 'getting-started-with-simpledocs-the-simpler-docs-palette'
+;
+  };
+  (function() {
+    var d = document;
+    var s = d.createElement('script');
+    s.src = '//b3m2a1-home.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript class="text-muted">
+  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
       </div>
     </div>
 
