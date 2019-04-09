@@ -188,9 +188,10 @@ EasyIDE: An IDE for Mathematica |         b3m2a1
 <p><a id="installation" class="Subsubsection" style="width:0;height:0;margin:0;padding:0;">&zwnj;</a></p>
 <h3>Installation</h3>
 <p>Install it off the  <a href="https://paclets.github.io/PacletServer/">Paclet Server</a> :</p>
-<p><code>mathematica
-&lt;&lt; https://paclets.github.io/PacletServer/Install.wl
-PublicPacletInstall["EasyIDE"]</code></p>
+<pre class="prettyprint"><code>&lt;&lt; https://paclets.github.io/PacletServer/Install.wl
+PublicPacletInstall[&quot;EasyIDE&quot;]</code></pre>
+
+
 <pre >
 <code>
 (*Out:*)
@@ -252,8 +253,9 @@ src="https://www.youtube.com/embed/fFiDiO-oM7w?autoplay=0"
 <p><a id="theeasyideapi" class="Subsubsection" style="width:0;height:0;margin:0;padding:0;">&zwnj;</a></p>
 <h3>The EasyIDE API</h3>
 <p>EasyIDE is just a collection of functions wrapped into a single unit. These were designed to (hopefully) be modular and clean to work with. Eventually all core functionality will also make its way to being attached to a single object, the  <code>IDENotebookObject</code> . The API for this is based off of my  <a href="https://paclets.github.io/PacletServer/interfaceobjects.html">InterfaceObjects</a> package and is object-oriented. This will be documented in due time, but as a taste here's what it can look like:</p>
-<p><code>mathematica
-ide = IDENotebookObject[]</code></p>
+<pre class="prettyprint"><code>ide = IDENotebookObject[]</code></pre>
+
+
 <pre >
 <code>
 (*Out:*)
@@ -265,16 +267,17 @@ ide = IDENotebookObject[]</code></p>
 </code>
 </pre>
 
-<p><code>mathematica
-ide@"Methods"</code></p>
-<pre class="prettyprint"><code>(*Out:*)
+<pre class="prettyprint"><code>ide@&quot;Methods&quot;
+
+(*Out:*)
 
 {&quot;Open&quot;,&quot;Save&quot;,&quot;Close&quot;,&quot;SwitchTab&quot;,&quot;Path&quot;,&quot;Data&quot;,&quot;SetData&quot;,&quot;ToggleFileViewer&quot;,&quot;AddToolbar&quot;,&quot;RemoveToolbar&quot;,&quot;AddStyles&quot;,&quot;RemoveStyles&quot;,&quot;GetStylesheet&quot;,&quot;SetStylesheet&quot;,&quot;SetProjectDirectory&quot;,&quot;CreateMessage&quot;,&quot;CreateDialog&quot;}</code></pre>
 
 
 <p>These  <code>"Methods"</code> are all operations that the IDE notebook referenced to by  <code>EvaluationNotebook[]</code> can perform. Here's an example of creating a message:</p>
-<p><code>mathematica
-ide@"CreateMessage"["Hello!"]</code></p>
+<pre class="prettyprint"><code>ide@&quot;CreateMessage&quot;[&quot;Hello!&quot;]</code></pre>
+
+
 <pre >
 <code>
 (*Out:*)
