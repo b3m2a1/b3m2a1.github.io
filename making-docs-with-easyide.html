@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+Making Docs with EasyIDE |         b3m2a1
+
+</title>
+  <link rel="canonical" href="https://b3m2a1.github.io/making-docs-with-easyide.html">
+
+  <link rel="alternate" type="application/atom+xml" href="https://b3m2a1.github.io/feeds/all.atom.xml" title="Full Atom Feed">
+
+  <link rel="apple-touch-icon" href="https://b3m2a1.github.io/apple-touch-icon.png" sizes="180x180">
+  <link rel="icon" type="image/png" href="https://b3m2a1.github.io/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="https://b3m2a1.github.io/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="https://b3m2a1.github.io/manifest.json">
+  <meta name="theme-color" content="#333333">
+
+  <link rel="stylesheet" href="https://b3m2a1.github.io/theme/css/bootstrap.css">
+  <link rel="stylesheet" href="https://b3m2a1.github.io/theme/css/font-awesome.css">
+  <link rel="stylesheet" href="https://b3m2a1.github.io/theme/css/style.css">
+
+
+<meta name="description" content="Now that the IDE stuff I've been working on has largely settled, I think it's time to show off what it can do. There will be a few of these posts, hopefully, but for today we'll focus on how the IDE can be used to make documentation. ‌ Getting Set Up …">
+
+<link href="https://b3m2a1.github.io/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
+<script src="https://b3m2a1.github.io/theme/prettify/src/prettify.js"></script>
+<!-- <script src="https://b3m2a1.github.io/theme/prettify/src/lang-mma.min.js"></script> -->
+
+<script>
+  function moveWindow (){window.location.hash="main-content";}
+</script>
+
+
+<script>
+  (function(i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function() {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    a.async = 1;
+    a.src = g;
+    m = s.getElementsByTagName(o)[0];
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-103560228-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <script>
+    function openNav() {
+      var thumb = document.getElementById("nav-thumb");
+      var bar = document.getElementById("side-nav");
+      thumb.onclick= closeNav;
+      bar.classList.add("right-bar-open");
+      bar.classList.remove("right-bar-closed");
+      thumb.classList.add("nav-thumb-open");
+      thumb.classList.remove("nav-thumb-closed");
+    }
+
+    function closeNav() {
+      var thumb = document.getElementById("nav-thumb");
+      var bar = document.getElementById("side-nav");
+      thumb.onclick= openNav;
+      bar.classList.remove("right-bar-open");
+      bar.classList.add("right-bar-closed");
+      thumb.classList.remove("nav-thumb-open");
+      thumb.classList.add("nav-thumb-closed")
+    }
+  </script>
+
+
+</head>
+
+<body onload="PR.prettyPrint(); moveWindow()"
+>
+  <header class="header">
+    <div class="top-bar">
+    <div class="site-image">
+      <img src=https://b3m2a1.github.io/img/site-image.png alt="b3m2a1">
+    </div>
+    <div class="site-links bubble floating">
+      <h1 class="title">
+          <a href="https://b3m2a1.github.io/">
+            b3m2a1
+          </a>
+        </h1>
+        <ul
+          class="list-inline row site-link-row"
+          id="top-bar-link-row"
+          >
+            <li class="list-inline-item site-link">
+              <a href="https://b3m2a1.github.io/pages/about.html">About</a>
+            </li>
+            <li class="list-inline-item site-link">
+              <a href="https://b3m2a1.github.io/pages/contact.html">Contact</a>
+            </li>
+            <li class="list-inline-item site-link">
+              <a href="https://b3m2a1.github.io/categories.html">Categories</a>
+            </li>
+            <li class="list-inline-item site-link">
+              <a href="https://b3m2a1.github.io/tags.html">Tags</a>
+            </li>
+            <li class="list-inline-item site-link">
+              <a href="https://b3m2a1.github.io/archives.html">Archives</a>
+            </li>
+        </ul>
+    </div>
+    </div>
+  </header>
+
+  <div class="main" id="main-content">
+
+    <div class="right-bar right-bar-closed" id="side-nav">
+      <button
+        id="nav-thumb"
+        class="nav-thumb nav-thumb-closed"
+        onclick="openNav()"
+        >
+      </button>
+      <div class="blogroll bubble inset">
+        <p>Links</p>
+        <ul class="blogroll-links right-bar-links list-inline">
+            <li class="right-bar-item">
+              <a href="https://github.com/b3m2a1" class="blogroll-link right-bar-link"
+                target="_blank">
+                GitHub
+              </a>
+            </li>
+            <li class="right-bar-item">
+              <a href="https://mathematica.stackexchange.com/users/38205" class="blogroll-link right-bar-link"
+                target="_blank">
+                StackExchange
+              </a>
+            </li>
+            <li class="right-bar-item">
+              <a href="https://paclets.github.io/PacletServer" class="blogroll-link right-bar-link"
+                target="_blank">
+                Paclet Server
+              </a>
+            </li>
+            <li class="right-bar-item">
+              <a href="https://www.wolframcloud.com/objects/b3m2a1.docs/DocumentationServer/" class="blogroll-link right-bar-link"
+                target="_blank">
+                Docs
+              </a>
+            </li>
+          </ul>
+      </div>
+    </div>
+
+    <div class="left-content">
+      <div class="container">
+        <h1>Making Docs with EasyIDE
+</h1>
+        <hr>
+<article class="article">
+  <header>
+    <ul class="list-inline">
+      <li class="list-inline-item text-muted" title="2019-04-09T13:26:36-05:00">
+        <i class="fa fa-clock-o"></i>
+        Tue 09 April 2019
+      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="https://b3m2a1.github.io/category/posts.html">posts</a>
+      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-user-o"></i>
+        <a href="https://b3m2a1.github.io/author/b3m2a1.html">b3m2a1</a>      </li>
+    </ul>
+  </header>
+  <div class="content">
+    <p>Now that the  <a href="https://b3m2a1.github.io/easyide-an-ide-for-mathematica.html">IDE stuff I've been working on</a> has largely settled, I think it's time to show off what it can do. There will be a few of these posts, hopefully, but for today we'll focus on how the IDE can be used to make documentation.</p>
+<p><a id="gettingsetup" class="Subsection" style="width:0;height:0;margin:0;padding:0;">&zwnj;</a></p>
+<h2>Getting Set Up</h2>
+<p>To start, let's open up a new IDE window pointing to the root directory of the package we want to document. For starters, I chose to use my EasyIDE package:</p>
+<pre >
+<code>
+<span>
+ <img src='https://b3m2a1.github.io/img/post28-2443230973652949301.png'
+     alt='post28-2443230973652949301' />
+</span>
+</code>
+</pre>
+
+<p>Next we'll go to  <code>Plugins ▸ Docs ▸ Initialize</code> which will create the docs structure that will be used for creating the docs pages. Here's a video of that:</p>
+<iframe id="ytplayer" type="text/html" width="640" height="360"
+src="https://www.youtube.com/embed/rVXt-56sUhU?autoplay=0"
+  frameborder="0"></iframe>
+
+<p>From here we can do a number of things, such as customize where the documentation should built to (by default the  <code>"Documentation"</code> directory) and customizations for when the pages are exported to Markdown (if that is of interest).</p>
+<p><a id="makingatutorial" class="Subsection" style="width:0;height:0;margin:0;padding:0;">&zwnj;</a></p>
+<h2>Making a Tutorial</h2>
+<p><a id="makinganew" class="Subsubsection" style="width:0;height:0;margin:0;padding:0;">&zwnj;</a></p>
+<h3>Making a New Notebook</h3>
+<p>To start off with, let's just make a tutorial. For this we go to  <code>Plugins ▸ Docs ▸ New Tutorial</code> , give it a file name, and a new tutorial notebook will pop up in the window. Here's a video:</p>
+<iframe id="ytplayer" type="text/html" width="640" height="360"
+src="https://www.youtube.com/embed/VjUs0t-CpBs?autoplay=0"
+  frameborder="0"></iframe>
+
+<p><a id="metadata" class="Subsubsection" style="width:0;height:0;margin:0;padding:0;">&zwnj;</a></p>
+<h3>Metadata</h3>
+<p>The next big thing to do is set the Metadata. The easiest way to do this is to go to the toolbar, hit  <code>"Edit Metadata"</code> and just edit it in the window that appears. Most of the metadata actually doesn't need to be set--the only really important bits are the  <code>"Context"</code> (for symbols), the  <code>"Type"</code> (Symbol/Guide/Tutorial), the  <code>"Label"</code> , and the  <code>"URI"</code> . To make it a little bit cleaner to work with there is a  <code>Clear</code> button that will reset all the values back to  <code>Automatic</code> and a  <code>Populate</code> button that will fill things in based on what has been set already. This'll be in a video a bit lower down, which should make it easier to see what I mean.</p>
+<p><a id="content" class="Subsubsection" style="width:0;height:0;margin:0;padding:0;">&zwnj;</a></p>
+<h3>Content</h3>
+<p>Whatever you want to put in this notebook can be added. The notebook as it looks (without the Metadata block at the top and with a few stylistic tweaks) will be saved directly to the docs folder. On the other hand, it generally makes the most sense to stick to the standard cell types, images, and pretty simple formatting. The reasoning for this is two-fold. First off, it's easier to make changes and to understand what's going on if things are kept simple, secondly, these standard styles can easily be exported to Markdown, which means they can easily be deployed to the web.</p>
+<p><a id="savingtodocumentation" class="Subsubsection" style="width:0;height:0;margin:0;padding:0;">&zwnj;</a></p>
+<h3>Saving to Documentation</h3>
+<p>After we've added all our metadata and content we're ready to save our notebook to the documentation. All this requires is heading to the  <code>Menu</code> in the toolbar and selecting  <code>"Save to Documentation"</code> . It'll save to the directory specified in  <code>"config.wl"</code> (which is the standard place by default) and that is that.</p>
+<p>Here's a video demoing all these parts:</p>
+<iframe id="ytplayer" type="text/html" width="640" height="360"
+src="https://www.youtube.com/embed/8_ClqisEsCk?autoplay=0"
+  frameborder="0"></iframe>
+
+<p>You might notice the little message popup saying it can't find a stylesheet. This is just an artifact of how  <code>Export</code> works and won't be an issue in practice.</p>
+<p><a id="makingbatchdocs" class="Subsection" style="width:0;height:0;margin:0;padding:0;">&zwnj;</a></p>
+<h2>Making Batch Docs</h2>
+<p>The best part of having such a simple docs format is how easy it is to automate the documentation generation process. To show this off I've included some facilities to make template documentation automatically inside the IDE. First off, we open the  <code>"config.wl"</code> file. Here we'll add another key for  <code>"BatchDocsSettings"</code> . In that we'll specify a) the  <code>"Contexts"</code> we want to document; this defaults to those specified in the  <code>"Contexts"</code> entry in  <code>PacletInfo.m</code> b) the types of things we want to autogenerate; this defaults to just template notebooks c) a set of  <code>"RelatedCells"</code> to paste at the bottom of every generated page to save us a bunch of copy-paste hassle.</p>
+<p>Here's an example of what mine looks like:</p>
+<pre class="prettyprint"><code>&quot;BatchDocsSettings&quot; -&gt; {
+  &quot;Contexts&quot; -&gt; {&quot;EasyIDE`Notebooks`Utilities`&quot;},
+  &quot;RelatedCells&quot; -&gt; Get[FileNameJoin@{DirectoryName[$InputFileName], &quot;relatedCells.nb&quot;}][[1]]
+  }</code></pre>
+
+
+<p>You can see I'm only trying to generate templates for the  <code>"Utilities"</code> functions and I'm taking my cells from a notebook saved in the same directory as  <code>"config.wl"</code> .</p>
+<p><a id="makingthetemplates" class="Subsubsection" style="width:0;height:0;margin:0;padding:0;">&zwnj;</a></p>
+<h3>Making the Templates</h3>
+<p>With that done all you need to do is open up that tutorial we were working on before, open the toolbar, and press  <code>Create Batch Docs</code> . Here's what I mean:</p>
+<iframe id="ytplayer" type="text/html" width="640" height="360"
+src="https://www.youtube.com/embed/iKNvjAcnqE0?autoplay=0"
+  frameborder="0"></iframe>
+
+<p><a id="makingmarkdown" class="Subsection" style="width:0;height:0;margin:0;padding:0;">&zwnj;</a></p>
+<h2>Making Markdown</h2>
+<p>I'll go into this more later, especially how this documentation can be exported directly to a customizable website, but for those interested these notebooks can also be exported directly to Markdown using the  <code>Save to Markdown</code> command under  <code>Menu</code> in the toolbar.</p>
+  </div>
+</article>
+<hr>
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function() {
+    this.page.url = 'https://b3m2a1.github.io/making-docs-with-easyide.html';
+      this.page.identifier = 'making-docs-with-easyide'
+;
+  };
+  (function() {
+    var d = document;
+    var s = d.createElement('script');
+    s.src = '//b3m2a1-home.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript class="text-muted">
+  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <p class="col-sm-6 text-sm-right text-muted acknowledgement">
+      Generated by
+      <a href="https://github.com/getpelican/pelican" target="_blank">Pelican</a> /
+      Forked from <a href="https://github.com/nairobilug/pelican-alchemy" target="_blank">alchemy</a>
+    </p>
+  </footer>
+
+</body>
+
+</html>

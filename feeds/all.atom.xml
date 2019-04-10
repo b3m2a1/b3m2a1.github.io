@@ -1,5 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>b3m2a1</title><link href="https://b3m2a1.github.io/" rel="alternate"></link><link href="https://b3m2a1.github.io/feeds/all.atom.xml" rel="self"></link><id>https://b3m2a1.github.io/</id><updated>2019-04-09T02:52:26-05:00</updated><entry><title>EasyIDE: An IDE for Mathematica</title><link href="https://b3m2a1.github.io/easyide-an-ide-for-mathematica.html" rel="alternate"></link><published>2019-04-08T14:18:12-05:00</published><updated>2019-04-09T02:52:26-05:00</updated><author><name>b3m2a1</name></author><id>tag:b3m2a1.github.io,2019-04-08:/easyide-an-ide-for-mathematica.html</id><summary type="html">&lt;p&gt;Contrary to what would probably be best practice, I do all of my Mathematica development inside Mathematica itself. To support this I built out a suite of  &lt;a href="https://paclets.github.io/PacletServer/btools.html"&gt;application development tools&lt;/a&gt; , a  &lt;a href="https://paclets.github.io/PacletServer/ems.html"&gt;web site builder&lt;/a&gt; , a  &lt;a href="https://github.com/b3m2a1/BugTracker"&gt;bug tracker&lt;/a&gt; , and a  &lt;a href="https://paclets.github.io/PacletServer/simpledocs.html"&gt;documentation writing system&lt;/a&gt; . Each of these worked nicely for me separately …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Contrary to what would probably be best practice, I do all of my Mathematica development inside Mathematica itself. To support this I built out a suite of  &lt;a href="https://paclets.github.io/PacletServer/btools.html"&gt;application development tools&lt;/a&gt; , a  &lt;a href="https://paclets.github.io/PacletServer/ems.html"&gt;web site builder&lt;/a&gt; , a  &lt;a href="https://github.com/b3m2a1/BugTracker"&gt;bug tracker&lt;/a&gt; , and a  &lt;a href="https://paclets.github.io/PacletServer/simpledocs.html"&gt;documentation writing system&lt;/a&gt; . Each of these worked nicely for me separately, but each of these required a palette and each one ran on notebooks, which meant that my screen filled with too many notebooks to keep track of. And then for each of these palettes and systems I had to write new resource finding code based off the palette or some arbitrarily imposed root directory or else provide some other way to specify where things would be found.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>b3m2a1</title><link href="https://b3m2a1.github.io/" rel="alternate"></link><link href="https://b3m2a1.github.io/feeds/all.atom.xml" rel="self"></link><id>https://b3m2a1.github.io/</id><updated>2019-04-09T18:03:21-05:00</updated><entry><title>Making Docs with EasyIDE</title><link href="https://b3m2a1.github.io/making-docs-with-easyide.html" rel="alternate"></link><published>2019-04-09T13:26:36-05:00</published><updated>2019-04-09T18:03:21-05:00</updated><author><name>b3m2a1</name></author><id>tag:b3m2a1.github.io,2019-04-09:/making-docs-with-easyide.html</id><summary type="html">&lt;p&gt;Now that the  &lt;a href="https://b3m2a1.github.io/easyide-an-ide-for-mathematica.html"&gt;IDE stuff I've been working on&lt;/a&gt; has largely settled, I think it's time to show off what it can do. There will be a few of these posts, hopefully, but for today we'll focus on how the IDE can be used to make documentation.&lt;/p&gt;
+&lt;p&gt;&lt;a id="gettingsetup" class="Subsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Getting Set Up …&lt;/h2&gt;</summary><content type="html">&lt;p&gt;Now that the  &lt;a href="https://b3m2a1.github.io/easyide-an-ide-for-mathematica.html"&gt;IDE stuff I've been working on&lt;/a&gt; has largely settled, I think it's time to show off what it can do. There will be a few of these posts, hopefully, but for today we'll focus on how the IDE can be used to make documentation.&lt;/p&gt;
+&lt;p&gt;&lt;a id="gettingsetup" class="Subsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Getting Set Up&lt;/h2&gt;
+&lt;p&gt;To start, let's open up a new IDE window pointing to the root directory of the package we want to document. For starters, I chose to use my EasyIDE package:&lt;/p&gt;
+&lt;pre &gt;
+&lt;code&gt;
+&lt;span&gt;
+ &lt;img src='https://b3m2a1.github.io/img/post28-2443230973652949301.png'
+     alt='post28-2443230973652949301' /&gt;
+&lt;/span&gt;
+&lt;/code&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;Next we'll go to  &lt;code&gt;Plugins ▸ Docs ▸ Initialize&lt;/code&gt; which will create the docs structure that will be used for creating the docs pages. Here's a video of that:&lt;/p&gt;
+&lt;iframe id="ytplayer" type="text/html" width="640" height="360"
+src="https://www.youtube.com/embed/rVXt-56sUhU?autoplay=0"
+  frameborder="0"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;From here we can do a number of things, such as customize where the documentation should built to (by default the  &lt;code&gt;"Documentation"&lt;/code&gt; directory) and customizations for when the pages are exported to Markdown (if that is of interest).&lt;/p&gt;
+&lt;p&gt;&lt;a id="makingatutorial" class="Subsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Making a Tutorial&lt;/h2&gt;
+&lt;p&gt;&lt;a id="makinganew" class="Subsubsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Making a New Notebook&lt;/h3&gt;
+&lt;p&gt;To start off with, let's just make a tutorial. For this we go to  &lt;code&gt;Plugins ▸ Docs ▸ New Tutorial&lt;/code&gt; , give it a file name, and a new tutorial notebook will pop up in the window. Here's a video:&lt;/p&gt;
+&lt;iframe id="ytplayer" type="text/html" width="640" height="360"
+src="https://www.youtube.com/embed/VjUs0t-CpBs?autoplay=0"
+  frameborder="0"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;&lt;a id="metadata" class="Subsubsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Metadata&lt;/h3&gt;
+&lt;p&gt;The next big thing to do is set the Metadata. The easiest way to do this is to go to the toolbar, hit  &lt;code&gt;"Edit Metadata"&lt;/code&gt; and just edit it in the window that appears. Most of the metadata actually doesn't need to be set--the only really important bits are the  &lt;code&gt;"Context"&lt;/code&gt; (for symbols), the  &lt;code&gt;"Type"&lt;/code&gt; (Symbol/Guide/Tutorial), the  &lt;code&gt;"Label"&lt;/code&gt; , and the  &lt;code&gt;"URI"&lt;/code&gt; . To make it a little bit cleaner to work with there is a  &lt;code&gt;Clear&lt;/code&gt; button that will reset all the values back to  &lt;code&gt;Automatic&lt;/code&gt; and a  &lt;code&gt;Populate&lt;/code&gt; button that will fill things in based on what has been set already. This'll be in a video a bit lower down, which should make it easier to see what I mean.&lt;/p&gt;
+&lt;p&gt;&lt;a id="content" class="Subsubsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Content&lt;/h3&gt;
+&lt;p&gt;Whatever you want to put in this notebook can be added. The notebook as it looks (without the Metadata block at the top and with a few stylistic tweaks) will be saved directly to the docs folder. On the other hand, it generally makes the most sense to stick to the standard cell types, images, and pretty simple formatting. The reasoning for this is two-fold. First off, it's easier to make changes and to understand what's going on if things are kept simple, secondly, these standard styles can easily be exported to Markdown, which means they can easily be deployed to the web.&lt;/p&gt;
+&lt;p&gt;&lt;a id="savingtodocumentation" class="Subsubsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Saving to Documentation&lt;/h3&gt;
+&lt;p&gt;After we've added all our metadata and content we're ready to save our notebook to the documentation. All this requires is heading to the  &lt;code&gt;Menu&lt;/code&gt; in the toolbar and selecting  &lt;code&gt;"Save to Documentation"&lt;/code&gt; . It'll save to the directory specified in  &lt;code&gt;"config.wl"&lt;/code&gt; (which is the standard place by default) and that is that.&lt;/p&gt;
+&lt;p&gt;Here's a video demoing all these parts:&lt;/p&gt;
+&lt;iframe id="ytplayer" type="text/html" width="640" height="360"
+src="https://www.youtube.com/embed/8_ClqisEsCk?autoplay=0"
+  frameborder="0"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;You might notice the little message popup saying it can't find a stylesheet. This is just an artifact of how  &lt;code&gt;Export&lt;/code&gt; works and won't be an issue in practice.&lt;/p&gt;
+&lt;p&gt;&lt;a id="makingbatchdocs" class="Subsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Making Batch Docs&lt;/h2&gt;
+&lt;p&gt;The best part of having such a simple docs format is how easy it is to automate the documentation generation process. To show this off I've included some facilities to make template documentation automatically inside the IDE. First off, we open the  &lt;code&gt;"config.wl"&lt;/code&gt; file. Here we'll add another key for  &lt;code&gt;"BatchDocsSettings"&lt;/code&gt; . In that we'll specify a) the  &lt;code&gt;"Contexts"&lt;/code&gt; we want to document; this defaults to those specified in the  &lt;code&gt;"Contexts"&lt;/code&gt; entry in  &lt;code&gt;PacletInfo.m&lt;/code&gt; b) the types of things we want to autogenerate; this defaults to just template notebooks c) a set of  &lt;code&gt;"RelatedCells"&lt;/code&gt; to paste at the bottom of every generated page to save us a bunch of copy-paste hassle.&lt;/p&gt;
+&lt;p&gt;Here's an example of what mine looks like:&lt;/p&gt;
+&lt;pre class="prettyprint"&gt;&lt;code&gt;&amp;quot;BatchDocsSettings&amp;quot; -&amp;gt; {
+  &amp;quot;Contexts&amp;quot; -&amp;gt; {&amp;quot;EasyIDE`Notebooks`Utilities`&amp;quot;},
+  &amp;quot;RelatedCells&amp;quot; -&amp;gt; Get[FileNameJoin@{DirectoryName[$InputFileName], &amp;quot;relatedCells.nb&amp;quot;}][[1]]
+  }&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;p&gt;You can see I'm only trying to generate templates for the  &lt;code&gt;"Utilities"&lt;/code&gt; functions and I'm taking my cells from a notebook saved in the same directory as  &lt;code&gt;"config.wl"&lt;/code&gt; .&lt;/p&gt;
+&lt;p&gt;&lt;a id="makingthetemplates" class="Subsubsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Making the Templates&lt;/h3&gt;
+&lt;p&gt;With that done all you need to do is open up that tutorial we were working on before, open the toolbar, and press  &lt;code&gt;Create Batch Docs&lt;/code&gt; . Here's what I mean:&lt;/p&gt;
+&lt;iframe id="ytplayer" type="text/html" width="640" height="360"
+src="https://www.youtube.com/embed/iKNvjAcnqE0?autoplay=0"
+  frameborder="0"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;&lt;a id="makingmarkdown" class="Subsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Making Markdown&lt;/h2&gt;
+&lt;p&gt;I'll go into this more later, especially how this documentation can be exported directly to a customizable website, but for those interested these notebooks can also be exported directly to Markdown using the  &lt;code&gt;Save to Markdown&lt;/code&gt; command under  &lt;code&gt;Menu&lt;/code&gt; in the toolbar.&lt;/p&gt;</content></entry><entry><title>EasyIDE: An IDE for Mathematica</title><link href="https://b3m2a1.github.io/easyide-an-ide-for-mathematica.html" rel="alternate"></link><published>2019-04-08T14:18:12-05:00</published><updated>2019-04-09T03:36:52-05:00</updated><author><name>b3m2a1</name></author><id>tag:b3m2a1.github.io,2019-04-08:/easyide-an-ide-for-mathematica.html</id><summary type="html">&lt;p&gt;Contrary to what would probably be best practice, I do all of my Mathematica development inside Mathematica itself. To support this I built out a suite of  &lt;a href="https://paclets.github.io/PacletServer/btools.html"&gt;application development tools&lt;/a&gt; , a  &lt;a href="https://paclets.github.io/PacletServer/ems.html"&gt;web site builder&lt;/a&gt; , a  &lt;a href="https://github.com/b3m2a1/BugTracker"&gt;bug tracker&lt;/a&gt; , and a  &lt;a href="https://paclets.github.io/PacletServer/simpledocs.html"&gt;documentation writing system&lt;/a&gt; . Each of these worked nicely for me separately …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Contrary to what would probably be best practice, I do all of my Mathematica development inside Mathematica itself. To support this I built out a suite of  &lt;a href="https://paclets.github.io/PacletServer/btools.html"&gt;application development tools&lt;/a&gt; , a  &lt;a href="https://paclets.github.io/PacletServer/ems.html"&gt;web site builder&lt;/a&gt; , a  &lt;a href="https://github.com/b3m2a1/BugTracker"&gt;bug tracker&lt;/a&gt; , and a  &lt;a href="https://paclets.github.io/PacletServer/simpledocs.html"&gt;documentation writing system&lt;/a&gt; . Each of these worked nicely for me separately, but each of these required a palette and each one ran on notebooks, which meant that my screen filled with too many notebooks to keep track of. And then for each of these palettes and systems I had to write new resource finding code based off the palette or some arbitrarily imposed root directory or else provide some other way to specify where things would be found.&lt;/p&gt;
 &lt;p&gt;In short, it got messy.&lt;/p&gt;
 &lt;p&gt;Then, in a very relaxing hiatus from Mathematica I did some python development, writing a package for linking  &lt;a href="https://paclets.github.io/PacletServer/pjlink.html"&gt;Mathematica to python&lt;/a&gt; as well as some stuff for coordinate transforms and finite differencing and other little utilities. In doing this I noticed that everything was just...better. Partly this is because python is much nicer to write significant amounts of code in, being a language that actually supports developers and with actual object orientation and modularity. But another significant part of it was in the tools available to me. In particular I had the python plugin to  &lt;a href="https://www.jetbrains.com/idea/"&gt;IntelliJ&lt;/a&gt; , which is also repackaged as  &lt;a href="https://www.jetbrains.com/pycharm/"&gt;PyCharm&lt;/a&gt; . The fact that I had tabbing, plugins (e.g. for  &lt;a href="https://git-scm.com/"&gt;Git&lt;/a&gt; ), a file browser inside my dev environment, etc. was at once so entirely normal (I used to be a python programmer before switching over to mostly using Mathematica) and at the same time so nice. I then tried to use the  &lt;em&gt;very nice and well constructed&lt;/em&gt;  &lt;a href="https://wlplugin.halirutan.de/"&gt;IntelliJ plugin for Mathematica&lt;/a&gt; but it was just too much of a hurdle to lose everything I was used to and liked about writing my code directly in Mathematica.&lt;/p&gt;
 &lt;p&gt;And that long, unnecessary background is why today we're gonna look at a Mathematica IDE written and operating entirely within Mathematica.&lt;/p&gt;
@@ -11,9 +76,10 @@
 &lt;p&gt;&lt;a id="installation" class="Subsubsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Installation&lt;/h3&gt;
 &lt;p&gt;Install it off the  &lt;a href="https://paclets.github.io/PacletServer/"&gt;Paclet Server&lt;/a&gt; :&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;mathematica
-&amp;lt;&amp;lt; https://paclets.github.io/PacletServer/Install.wl
-PublicPacletInstall["EasyIDE"]&lt;/code&gt;&lt;/p&gt;
+&lt;pre class="prettyprint"&gt;&lt;code&gt;&amp;lt;&amp;lt; https://paclets.github.io/PacletServer/Install.wl
+PublicPacletInstall[&amp;quot;EasyIDE&amp;quot;]&lt;/code&gt;&lt;/pre&gt;
+
+
 &lt;pre &gt;
 &lt;code&gt;
 (*Out:*)
@@ -75,8 +141,9 @@ src="https://www.youtube.com/embed/fFiDiO-oM7w?autoplay=0"
 &lt;p&gt;&lt;a id="theeasyideapi" class="Subsubsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;The EasyIDE API&lt;/h3&gt;
 &lt;p&gt;EasyIDE is just a collection of functions wrapped into a single unit. These were designed to (hopefully) be modular and clean to work with. Eventually all core functionality will also make its way to being attached to a single object, the  &lt;code&gt;IDENotebookObject&lt;/code&gt; . The API for this is based off of my  &lt;a href="https://paclets.github.io/PacletServer/interfaceobjects.html"&gt;InterfaceObjects&lt;/a&gt; package and is object-oriented. This will be documented in due time, but as a taste here's what it can look like:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;mathematica
-ide = IDENotebookObject[]&lt;/code&gt;&lt;/p&gt;
+&lt;pre class="prettyprint"&gt;&lt;code&gt;ide = IDENotebookObject[]&lt;/code&gt;&lt;/pre&gt;
+
+
 &lt;pre &gt;
 &lt;code&gt;
 (*Out:*)
@@ -88,16 +155,17 @@ ide = IDENotebookObject[]&lt;/code&gt;&lt;/p&gt;
 &lt;/code&gt;
 &lt;/pre&gt;
 
-&lt;p&gt;&lt;code&gt;mathematica
-ide@"Methods"&lt;/code&gt;&lt;/p&gt;
-&lt;pre class="prettyprint"&gt;&lt;code&gt;(*Out:*)
+&lt;pre class="prettyprint"&gt;&lt;code&gt;ide@&amp;quot;Methods&amp;quot;
+
+(*Out:*)
 
 {&amp;quot;Open&amp;quot;,&amp;quot;Save&amp;quot;,&amp;quot;Close&amp;quot;,&amp;quot;SwitchTab&amp;quot;,&amp;quot;Path&amp;quot;,&amp;quot;Data&amp;quot;,&amp;quot;SetData&amp;quot;,&amp;quot;ToggleFileViewer&amp;quot;,&amp;quot;AddToolbar&amp;quot;,&amp;quot;RemoveToolbar&amp;quot;,&amp;quot;AddStyles&amp;quot;,&amp;quot;RemoveStyles&amp;quot;,&amp;quot;GetStylesheet&amp;quot;,&amp;quot;SetStylesheet&amp;quot;,&amp;quot;SetProjectDirectory&amp;quot;,&amp;quot;CreateMessage&amp;quot;,&amp;quot;CreateDialog&amp;quot;}&lt;/code&gt;&lt;/pre&gt;
 
 
 &lt;p&gt;These  &lt;code&gt;"Methods"&lt;/code&gt; are all operations that the IDE notebook referenced to by  &lt;code&gt;EvaluationNotebook[]&lt;/code&gt; can perform. Here's an example of creating a message:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;mathematica
-ide@"CreateMessage"["Hello!"]&lt;/code&gt;&lt;/p&gt;
+&lt;pre class="prettyprint"&gt;&lt;code&gt;ide@&amp;quot;CreateMessage&amp;quot;[&amp;quot;Hello!&amp;quot;]&lt;/code&gt;&lt;/pre&gt;
+
+
 &lt;pre &gt;
 &lt;code&gt;
 (*Out:*)
