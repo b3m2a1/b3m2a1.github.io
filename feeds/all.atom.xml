@@ -1,5 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>b3m2a1</title><link href="https://b3m2a1.github.io/" rel="alternate"></link><link href="https://b3m2a1.github.io/feeds/all.atom.xml" rel="self"></link><id>https://b3m2a1.github.io/</id><updated>2019-04-09T18:03:21-05:00</updated><entry><title>Making Docs with EasyIDE</title><link href="https://b3m2a1.github.io/making-docs-with-easyide.html" rel="alternate"></link><published>2019-04-09T13:26:36-05:00</published><updated>2019-04-09T18:03:21-05:00</updated><author><name>b3m2a1</name></author><id>tag:b3m2a1.github.io,2019-04-09:/making-docs-with-easyide.html</id><summary type="html">&lt;p&gt;Now that the  &lt;a href="https://b3m2a1.github.io/easyide-an-ide-for-mathematica.html"&gt;IDE stuff I've been working on&lt;/a&gt; has largely settled, I think it's time to show off what it can do. There will be a few of these posts, hopefully, but for today we'll focus on how the IDE can be used to make documentation.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>b3m2a1</title><link href="https://b3m2a1.github.io/" rel="alternate"></link><link href="https://b3m2a1.github.io/feeds/all.atom.xml" rel="self"></link><id>https://b3m2a1.github.io/</id><updated>2019-04-20T21:12:24-05:00</updated><entry><title>Making a Website with EasyIDE</title><link href="https://b3m2a1.github.io/making-a-website-with-easyide.html" rel="alternate"></link><published>2019-04-17T02:37:54-05:00</published><updated>2019-04-20T21:12:24-05:00</updated><author><name>b3m2a1</name></author><id>tag:b3m2a1.github.io,2019-04-17:/making-a-website-with-easyide.html</id><summary type="html">&lt;p&gt;A common thing that people want to do one they have a nice bit of code is that they way to share it with the world. That was me ~2 years ago and so I went out, found a  &lt;a href="https://docs.getpelican.com/en/stable/"&gt;nice static website builder&lt;/a&gt; , wrote a notebook to Markdown generator that …&lt;/p&gt;</summary><content type="html">&lt;p&gt;A common thing that people want to do one they have a nice bit of code is that they way to share it with the world. That was me ~2 years ago and so I went out, found a  &lt;a href="https://docs.getpelican.com/en/stable/"&gt;nice static website builder&lt;/a&gt; , wrote a notebook to Markdown generator that would handle all the most common cell types I used, and then figured out how to deploy this to the  &lt;a href="https://www.wolframcloud.com/"&gt;Wolfram Cloud&lt;/a&gt; . It worked nicely for a while, but after a bit I wanted more control over how the site was built, so I sat down, wrote a Markdown to XML parser, wrote a website generation framework, and worked up what eventually became  &lt;a href="https://github.com/b3m2a1/Ems"&gt;Ems&lt;/a&gt; , and used this to build a  &lt;a href="https://mresources.github.io/tutorial/"&gt;Mathematica tutorial&lt;/a&gt; from some stuff I wrote for some chemists I used to work with.&lt;/p&gt;
+&lt;p&gt;These days few of my sites are on the Wolfram Cloud anymore, as it's slow, prone to losing CSS, the URLs look like a scam website, and so on and so forth. But I still use the site builder. All the time. For example, the  &lt;a href="https://paclets.github.io/PacletServer/"&gt;Mathematica paclet server&lt;/a&gt; I built to host Mathematica packages and make it possible install them in a single line is built with this site generator.&lt;/p&gt;
+&lt;p&gt;And so when I built out EasyIDE one of the first things I wanted to do was integrate my  &lt;a href="https://github.com/b3m2a1/Ems"&gt;site builder&lt;/a&gt; (via Ems) into the thing. In fact, this blog post itself is being written with EasyIDE:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="post29-966299916507913566" src="https://b3m2a1.github.io/img/post29-966299916507913566.png" /&gt;&lt;/p&gt;
+&lt;p&gt;And now that I have this stuff built out, let's start  to make a blog.&lt;/p&gt;
+&lt;p&gt;&lt;a id="gettingstarted" class="Section" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h1&gt;Getting Started&lt;/h1&gt;
+&lt;p&gt;&lt;a id="gettingeasyide" class="Subsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Getting EasyIDE&lt;/h2&gt;
+&lt;p&gt;If you need to get EasyIDE you can get it off the  &lt;a href="https://paclets.github.io/PacletServer/easyide.html"&gt;paclet server&lt;/a&gt; . From there you can follow the video here to choose a stylesheet and get it set up:&lt;/p&gt;
+&lt;iframe id="ytplayer" type="text/html" width="640" height="360"
+src="https://www.youtube.com/embed/TMHiN9Ov2fQ?autoplay=0"
+  frameborder="0"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;&lt;a id="creatingthesite" class="Subsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Creating the Site Root&lt;/h2&gt;
+&lt;p&gt;This is probably the most involved part of the process—and don't worry it's really not very involved at all. What we do is first create a directory for our websites to save to, go to  &lt;code&gt;Plugins ▸ Site Builder ▸ Initialize&lt;/code&gt; and follow the dialog there. After we have a new site, we reassign our project directory to that of the site we want to build and then we're good to go. Here's a video for that:&lt;/p&gt;
+&lt;iframe id="ytplayer" type="text/html" width="640" height="360"
+src="https://www.youtube.com/embed/P5-_-PhWqGs?autoplay=0"
+  frameborder="0"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;&lt;a id="creatingcontent" class="Section" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h1&gt;Creating Content&lt;/h1&gt;
+&lt;p&gt;&lt;a id="writingcontent" class="Subsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Writing Content&lt;/h2&gt;
+&lt;p&gt;Content is divided into two types: pages and posts. Posts are articles, these will be managed and listed on the site index. Pages are more for site info and will not end up on the site index. There should already be a sample page and sample post. We can open up Post #1 using the file browser:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="post29-5467238420810729513" src="https://b3m2a1.github.io/img/post29-5467238420810729513.png" /&gt;&lt;/p&gt;
+&lt;p&gt;You can write pretty much whatever you want here and it will get saved to Markdown, which is the format used to build the site. To maximize similarity between the appearance of the post as written and the post as deployed, it makes sense to use mostly formats that can easily be exported to the web. That means using simple cell styles like  &lt;code&gt;"Section"&lt;/code&gt; ,  &lt;code&gt;"Subsection"&lt;/code&gt; ,  &lt;code&gt;"Code"&lt;/code&gt; ,  &lt;code&gt;"Text"&lt;/code&gt; ,  &lt;code&gt;"Item"&lt;/code&gt; , etc. and putting images in their own cells (here I'd recommend putting them in  &lt;code&gt;"Text"&lt;/code&gt; cells as otherwise the exporter thinks they're input).&lt;/p&gt;
+&lt;p&gt;&lt;a id="makingnewcontent" class="Subsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Making New Content&lt;/h2&gt;
+&lt;p&gt;To make a new post or new page you can use the entries under  &lt;code&gt;Plugins ▸ Site Builder ▸ New&lt;/code&gt; . These will open up a new page or post or whatnot that you can put whatever you want in.&lt;/p&gt;
+&lt;p&gt;&lt;a id="contentmetadata" class="Subsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Content Metadata&lt;/h2&gt;
+&lt;p&gt;At the top of the content notebook you'll see a metadata section that looks something like this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="post29-7449085702041565717" src="https://b3m2a1.github.io/img/post29-7449085702041565717.png" /&gt;&lt;/p&gt;
+&lt;p&gt;It's here where we set all the page- or post-specific parameters. You can see there's a space for the list of authors, list of tags, and list of categories. You can also choose the title for your article as well as its slug, which is the name that is generally given to the portion of the URL coming after the root. E.g. in  &lt;a href="https://b3m2a1.github.io/making-docs-with-easyide.html"&gt;https://b3m2a1.github.io/making-docs-with-easyide.html&lt;/a&gt; the slug is making-docs-with-easyide. This slug will generally be automatically constructed from the title, but if you want a different one you can have it.&lt;/p&gt;
+&lt;p&gt;You can also customize higher-level things, like change how the Markdown is exported via the  &lt;code&gt;"ExportOptions"&lt;/code&gt; metadata tag. For example, if you want the Markdown to export to a different directory, you can do this like:&lt;/p&gt;
+&lt;pre class="prettyprint"&gt;&lt;code&gt;&amp;quot;ExportOptions&amp;quot;-&amp;gt;{&amp;quot;Directory&amp;quot;-&amp;gt;&amp;quot;..&amp;quot;}&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;p&gt;Which will export the files to the directory one up from the current notebook directory. You can also specify that you'd like all your code to export as copyable images as in the docs, what types of cells should be exported, whether to export math cells via MathJAX or not, whether to use HTML to format more complicated format types, whether to include invisible anchor HTML elements before each section for easy of jumping, what kind of indentation to use for code cells, etc. It's not worth discussing all the possible customizations right now, so if you want to know if a certain customization is supported or request new ones it is probably easiest to  &lt;a href="https://github.com/b3m2a1/Ems/issues"&gt;ask that here&lt;/a&gt; .&lt;/p&gt;
+&lt;p&gt;&lt;a id="buildingthesite" class="Section" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h1&gt;Building The Site&lt;/h1&gt;
+&lt;p&gt;Now that we have content, we can build our site. This is pretty easy to do generally via   &lt;code&gt;Plugins ▸ Site Builder ▸ Build Site&lt;/code&gt; . Here's an example of how this works: &lt;/p&gt;
+&lt;iframe id="ytplayer" type="text/html" width="640" height="360"
+src="https://www.youtube.com/embed/https://youtu.be/4Z7lGg6bNbs?autoplay=0"
+  frameborder="0"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;&lt;a id="buildoptions" class="Subsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Build Options&lt;/h2&gt;
+&lt;p&gt;As you can see in the video, when you request a build there are a number of options you can toggle which will change how your site gets built (and how fast it builds).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;If  &lt;code&gt;Generate Content&lt;/code&gt; is turned off, not pages or posts will be built.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;If  &lt;code&gt;Generate Aggregations&lt;/code&gt; is off, no new tag/author/category pages will be built—as the site size grows this can sometimes yield huge savings. &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;If  &lt;code&gt;Generate Index&lt;/code&gt; is off, no index pages are built. &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;If  &lt;code&gt;Generate Search&lt;/code&gt; is off, no search page (using  &lt;a href="http://www.tipue.com/search/"&gt;tipue search&lt;/a&gt; ) will be built. &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;If  &lt;code&gt;Use Cache&lt;/code&gt; is off, the content cache that is stored to speed up builds will be ignored. &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Finally, the other three options seem self-explanatory, but if not let me know and I'll write up what they do.&lt;/p&gt;
+&lt;p&gt;&lt;a id="sitemetadata" class="Subsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Site Metadata&lt;/h2&gt;
+&lt;p&gt;Every site has a file  &lt;code&gt;SiteConfig.wl&lt;/code&gt; that specifies a bunch of more serious options that get fed into the build process. Here's part of what that looks like:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="post29-7608927685363373399" src="https://b3m2a1.github.io/img/post29-7608927685363373399.png" /&gt;&lt;/p&gt;
+&lt;p&gt;The specific options that are here will differ according to the theme used for the website, but these are the standard ones for a regular blog-type website.&lt;/p&gt;
+&lt;p&gt;&lt;a id="sitethemes" class="Subsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Site Themes&lt;/h2&gt;
+&lt;p&gt;All sites have a theme that comes with them, which is basically just a pile of XML templates and CSS and JS and such that the extracted content from each page/post gets fed into. My themes work generally the same as pelican themes, so you can find some info on the layout  &lt;a href="https://docs.getpelican.com/en/stable/themes.html"&gt;here&lt;/a&gt; . The major difference is that my themes use the  &lt;a href="https://reference.wolfram.com/language/ref/XMLTemplate.html"&gt;&lt;code&gt;XMLTemplate&lt;/code&gt;&lt;/a&gt; framework and so writing them is a bit more annoying that writing pelican themes would be. I've sunk a good amount of time and effort into make the &lt;a href="https://github.com/b3m2a1/Ems/tree/master/Resources/Themes"&gt; themes I've already written&lt;/a&gt; pretty full featured, though. Given that, if you want a site-specific theme, you just need to make a directory called  &lt;code&gt;theme&lt;/code&gt; in the site root, copy the content of one of my existing themes in and modify that. If you want to write a new theme from scratch, I can find the time to write a tutorial about how to do that, too.&lt;/p&gt;
+&lt;p&gt;&lt;a id="deployingthesite" class="Section" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h1&gt;Deploying The Site&lt;/h1&gt;
+&lt;p&gt;Finally we have a site that looks and feels how we want it to, so it's time to deploy. The way I would do this is:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Create a git repository in the current directory (via the menu)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create an empty repository on GitHub&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="post29-6276657249628752117" src="https://b3m2a1.github.io/img/post29-6276657249628752117.png" /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Set the current repository remote to that of the GitHub repo&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Change the  &lt;code&gt;output&lt;/code&gt; folder name to  &lt;code&gt;docs&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Push to GitHub&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Turn on GitHub sites for your repository&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="post29-9018686530683978441" src="https://b3m2a1.github.io/img/post29-9018686530683978441.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Here's an example of that in action:&lt;/p&gt;
+&lt;iframe id="ytplayer" type="text/html" width="640" height="360"
+src="https://www.youtube.com/embed/https://youtu.be/L_r1yidV5F0?autoplay=0"
+  frameborder="0"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;&lt;a id="wlsitesgithubio" class="Section" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h1&gt;WLSites.GitHub.IO&lt;/h1&gt;
+&lt;p&gt;At this point, I don't have plans to radically revamp this, but one thing I could imagine being useful work be a centralized place for hosting Mathematica-generated websites (doesn't have to be made with EasyIDE/Ems).&lt;/p&gt;
+&lt;p&gt;To make this easier I created a GitHub organization called WLSites where people can contribute sites if they want. All they'll need to do is  &lt;a href="https://github.com/wlsites/wlsites.github.io/issues"&gt;let me know here&lt;/a&gt; what they'd like their site to be called and provide a quick description for it. Once I have that I'll make a new repo for them, and give them complete access to that. &lt;/p&gt;
+&lt;p&gt;Here's an example of the kind of thing that I'm looking for:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;New Site: b3m2a1&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;A personal page for b3m2a1&lt;/p&gt;
+&lt;p&gt;The benefit of this is that many sites can be hosted under the same roof. I'll also make a nice index page that updates every time a new site is added so that people can find your site if they simply go to  &lt;a href="https://wlsites.github.io/"&gt;wlsites.github.io&lt;/a&gt; .&lt;/p&gt;
+&lt;p&gt;In fact, if you want to add a site and want to host the repo yourself that's also fine by me. I'll just add your site and info to the repo and your site will appear on the index.&lt;/p&gt;</content></entry><entry><title>Making Docs with EasyIDE</title><link href="https://b3m2a1.github.io/making-docs-with-easyide.html" rel="alternate"></link><published>2019-04-09T13:26:36-05:00</published><updated>2019-04-09T23:11:18-05:00</updated><author><name>b3m2a1</name></author><id>tag:b3m2a1.github.io,2019-04-09:/making-docs-with-easyide.html</id><summary type="html">&lt;p&gt;Now that the  &lt;a href="https://b3m2a1.github.io/easyide-an-ide-for-mathematica.html"&gt;IDE stuff I've been working on&lt;/a&gt; has largely settled, I think it's time to show off what it can do. There will be a few of these posts, hopefully, but for today we'll focus on how the IDE can be used to make documentation.&lt;/p&gt;
 &lt;p&gt;&lt;a id="gettingsetup" class="Subsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Getting Set Up …&lt;/h2&gt;</summary><content type="html">&lt;p&gt;Now that the  &lt;a href="https://b3m2a1.github.io/easyide-an-ide-for-mathematica.html"&gt;IDE stuff I've been working on&lt;/a&gt; has largely settled, I think it's time to show off what it can do. There will be a few of these posts, hopefully, but for today we'll focus on how the IDE can be used to make documentation.&lt;/p&gt;
 &lt;p&gt;&lt;a id="gettingsetup" class="Subsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
