@@ -1,5 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>b3m2a1</title><link href="https://b3m2a1.github.io/" rel="alternate"></link><link href="https://b3m2a1.github.io/feeds/all.atom.xml" rel="self"></link><id>https://b3m2a1.github.io/</id><updated>2019-04-20T21:12:24-05:00</updated><entry><title>Making a Website with EasyIDE</title><link href="https://b3m2a1.github.io/making-a-website-with-easyide.html" rel="alternate"></link><published>2019-04-17T02:37:54-05:00</published><updated>2019-04-20T21:12:24-05:00</updated><author><name>b3m2a1</name></author><id>tag:b3m2a1.github.io,2019-04-17:/making-a-website-with-easyide.html</id><summary type="html">&lt;p&gt;A common thing that people want to do one they have a nice bit of code is that they way to share it with the world. That was me ~2 years ago and so I went out, found a  &lt;a href="https://docs.getpelican.com/en/stable/"&gt;nice static website builder&lt;/a&gt; , wrote a notebook to Markdown generator that …&lt;/p&gt;</summary><content type="html">&lt;p&gt;A common thing that people want to do one they have a nice bit of code is that they way to share it with the world. That was me ~2 years ago and so I went out, found a  &lt;a href="https://docs.getpelican.com/en/stable/"&gt;nice static website builder&lt;/a&gt; , wrote a notebook to Markdown generator that would handle all the most common cell types I used, and then figured out how to deploy this to the  &lt;a href="https://www.wolframcloud.com/"&gt;Wolfram Cloud&lt;/a&gt; . It worked nicely for a while, but after a bit I wanted more control over how the site was built, so I sat down, wrote a Markdown to XML parser, wrote a website generation framework, and worked up what eventually became  &lt;a href="https://github.com/b3m2a1/Ems"&gt;Ems&lt;/a&gt; , and used this to build a  &lt;a href="https://mresources.github.io/tutorial/"&gt;Mathematica tutorial&lt;/a&gt; from some stuff I wrote for some chemists I used to work with.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>b3m2a1</title><link href="https://b3m2a1.github.io/" rel="alternate"></link><link href="https://b3m2a1.github.io/feeds/all.atom.xml" rel="self"></link><id>https://b3m2a1.github.io/</id><updated>2019-04-29T17:50:41-05:00</updated><entry><title>Writing Books in Mathematica</title><link href="https://b3m2a1.github.io/writing-books-in-mathematica.html" rel="alternate"></link><published>2019-04-23T23:20:23-05:00</published><updated>2019-04-29T17:50:41-05:00</updated><author><name>b3m2a1</name></author><id>tag:b3m2a1.github.io,2019-04-23:/writing-books-in-mathematica.html</id><summary type="html">&lt;p&gt;As part of a  &lt;a href="https://b3m2a1.github.io/making-docs-with-easyide.html"&gt;continuing&lt;/a&gt;  &lt;a href="https://b3m2a1.github.io/making-a-website-with-easyide.html"&gt;series&lt;/a&gt; on  &lt;a href="https://b3m2a1.github.io/easyide-an-ide-for-mathematica.html"&gt;my new IDE&lt;/a&gt; and in particular a series that has focused on publishing—e.g., docs, websites—today we're gonna look at a new little extension to EasyIDE to work with creating books/tutorials in Mathematica. Obviously making a true book in Mathematica …&lt;/p&gt;</summary><content type="html">&lt;p&gt;As part of a  &lt;a href="https://b3m2a1.github.io/making-docs-with-easyide.html"&gt;continuing&lt;/a&gt;  &lt;a href="https://b3m2a1.github.io/making-a-website-with-easyide.html"&gt;series&lt;/a&gt; on  &lt;a href="https://b3m2a1.github.io/easyide-an-ide-for-mathematica.html"&gt;my new IDE&lt;/a&gt; and in particular a series that has focused on publishing—e.g., docs, websites—today we're gonna look at a new little extension to EasyIDE to work with creating books/tutorials in Mathematica. Obviously making a true book in Mathematica is something of a fool's errand, given that it doesn't have the detailed layout control of LaTeX or the grammar check/toolkit of Word, but making many chapter, many chapter PDFs, notebooks, and websites is entirely reasonable. Many people have done this over the years,  &lt;a href="https://mresources.github.io/tutorial/"&gt;myself included&lt;/a&gt; . With this new IDE work, though, this becomes even easier.&lt;/p&gt;
+&lt;p&gt;&lt;a id="gettingstarted" class="Subsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Getting Started&lt;/h2&gt;
+&lt;p&gt;I won't repeat the instructions for getting started with EasyIDE altogether here, as they are in  &lt;a href="https://b3m2a1.github.io/easyide-an-ide-for-mathematica.html"&gt;the&lt;/a&gt;  &lt;a href="https://b3m2a1.github.io/making-docs-with-easyide.html"&gt;previous&lt;/a&gt;  &lt;a href="https://b3m2a1.github.io/making-a-website-with-easyide.html"&gt;posts&lt;/a&gt; . We will need to get started with our new book, though.  Here's a video showing the entire process:&lt;/p&gt;
+&lt;iframe id="ytplayer" type="text/html" width="640" height="360"
+src="https://www.youtube.com/embed/p1WRvwepdvI?autoplay=0"
+  frameborder="0"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;&lt;a id="creatingthebook" class="Subsubsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Creating the Book Structure&lt;/h3&gt;
+&lt;p&gt;The book-content layout borrows directly from my general website building structure. We're just gonna add a few more points of metadata to it. To make this process more streamlined I've included a new Authoring toolbar that you can open by going to  &lt;code&gt;Window ▸ Add Toolbar&lt;/code&gt; in the menus. Once you have the toolbar open you can hit  &lt;code&gt;Initialize Book&lt;/code&gt; to get a dialog for making the new book.&lt;/p&gt;
+&lt;p&gt;&lt;a id="creatingabook" class="Subsubsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Creating a Book Chapter&lt;/h3&gt;
+&lt;p&gt;Next we need to make a chapter for our content to live under. To do this we just hit the  &lt;code&gt;New Chapter&lt;/code&gt; button in the bar and give our chapter a name. It's important that we do this before making a section, as every section needs a chapter.&lt;/p&gt;
+&lt;p&gt;&lt;a id="creatingabook" class="Subsubsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Creating a Book Section&lt;/h3&gt;
+&lt;p&gt;This is where we'll actually write the content. To make one of these we hit  &lt;code&gt;New Section&lt;/code&gt; , pick a chapter to file the section under, and then provide a name for the section. The new notebook will open up and we can put whatever content we have there.&lt;/p&gt;
+&lt;p&gt;&lt;a id="pullingcontentof" class="Subsubsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Pulling Content of StackExchange&lt;/h3&gt;
+&lt;p&gt;To create a sample book I'm gonna pull a number of answers off StackExchange, say from the  &lt;a href="https://mathematica.stackexchange.com/questions/18393/what-are-the-most-common-pitfalls-awaiting-new-users/"&gt;common pitfalls question&lt;/a&gt; and the  &lt;a href="https://mathematica.stackexchange.com/questions/18/where-can-i-find-examples-of-good-mathematica-programming-practice"&gt;good examples&lt;/a&gt; question. The way I'll do this is via a Markdown → Notebook converter I wrote up as a generalization of my old Markdown → XML converter.&lt;/p&gt;
+&lt;p&gt;To pull an answer we can either get its Markdown via the Edit mechanism or we can use the API. For reasons of efficiency I'm going to choose the latter. If you don't have my StackExchange service connection &lt;a href="https://paclets.github.io/PacletServer/serviceconnectionstackexchange.htm"&gt; you can get it off the paclet server&lt;/a&gt; . Once we have that we load the connection:&lt;/p&gt;
+&lt;pre class="prettyprint"&gt;&lt;code&gt;$so = ServiceConnect[&amp;quot;StackExchange&amp;quot;]&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;pre &gt;
+&lt;code&gt;
+(*Out:*)
+
+&lt;span&gt;
+ &lt;p&gt;
+  &lt;img src='https://b3m2a1.github.io/img/post31-3058623906089846253.png'
+      alt='post31-3058623906089846253' /&gt;
+ &lt;/p&gt;
+&lt;/span&gt;
+&lt;/code&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;I can never remember my requests or parameters, so we'll look those up:&lt;/p&gt;
+&lt;pre class="prettyprint"&gt;&lt;code&gt;$so@&amp;quot;Requests&amp;quot;//Select[StringContainsQ[&amp;quot;Question&amp;quot;]]
+
+(*Out:*)
+
+{&amp;quot;AnswerQuestion&amp;quot;,&amp;quot;LinkedQuestions&amp;quot;,&amp;quot;MyQuestions&amp;quot;,&amp;quot;MyTopQuestions&amp;quot;,&amp;quot;MyTopQuestionTags&amp;quot;,&amp;quot;NoAnswerQuestions&amp;quot;,&amp;quot;QuestionAnswers&amp;quot;,&amp;quot;QuestionComments&amp;quot;,&amp;quot;Questions&amp;quot;,&amp;quot;QuestionTimeline&amp;quot;,&amp;quot;RelatedQuestions&amp;quot;,&amp;quot;RenderQuestions&amp;quot;,&amp;quot;UnansweredQuestions&amp;quot;,&amp;quot;UserQuestions&amp;quot;,&amp;quot;UserTopQuestions&amp;quot;,&amp;quot;UserTopQuestionTags&amp;quot;}
+
+$so[&amp;quot;RequestParameters&amp;quot;, &amp;quot;r&amp;quot;-&amp;gt;&amp;quot;QuestionAnswers&amp;quot;]
+
+(*Out:*)
+
+&amp;lt;|&amp;quot;Parameters&amp;quot;-&amp;gt;{&amp;quot;id&amp;quot;,&amp;quot;site&amp;quot;,&amp;quot;page&amp;quot;,&amp;quot;pagesize&amp;quot;,&amp;quot;fromdate&amp;quot;,&amp;quot;todate&amp;quot;,&amp;quot;order&amp;quot;,&amp;quot;min&amp;quot;,&amp;quot;max&amp;quot;,&amp;quot;sort&amp;quot;,&amp;quot;filter&amp;quot;,&amp;quot;preview&amp;quot;},&amp;quot;Required&amp;quot;-&amp;gt;{&amp;quot;site&amp;quot;}|&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;p&gt;Then we pull the question ID off SE:&lt;/p&gt;
+&lt;pre class="prettyprint"&gt;&lt;code&gt;$qid = 18393;&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;p&gt;And finally pull our data, using a filter that returns the  &lt;code&gt;"body_markdown"&lt;/code&gt; field to get the Markdown out:&lt;/p&gt;
+&lt;pre class="prettyprint"&gt;&lt;code&gt;$filter = &amp;quot;!YOKGPNvvbIpDIehANcVbZ*)Cv2&amp;quot;;
+ans = $so[&amp;quot;QuestionAnswers&amp;quot;, &amp;quot;id&amp;quot; -&amp;gt; $qid, &amp;quot;site&amp;quot; -&amp;gt; &amp;quot;Mathematica&amp;quot;, 
+   &amp;quot;filter&amp;quot; -&amp;gt; $filter];&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;p&gt;Now we can look at one of these bodies:&lt;/p&gt;
+&lt;pre class="prettyprint"&gt;&lt;code&gt;ans[1, &amp;quot;body_markdown&amp;quot;]//Snippet[#, 5]&amp;amp;&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;pre class="program"&gt;&lt;code style="width: 100%; white-space: pre-wrap;"&gt;(*Out:*)
+##What the @#%^&amp;amp;*?! do all those funny signs mean?##
+
+
+
+
+
+Questions frequently arise about the meaning of the basic operators, and I hope
+it will prove useful to have a sort of index for them. It would be nice to have&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Unfortunately HTML elements are baked into this so we'll need to clean out those:&lt;/p&gt;
+&lt;pre class="prettyprint"&gt;&lt;code&gt;ImportString[&amp;quot;&amp;quot;, &amp;quot;HTML&amp;quot;];
+getmd[ans_, n_] :=
+   StringReplace[{
+        ent : (&amp;quot;&amp;amp;#&amp;quot; ~~ NumberString ~~ &amp;quot;;&amp;quot;) :&amp;gt; 
+     ImportString[ent, &amp;quot;HTML&amp;quot;],
+        &amp;quot;\r&amp;quot; -&amp;gt; &amp;quot;&amp;quot;
+        }]@
+      Nest[
+         StringReplace[System`Convert`HTMLImportDump`fromEntities],
+         ans[n, &amp;quot;body_markdown&amp;quot;],
+         2
+         ]&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;p&gt;We'll also define a post-processing function to insert links where necessary:&lt;/p&gt;
+&lt;pre class="prettyprint"&gt;&lt;code&gt;ppLinks[tag_, body_]:=
+  (* Automatic invokes the default post-processor *)
+  Automatic[tag, 
+    Replace[body, 
+      s_String:&amp;gt;
+        Sequence@@
+          StringReplace[
+            s,
+            l:(&amp;quot;http&amp;quot;~~(Except[WhitespaceCharacter]..)):&amp;gt;
+              Automatic[&amp;quot;Link&amp;quot;, {l, StringSplit[l, &amp;quot;//&amp;quot;, 2][[2]]}]
+            ],
+      1]
+    ]&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;p&gt;And then we can turn this into a  &lt;code&gt;Notebook&lt;/code&gt; using BTools:&lt;/p&gt;
+&lt;pre class="prettyprint"&gt;&lt;code&gt;&amp;lt;&amp;lt; BTools`Web`
+MarkdownToNotebook[
+    getmd[ans, 1],
+    &amp;quot;PostProcessor&amp;quot; -&amp;gt; ppLinks 
+    ] // CreateDocument&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;p&gt;&lt;img alt="post31-3108498676653567781" src="https://b3m2a1.github.io/img/post31-3108498676653567781.png" /&gt;&lt;/p&gt;
+&lt;p&gt;There's maybe a little bit of clean up work to do (say those two  &lt;code&gt;##&lt;/code&gt; ) but it's a very small amount. We can then do with this  &lt;code&gt;Notebook&lt;/code&gt; as we will...in particular we can copy it into a section notebook.&lt;/p&gt;
+&lt;p&gt;&lt;a id="makingabook" class="Subsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Making a Book&lt;/h2&gt;
+&lt;p&gt;Once we've gotten enough content ported over we have three options for how to proceed. At this point, we can either make a notebook, a PDF, or a website (or all three). Each of these is also quite straightforward once we have the EasyIDE structure.&lt;/p&gt;
+&lt;p&gt;&lt;a id="makingabook" class="Subsubsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Making a Book Notebook&lt;/h3&gt;
+&lt;p&gt;This distribution mechanism allows us to compile a single Notebook that we can send to our friends and coworkers that they can click through and is chaptered and easily navigable. All we have to do for this is go to our toolbar and hit  &lt;code&gt;Create Book&lt;/code&gt; (if it's been some time since we updated the table of contents we probably want to hit  &lt;code&gt;Create TOC&lt;/code&gt; first). Once we're done we get something like this:&lt;/p&gt;
+&lt;p&gt;&lt;a id="makingapdf" class="Subsubsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Making a PDF&lt;/h3&gt;
+&lt;p&gt;We can also build a PDF with this. There is a  &lt;code&gt;Create PDF&lt;/code&gt; button provided that does exactly this. Admittedly, this can be a bit finnicky as the front-end can't always export a notebook to a PDF cleanly. On the other hand, this just operates by calling  &lt;code&gt;Export&lt;/code&gt; on the constructed book notebook, so one can always use the system-level  &lt;code&gt;Print... ▸ Save as PDF&lt;/code&gt; mechanism (on Mac at least).&lt;/p&gt;
+&lt;p&gt;&lt;a id="makingawebsite" class="Subsubsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Making a Website&lt;/h3&gt;
+&lt;p&gt;This is the most heavy-duty but most customizable distribution mechanism. All of the book/tutorial mechanisms are also designed to make it easy to create a website from them. For this we go to  &lt;code&gt;Plugins ▸ SiteBuilder ▸ Build Site&lt;/code&gt; and choose our build settings. I'd turn off  &lt;code&gt;Generate Aggregations&lt;/code&gt; as these pages are not exposed in the default theme. If you modify the theme obviously it makes sense to turn the aggregation pages back on.&lt;/p&gt;
+&lt;p&gt;After the build we get something like this:&lt;/p&gt;
+&lt;iframe id="ytplayer" type="text/html" width="640" height="360"
+src="https://www.youtube.com/embed/drLc4dNo8SI?autoplay=0"
+  frameborder="0"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;&lt;em&gt;landing page&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="post31-7698137239929577745" src="https://b3m2a1.github.io/img/post31-7698137239929577745.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;nav menu open&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="post31-4847562609283534597" src="https://b3m2a1.github.io/img/post31-4847562609283534597.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;sample article&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="post31-4404605020778869542" src="https://b3m2a1.github.io/img/post31-4404605020778869542.png" /&gt;&lt;/p&gt;
+&lt;p&gt;And then you can publish it wherever you like. If you'd like an easy place to publish to, I provided some info on something I set up to make that easy  &lt;a href="https://b3m2a1.github.io/making-a-website-with-easyide.html#wlsitesgithubio"&gt;here&lt;/a&gt; .&lt;/p&gt;</content></entry><entry><title>Making a Website with EasyIDE</title><link href="https://b3m2a1.github.io/making-a-website-with-easyide.html" rel="alternate"></link><published>2019-04-17T02:37:54-05:00</published><updated>2019-04-22T00:26:02-05:00</updated><author><name>b3m2a1</name></author><id>tag:b3m2a1.github.io,2019-04-17:/making-a-website-with-easyide.html</id><summary type="html">&lt;p&gt;A common thing that people want to do one they have a nice bit of code is that they way to share it with the world. That was me ~2 years ago and so I went out, found a  &lt;a href="https://docs.getpelican.com/en/stable/"&gt;nice static website builder&lt;/a&gt; , wrote a notebook to Markdown generator that …&lt;/p&gt;</summary><content type="html">&lt;p&gt;A common thing that people want to do one they have a nice bit of code is that they way to share it with the world. That was me ~2 years ago and so I went out, found a  &lt;a href="https://docs.getpelican.com/en/stable/"&gt;nice static website builder&lt;/a&gt; , wrote a notebook to Markdown generator that would handle all the most common cell types I used, and then figured out how to deploy this to the  &lt;a href="https://www.wolframcloud.com/"&gt;Wolfram Cloud&lt;/a&gt; . It worked nicely for a while, but after a bit I wanted more control over how the site was built, so I sat down, wrote a Markdown to XML parser, wrote a website generation framework, and worked up what eventually became  &lt;a href="https://github.com/b3m2a1/Ems"&gt;Ems&lt;/a&gt; , and used this to build a  &lt;a href="https://mresources.github.io/tutorial/"&gt;Mathematica tutorial&lt;/a&gt; from some stuff I wrote for some chemists I used to work with.&lt;/p&gt;
 &lt;p&gt;These days few of my sites are on the Wolfram Cloud anymore, as it's slow, prone to losing CSS, the URLs look like a scam website, and so on and so forth. But I still use the site builder. All the time. For example, the  &lt;a href="https://paclets.github.io/PacletServer/"&gt;Mathematica paclet server&lt;/a&gt; I built to host Mathematica packages and make it possible install them in a single line is built with this site generator.&lt;/p&gt;
 &lt;p&gt;And so when I built out EasyIDE one of the first things I wanted to do was integrate my  &lt;a href="https://github.com/b3m2a1/Ems"&gt;site builder&lt;/a&gt; (via Ems) into the thing. In fact, this blog post itself is being written with EasyIDE:&lt;/p&gt;
 &lt;p&gt;&lt;img alt="post29-966299916507913566" src="https://b3m2a1.github.io/img/post29-966299916507913566.png" /&gt;&lt;/p&gt;
@@ -44,7 +183,7 @@ src="https://www.youtube.com/embed/P5-_-PhWqGs?autoplay=0"
 &lt;h1&gt;Building The Site&lt;/h1&gt;
 &lt;p&gt;Now that we have content, we can build our site. This is pretty easy to do generally via   &lt;code&gt;Plugins ▸ Site Builder ▸ Build Site&lt;/code&gt; . Here's an example of how this works: &lt;/p&gt;
 &lt;iframe id="ytplayer" type="text/html" width="640" height="360"
-src="https://www.youtube.com/embed/https://youtu.be/4Z7lGg6bNbs?autoplay=0"
+src="https://www.youtube.com/embed/4Z7lGg6bNbs?autoplay=0"
   frameborder="0"&gt;&lt;/iframe&gt;
 
 &lt;p&gt;&lt;a id="buildoptions" class="Subsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
@@ -105,7 +244,7 @@ src="https://www.youtube.com/embed/https://youtu.be/4Z7lGg6bNbs?autoplay=0"
 &lt;p&gt;&lt;img alt="post29-9018686530683978441" src="https://b3m2a1.github.io/img/post29-9018686530683978441.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Here's an example of that in action:&lt;/p&gt;
 &lt;iframe id="ytplayer" type="text/html" width="640" height="360"
-src="https://www.youtube.com/embed/https://youtu.be/L_r1yidV5F0?autoplay=0"
+src="https://www.youtube.com/embed/L_r1yidV5F0?autoplay=0"
   frameborder="0"&gt;&lt;/iframe&gt;
 
 &lt;p&gt;&lt;a id="wlsitesgithubio" class="Section" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
@@ -114,9 +253,9 @@ src="https://www.youtube.com/embed/https://youtu.be/L_r1yidV5F0?autoplay=0"
 &lt;p&gt;To make this easier I created a GitHub organization called WLSites where people can contribute sites if they want. All they'll need to do is  &lt;a href="https://github.com/wlsites/wlsites.github.io/issues"&gt;let me know here&lt;/a&gt; what they'd like their site to be called and provide a quick description for it. Once I have that I'll make a new repo for them, and give them complete access to that. &lt;/p&gt;
 &lt;p&gt;Here's an example of the kind of thing that I'm looking for:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;New Site: b3m2a1&lt;/p&gt;
+&lt;p&gt;New Site: b3m2a1
+A personal page for b3m2a1&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;A personal page for b3m2a1&lt;/p&gt;
 &lt;p&gt;The benefit of this is that many sites can be hosted under the same roof. I'll also make a nice index page that updates every time a new site is added so that people can find your site if they simply go to  &lt;a href="https://wlsites.github.io/"&gt;wlsites.github.io&lt;/a&gt; .&lt;/p&gt;
 &lt;p&gt;In fact, if you want to add a site and want to host the repo yourself that's also fine by me. I'll just add your site and info to the repo and your site will appear on the index.&lt;/p&gt;</content></entry><entry><title>Making Docs with EasyIDE</title><link href="https://b3m2a1.github.io/making-docs-with-easyide.html" rel="alternate"></link><published>2019-04-09T13:26:36-05:00</published><updated>2019-04-09T23:11:18-05:00</updated><author><name>b3m2a1</name></author><id>tag:b3m2a1.github.io,2019-04-09:/making-docs-with-easyide.html</id><summary type="html">&lt;p&gt;Now that the  &lt;a href="https://b3m2a1.github.io/easyide-an-ide-for-mathematica.html"&gt;IDE stuff I've been working on&lt;/a&gt; has largely settled, I think it's time to show off what it can do. There will be a few of these posts, hopefully, but for today we'll focus on how the IDE can be used to make documentation.&lt;/p&gt;
 &lt;p&gt;&lt;a id="gettingsetup" class="Subsection" style="width:0;height:0;margin:0;padding:0;"&gt;&amp;zwnj;&lt;/a&gt;&lt;/p&gt;
