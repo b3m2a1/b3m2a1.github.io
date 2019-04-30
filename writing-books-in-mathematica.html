@@ -233,7 +233,7 @@ $so[&quot;RequestParameters&quot;, &quot;r&quot;-&gt;&quot;QuestionAnswers&quot;
 
 <p>And finally pull our data, using a filter that returns the  <code>"body_markdown"</code> field to get the Markdown out:</p>
 <pre class="prettyprint"><code>$filter = &quot;!YOKGPNvvbIpDIehANcVbZ*)Cv2&quot;;
-ans = $so[&quot;QuestionAnswers&quot;, &quot;id&quot; -&gt; $qid, &quot;site&quot; -&gt; &quot;Mathematica&quot;, 
+ans = $so[&quot;QuestionAnswers&quot;, &quot;id&quot; -&gt; $qid, &quot;site&quot; -&gt; &quot;Mathematica&quot;,
    &quot;filter&quot; -&gt; $filter];</code></pre>
 
 
@@ -255,7 +255,7 @@ it will prove useful to have a sort of index for them. It would be nice to have<
 <pre class="prettyprint"><code>ImportString[&quot;&quot;, &quot;HTML&quot;];
 getmd[ans_, n_] :=
    StringReplace[{
-        ent : (&quot;&amp;#&quot; ~~ NumberString ~~ &quot;;&quot;) :&gt; 
+        ent : (&quot;&amp;#&quot; ~~ NumberString ~~ &quot;;&quot;) :&gt;
      ImportString[ent, &quot;HTML&quot;],
         &quot;\r&quot; -&gt; &quot;&quot;
         }]@
@@ -269,8 +269,8 @@ getmd[ans_, n_] :=
 <p>We'll also define a post-processing function to insert links where necessary:</p>
 <pre class="prettyprint"><code>ppLinks[tag_, body_]:=
   (* Automatic invokes the default post-processor *)
-  Automatic[tag, 
-    Replace[body, 
+  Automatic[tag,
+    Replace[body,
       s_String:&gt;
         Sequence@@
           StringReplace[
@@ -286,7 +286,7 @@ getmd[ans_, n_] :=
 <pre class="prettyprint"><code>&lt;&lt; BTools`Web`
 MarkdownToNotebook[
     getmd[ans, 1],
-    &quot;PostProcessor&quot; -&gt; ppLinks 
+    &quot;PostProcessor&quot; -&gt; ppLinks
     ] // CreateDocument</code></pre>
 
 
@@ -298,6 +298,9 @@ MarkdownToNotebook[
 <p><a id="makingabook" class="Subsubsection" style="width:0;height:0;margin:0;padding:0;">&zwnj;</a></p>
 <h3>Making a Book Notebook</h3>
 <p>This distribution mechanism allows us to compile a single Notebook that we can send to our friends and coworkers that they can click through and is chaptered and easily navigable. All we have to do for this is go to our toolbar and hit  <code>Create Book</code> (if it's been some time since we updated the table of contents we probably want to hit  <code>Create TOC</code> first). Once we're done we get something like this:</p>
+<iframe id="ytplayer" type="text/html" width="640" height="360"
+src="https://www.youtube.com/embed/drLc4dNo8SI?autoplay=0"
+  frameborder="0"></iframe>
 <p><a id="makingapdf" class="Subsubsection" style="width:0;height:0;margin:0;padding:0;">&zwnj;</a></p>
 <h3>Making a PDF</h3>
 <p>We can also build a PDF with this. There is a  <code>Create PDF</code> button provided that does exactly this. Admittedly, this can be a bit finnicky as the front-end can't always export a notebook to a PDF cleanly. On the other hand, this just operates by calling  <code>Export</code> on the constructed book notebook, so one can always use the system-level  <code>Print... ▸ Save as PDF</code> mechanism (on Mac at least).</p>
@@ -305,9 +308,6 @@ MarkdownToNotebook[
 <h3>Making a Website</h3>
 <p>This is the most heavy-duty but most customizable distribution mechanism. All of the book/tutorial mechanisms are also designed to make it easy to create a website from them. For this we go to  <code>Plugins ▸ SiteBuilder ▸ Build Site</code> and choose our build settings. I'd turn off  <code>Generate Aggregations</code> as these pages are not exposed in the default theme. If you modify the theme obviously it makes sense to turn the aggregation pages back on.</p>
 <p>After the build we get something like this:</p>
-<iframe id="ytplayer" type="text/html" width="640" height="360"
-src="https://www.youtube.com/embed/drLc4dNo8SI?autoplay=0"
-  frameborder="0"></iframe>
 
 <p><em>landing page</em></p>
 <p><img alt="post31-7698137239929577745" src="https://b3m2a1.github.io/img/post31-7698137239929577745.png" /></p>
