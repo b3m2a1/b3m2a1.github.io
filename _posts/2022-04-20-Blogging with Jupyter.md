@@ -19,29 +19,37 @@ But we're back here because it is worth taking another look at this blog as a ve
 
 ### How do we do this?
 
-The actual act of blogging in Jupyter is pretty straightforward. Almost all cells will be Markdown cells so we can add text. Headers can be added naturally. Some small amounts of python output will be generated, for example, here's me loading a package I've been developing recently for making nice interfaces with Jupyter:
+The actual act of blogging in Jupyter is pretty straightforward. Almost all cells will be Markdown cells so we can add text. Headers can be added naturally. Some small amounts of python output will be generated. For example, here's something built with a package I recently developed to convenient forms in Jupyter
 
 
 ```python
-from McUtils.Jupyter import JHTML, DefaultOutputArea
-JHTML.load()
+from McUtils.Jupyter import *
+
+with JHTML() as ctx:
+    header = Div("<h1>Input Field with Event Listeners</h1>", cls='card-header')
+    field = Input(placeholder='input', track_value=True, cls='form-control')
+    button = Button("Submit", cls='input-group-text', event_handlers={'click':lambda *e,field=field:print(field.value)})
+    input_group = Div(button, field, cls=['input-group', 'mb-3'])
+    img = Image(width='100%', dynamic=True)
+    body = Div(
+        input_group,
+        Div("Event output is printed below", cls=['alert', 'alert-info']),
+        Hr(),
+        ctx.out,
+        Div(img, cls='overflow-scroll', style={'max-height':'500px'}),
+        cls='card-body'
+    )
+    app = Div(header, body, cls='card')
+app
 ```
 
 
-    
+    HTMLElement(div, (HTMLElement(div, (HTMLElement(div, '<h1>Input Field with Event Listeners</h1>', cls=['card-h…
 
 
+![image.png]({{site.url}}/img/779ae582-ebc1-4d60-96fc-294401ae5469.png)
 
-
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-
-<div class="alert alert-info">Bootstrap loaded <p class="d-none" style="color:red">This text will be visible if Bootstrap isn't loaded</p></div>
-
-
+The application interface is entirely HTML, but it has python bindings to be able to communicate between the displayed form and the kernel. I copy the display form as an image into a Markdown cell, since it isn't assured that this will load nicely in the page without the custom styles and interface work behind the scenes in the live notebook.
 
 ### Exporting the Notebook
 
@@ -78,7 +86,48 @@ And after we push Jekyll will turn this into a new blog post.
 
 It is probably the case that we don't want to export every single cell. Some might be for analysis or, in particular, some might be the cells used for exporting the notebook itself. To add these filters, we simply use the tag filter mechanism described [here](https://nbconvert.readthedocs.io/en/6.5.0/removing_cells.html#removing-pieces-of-cells-using-cell-tags) and we are able to only use the relevant cells.
 
+### Extracting Images
+
+We also need to extract images from the Markdown cells if they are captured as "attachements". 
+To do this we create a custom preprocessor extending [the standard output extractor](https://nbconvert.readthedocs.io/en/6.5.0/nbconvert_library.html#Extracting-Figures-using-the-HTML-Exporter) where we define a little method to capture and save the attachements as outputs using the following method
+
 
 ```python
+def preprocess_cell(self, cell, resources, cell_index):
+    if cell['cell_type'] == 'markdown':
+        if 'attachments' in cell:
+            for index, (name, attachement) in enumerate(cell['attachments'].items()):
+                fn = self.save_attachement(name, attachement, index, cell, resources, cell_index)
+                cell['source'] = cell['source'].replace(
+                    'attachment:'+name,
+                    self.prefix+fn
+                )
+    elif cell['cell_type'] == 'code' and cell['source'].strip() == "":
+        cell['cell_type'] = 'raw'
+        cell['source'] = cell['source'].strip()
+    else:
+        cell, resources = super().preprocess_cell(cell, resources, cell_index)
 
+    return cell, resources
 ```
+
+This also strips out empty code cells, since those are naturally generated when we actually call the exporter.
+
+### Export Helper
+
+At the end of the day, I wrap this up in a little exporter, call it, and the markdown for this post gets written. Then once Jekyll has a chance to build the site, the blog post is live.
+
+
+```python
+NotebookExporter('2022-04-20-Blogging with Jupyter',
+                img_dir=os.path.join(os.path.dirname(os.getcwd()), 'img'),
+                img_prefix='{{site.url}}/img/'
+                ).export()
+```
+
+
+
+
+    '2022-04-20-Blogging with Jupyter.md'
+
+
