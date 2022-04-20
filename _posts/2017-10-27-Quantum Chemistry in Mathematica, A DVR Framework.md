@@ -135,7 +135,7 @@ That’s fun, but the harmonic oscillator is a little boring. Let’s play with 
 	v0 = L(*^-1.5*);
 	zp = 0;
 	pot =
-	  Compile[{{x, _Real}},
+	  Compile[{ {x, _Real} },
 	    With[{L = L, v0 = v0, zp = zp, barR = barR, barL = barL},
 	      Piecewise[{
 	         {barL,

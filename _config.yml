@@ -13,7 +13,8 @@ blurb_words: 48
 
 sitemap_roots:
   -
-#sitemap_depth: 0
+sitemap_depth: 1
+
 links:
   - url: https://b3m2a1.github.io/about.html
     title: About
@@ -27,16 +28,10 @@ links:
     title: Archive
 
 blogroll:
-  - url: https://b3m2a1.github.io/about.html
-    title: About
-  - url: https://b3m2a1.github.io/contact.html
-    title: Contact
-  - url: https://b3m2a1.github.io/authors
-    title: Authors
-  - url: https://b3m2a1.github.io/tags
-    title: Tags
-  - url: https://b3m2a1.github.io/archives.html
-    title: Archive
+  - url: https://github.com/b3m2a1
+    title: GitHub
+  - url: https://mathematica.stackexchange.com/users/38205/b3m2a1
+    title: Mathematica
 
 # Build settings
 markdown: kramdown
