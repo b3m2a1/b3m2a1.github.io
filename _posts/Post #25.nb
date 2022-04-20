@@ -1,0 +1,287 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     10983,        279]
+NotebookOptionsPosition[      8708,        234]
+NotebookOutlinePosition[      9388,        257]
+CellTagsIndexPosition[      9345,        254]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+   "\"\<Title\>\"", "\[Rule]", "\"\<Making a Paclet with BTools\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[RuleDelayed]", 
+    TemplateBox[{RowBox[{"\"Sat 16 Feb 2019 13:53:56\"", 
+        StyleBox[
+         RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{"-", "8.`"}], NumberMarks -> False, StripOnInput -> 
+            False]}], FontColor -> GrayLevel[0.5]]}],
+      RowBox[{"DateObject", "[", 
+        RowBox[{
+          RowBox[{"{", 
+            
+            RowBox[{"2019", ",", "2", ",", "16", ",", "13", ",", "53", ",", 
+              "56.08664`8.501434397258333"}], "}"}], ",", "\"Instant\"", ",", 
+          "\"Gregorian\"", ",", 
+          RowBox[{"-", "8.`"}]}], "]"}]},
+     "DateObject",
+     Editable->False]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[RuleDelayed]", "Now"}], ",", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "True"}], "}"}]}]}], 
+  "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.75934283414461*^9, 3.759342863389718*^9}, {
+  3.759346871949069*^9, 
+  3.75934687248943*^9}},ExpressionUUID->"3eaa75be-5d69-4192-b6af-\
+90352a9c0dc4"],
+
+Cell["\<\
+Today we\[CloseCurlyQuote]re gonna look at something I\[CloseCurlyQuote]ve \
+been meaning to document for a long time now. Over the past two or so years I\
+\[CloseCurlyQuote]ve developed a framework to simplify the development \
+process. In the post, I\[CloseCurlyQuote]m gonna show you how to actually use \
+it.\
+\>", "Text",
+ CellChangeTimes->{{3.759342868179536*^9, 3.759342874027359*^9}, {
+  3.7593429177276707`*^9, 
+  3.759342998017167*^9}},ExpressionUUID->"8b25b983-f199-44e4-b695-\
+23757ce995d1"],
+
+Cell["\<\
+To make it easier to use all this I have a video showing how I do things:\
+\>", "Text",
+ CellChangeTimes->{{3.759346575060701*^9, 
+  3.759346586654457*^9}},ExpressionUUID->"c79518fa-91d5-4c39-8b0e-\
+405bb0def01d"],
+
+Cell["\<\
+<iframe width=\"560\" height=\"315\" 
+\tsrc=\"https://www.youtube.com/embed/EN0VUogBqk0\" frameborder=\"0\" \
+allow=\"accelerometer; 
+\tautoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen>
+</iframe>\
+\>", "RawMarkdown",
+ CellChangeTimes->{{3.7593468364465113`*^9, 
+  3.759346847520904*^9}},ExpressionUUID->"38810b1b-338a-42d9-99e8-\
+424e91aba2d0"],
+
+Cell[CellGroupData[{
+
+Cell["Installing BTools", "Subsection",
+ CellChangeTimes->{{3.759343023426186*^9, 
+  3.7593430257282333`*^9}},ExpressionUUID->"fbfdf547-ddea-456e-acbd-\
+361324c63dc5"],
+
+Cell[TextData[{
+ "The easiest way to install BTools is to load it off the ",
+ ButtonBox["paclet server",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://paclets.github.io/PacletServer/"], None},
+  ButtonNote->"https://paclets.github.io/PacletServer/"],
+ ". Head over to its paclet page and copy the installation instructions there:"
+}], "Text",
+ CellChangeTimes->{{3.759343026936054*^9, 3.759343056088274*^9}, {
+  3.759343100286475*^9, 
+  3.759343121638503*^9}},ExpressionUUID->"df7f2d0d-3a8d-42fd-b2d2-\
+1a8b7bf4c48b"],
+
+Cell[BoxData[{
+ RowBox[{"<<", " ", 
+  "https://paclets.github.io/PacletServer/Install.wl"}], "\n", 
+ RowBox[{"PublicPacletInstall", "[", "\"\<BTools\>\"", "]"}]}], "Code",
+ CellChangeTimes->{
+  3.75934313271393*^9},ExpressionUUID->"1655667a-4912-4bfd-be23-08c89e656469"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Making a New Package", "Subsection",
+ CellChangeTimes->{{3.759343194084457*^9, 
+  3.75934319824446*^9}},ExpressionUUID->"6020211c-e302-4c2b-90fc-\
+94ef66cc2b4e"],
+
+Cell["\<\
+With BTools installed you\[CloseCurlyQuote]ll then go up to the palettes menu \
+and open up the App Manager palette that it provides. (see the video for more \
+details)\
+\>", "Text",
+ CellChangeTimes->{{3.7593431359829273`*^9, 
+  3.759343215636088*^9}},ExpressionUUID->"35515457-a94f-400d-9b0a-\
+76f12d3b77dd"],
+
+Cell["\<\
+From the palette you\[CloseCurlyQuote]ll click the New App button on the \
+bottom. It\[CloseCurlyQuote]ll have a bunch of other buttons in it. Ignore \
+those. They haven\[CloseCurlyQuote]t really done anything since 2017. This\
+\[CloseCurlyQuote]ll open up a little window. Put your app name in there and \
+click the \[OpenCurlyDoubleQuote]New App\[CloseCurlyDoubleQuote] button.\
+\>", "Text",
+ CellChangeTimes->{{3.759343216827806*^9, 3.7593432606433163`*^9}, {
+  3.759343803514761*^9, 3.7593438529058228`*^9}, {3.7593441147367573`*^9, 
+  3.759344119091813*^9}},ExpressionUUID->"cf3d51a7-0131-4cba-be1e-\
+82ca657c3b10"],
+
+Cell["\<\
+The package will appear in the drop-down menu provided. You can open it up by \
+clicking on its name (the left side of the drop down is a button).\
+\>", "Text",
+ CellChangeTimes->{{3.75934412971776*^9, 
+  3.759344163747695*^9}},ExpressionUUID->"1d481801-3804-4bb1-8990-\
+300a50b22edd"],
+
+Cell[CellGroupData[{
+
+Cell["Adding Content", "Subsubsection",
+ CellChangeTimes->{{3.759346095725329*^9, 
+  3.75934609785291*^9}},ExpressionUUID->"0db0b3eb-b2f9-4a46-bc57-\
+8d9fe263baab"],
+
+Cell[TextData[{
+ "This part is pretty much just manual. Add the .m files or .wl files you \
+want in the appropriate directories. One quirk of the BTools package loader \
+is that it controls the context naming structure so make sure to only declare \
+symbols before the ",
+ Cell[BoxData[
+  RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}]], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "5ca472af-e3e9-4526-8b79-3142e9836b73"],
+ " and not try to give them a specific context."
+}], "Text",
+ CellChangeTimes->{{3.759346099523981*^9, 
+  3.759346244977363*^9}},ExpressionUUID->"fedfc73b-bc16-4d6a-a36e-\
+bb04877e202e"],
+
+Cell[TextData[{
+ "The nice thing about this is that you don\[CloseCurlyQuote]t have to worry \
+about how to load any of your subpackages. BTools will figure that out and \
+set up auto-completions for you. I\[CloseCurlyQuote]ll go into this further \
+later, but as an example take a look at how things are defined in my ",
+ ButtonBox["ChemTools",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://github.com/b3m2a1/mathematica-ChemTools/tree/master/\
+Packages"], None},
+  ButtonNote->
+   "https://github.com/b3m2a1/mathematica-ChemTools/tree/master/Packages"],
+ " package or in the ",
+ ButtonBox["PublicPacletServer",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://github.com/b3m2a1/mathematica-PublicPacletServer/tree/master/\
+Packages"], None},
+  ButtonNote->
+   "https://github.com/b3m2a1/mathematica-PublicPacletServer/tree/master/\
+Packages"],
+ " interface package."
+}], "Text",
+ CellChangeTimes->{{3.759346246270728*^9, 3.759346304902254*^9}, {
+  3.759346338661159*^9, 
+  3.7593463736198893`*^9}},ExpressionUUID->"c61de442-ae84-49fc-afd2-\
+e3a1b281c965"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Building the Paclet", "Subsection",
+ CellChangeTimes->{{3.759346400754896*^9, 
+  3.759346403378718*^9}},ExpressionUUID->"e7a6e7a0-e956-4ca7-941c-\
+071b4232f2b2"],
+
+Cell["\<\
+Go to the Dist tab on the App Manager palette and press \
+\[OpenCurlyDoubleQuote]Bundle Paclet\[CloseCurlyDoubleQuote]. This will \
+create a paclet and open it up for you. At that point you can do with it as \
+you will.\
+\>", "Text",
+ CellChangeTimes->{{3.759346404803011*^9, 
+  3.759346441655875*^9}},ExpressionUUID->"e666585e-4390-4054-b806-\
+891b9dba023e"],
+
+Cell["\<\
+If you\[CloseCurlyQuote]ve set up a paclet server the PacletServerBuilder \
+stuff in BTools (or the Paclet Server Manager palette) you can push to that, \
+too, with Publish. Same for pushing to GitHub if you set up a GitHub repo for \
+the package. You can even push a new GitHub release with the Publish Release \
+button. \
+\>", "Text",
+ CellChangeTimes->{{3.75934644361689*^9, 
+  3.759346520383443*^9}},ExpressionUUID->"1723461e-fef9-4fd8-82a9-\
+79d366759548"]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+TaggingRules->{
+ "UUIDButtons" -> {
+   "Active" -> {
+     "Button-b73ca5e1-53dc-4c32-8874-a7b0b0d24404" -> False, 
+      "ButtonRow-1a035359-bbef-4c7d-8c78-afb96f40c3fb" -> False, 
+      "ButtonRow-92630164-2b69-4c02-9528-a643c4024695" -> False}}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"PelicanHelper"}, "PelicanMarkdown.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1586, 36, 198, "Metadata",ExpressionUUID->"3eaa75be-5d69-4192-b6af-90352a9c0dc4"],
+Cell[2147, 58, 513, 10, 81, "Text",ExpressionUUID->"8b25b983-f199-44e4-b695-23757ce995d1"],
+Cell[2663, 70, 223, 5, 35, "Text",ExpressionUUID->"c79518fa-91d5-4c39-8b0e-405bb0def01d"],
+Cell[2889, 77, 380, 9, 83, "RawMarkdown",ExpressionUUID->"38810b1b-338a-42d9-99e8-424e91aba2d0"],
+Cell[CellGroupData[{
+Cell[3294, 90, 167, 3, 41, "Subsection",ExpressionUUID->"fbfdf547-ddea-456e-acbd-361324c63dc5"],
+Cell[3464, 95, 530, 12, 58, "Text",ExpressionUUID->"df7f2d0d-3a8d-42fd-b2d2-1a8b7bf4c48b"],
+Cell[3997, 109, 270, 5, 72, "Code",ExpressionUUID->"1655667a-4912-4bfd-be23-08c89e656469"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4304, 119, 167, 3, 41, "Subsection",ExpressionUUID->"6020211c-e302-4c2b-90fc-94ef66cc2b4e"],
+Cell[4474, 124, 320, 7, 58, "Text",ExpressionUUID->"35515457-a94f-400d-9b0a-76f12d3b77dd"],
+Cell[4797, 133, 630, 10, 81, "Text",ExpressionUUID->"cf3d51a7-0131-4cba-be1e-82ca657c3b10"],
+Cell[5430, 145, 295, 6, 58, "Text",ExpressionUUID->"1d481801-3804-4bb1-8990-300a50b22edd"],
+Cell[CellGroupData[{
+Cell[5750, 155, 164, 3, 40, "Subsubsection",ExpressionUUID->"0db0b3eb-b2f9-4a46-bc57-8d9fe263baab"],
+Cell[5917, 160, 630, 13, 81, "Text",ExpressionUUID->"fedfc73b-bc16-4d6a-a36e-bb04877e202e"],
+Cell[6550, 175, 1080, 26, 81, "Text",ExpressionUUID->"c61de442-ae84-49fc-afd2-e3a1b281c965"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7679, 207, 167, 3, 41, "Subsection",ExpressionUUID->"e7a6e7a0-e956-4ca7-941c-071b4232f2b2"],
+Cell[7849, 212, 369, 8, 58, "Text",ExpressionUUID->"e666585e-4390-4054-b806-891b9dba023e"],
+Cell[8221, 222, 471, 9, 81, "Text",ExpressionUUID->"1723461e-fef9-4fd8-82a9-79d366759548"]
+}, Open  ]]
+}
+]
+*)
+

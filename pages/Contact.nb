@@ -1,0 +1,103 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3408,         95]
+NotebookOptionsPosition[      2752,         77]
+NotebookOutlinePosition[      3178,         94]
+CellTagsIndexPosition[      3135,         91]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Contact\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[RuleDelayed]", "Now"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[RuleDelayed]", "Now"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}]}], "\[IndentingNewLine]", 
+  "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{
+  3.710369774612955*^9, {3.710374141294488*^9, 
+   3.710374142963196*^9}},ExpressionUUID->"6d7e085c-659f-4209-bab9-\
+4410e8790719"],
+
+Cell["If you want to contact me there are two good ways to do it.", "Text",
+ CellChangeTimes->{{3.710369778992193*^9, 3.710369793752096*^9}, {
+  3.710369829574538*^9, 3.710369872769166*^9}, {3.71037293979879*^9, 
+  3.7103729407716017`*^9}},ExpressionUUID->"315a5502-ae92-4475-a0a2-\
+5fccf8ff1003"],
+
+Cell[TextData[{
+ "If you find issues on any of my packages, feel free to raise them on their ",
+ ButtonBox["GitHub pages",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://github.com/b3m2a1"], None},
+  ButtonNote->"https://github.com/b3m2a1"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.710369883348188*^9, 3.7103698873767548`*^9}, {
+  3.710370017417943*^9, 3.710370019802104*^9}, {3.7103700704871597`*^9, 
+  3.7103700793179197`*^9}, {3.7103701255618753`*^9, 3.710370128240615*^9}, {
+  3.710370178621457*^9, 3.7103702405086393`*^9}, {3.7316115058552313`*^9, 
+  3.731611506072011*^9}},ExpressionUUID->"9a617c63-f41e-419c-b04a-\
+509c41833c10"],
+
+Cell[TextData[{
+ "On the other hand if you just want to contact me you can ",
+ ButtonBox["email me",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["mailto:b3m2a1@gmail.com"], None},
+  ButtonNote->"mailto:b3m2a1@gmail.com"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.710370277092346*^9, 3.710370289890381*^9}, {
+  3.7103709338169603`*^9, 
+  3.710370995538436*^9}},ExpressionUUID->"ebc2dd2d-2b51-453f-9de4-\
+c2bb4c6c50c8"]
+},
+WindowSize->{808, 755},
+WindowMargins->{{27, Automatic}, {Automatic, 45}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "PelicanMarkdown.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 816, 19, 196, "Metadata",ExpressionUUID->"6d7e085c-659f-4209-bab9-4410e8790719"],
+Cell[1377, 41, 297, 4, 35, "Text",ExpressionUUID->"315a5502-ae92-4475-a0a2-5fccf8ff1003"],
+Cell[1677, 47, 647, 14, 35, "Text",ExpressionUUID->"9a617c63-f41e-419c-b04a-509c41833c10"],
+Cell[2327, 63, 421, 12, 35, "Text",ExpressionUUID->"ebc2dd2d-2b51-453f-9de4-c2bb4c6c50c8"]
+}
+]
+*)
+

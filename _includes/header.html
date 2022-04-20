@@ -1,0 +1,33 @@
+<header class="main-header {% if site.header_image != nil %}with-image{% endif %}">
+    {% assign navbar_theme = site.navbar_theme %}
+    {% if navbar_theme == nil %}
+        {% assign navbar_theme = "navbar-dark bg-dark" %}
+    {% endif %}
+    {% if site.header_image != nil %}
+        {% assign header_image = site.header_image %}
+        {% unless header_image contains "http" %}
+            {% assign header_image = header_image|prepend:"/"|prepend:site.url %}
+        {% endunless %}
+    {% endif %}
+    {% assign navbar_links_theme = site.navbar_links_theme %}
+    {% if navbar_links_theme == nil %}
+        {% assign navbar_links_theme = "" %}
+    {% endif %}
+    {% assign navbar_brand_theme = site.navbar_brand_theme %}
+    {% if navbar_brand_theme == nil %}
+        {% assign navbar_brand_theme = "" %}
+    {% endif %}
+    <nav class="navbar navbar-expand-lg {{navbar_theme}} {% if site.header_image != nil %}with-image{% endif%}" {% if site.header_image != nil %} style="--finx-header-image:url({{header_image}})" {% endif %}>
+        <div class="container-fluid header-links-container">
+            <div class="row">
+                <button type="button" id="sidebarCollapse" class="btn toggle-sidebar-button">
+                    <i class="fas fa-align-left"></i>
+                </button>
+                <div class="row header-links">
+                    <a class="navbar-brand header-link" href="{{site.url}}">{{site.title}}</a>
+                    {% include header_links.html %}
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>

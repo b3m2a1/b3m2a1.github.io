@@ -1,0 +1,78 @@
+title: b3m2a1
+description: A personal blog for a pseudo-scientist
+url: "https://localhost" #"https://b3m2a1.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
+icon: favicon-32x32.png
+github_username:  b3m2a1
+footer_text: >-
+  Built with <a href="https://github.com/b3m2a1/flog">flog</a>
+header_image: img/site-image.png
+blurb_words: 48
+
+#sitemap_depth: 0
+links:
+  - url: https://b3m2a1.github.io/about.html
+    title: About
+  - url: https://b3m2a1.github.io/contact.html
+    title: Contact
+  - url: https://b3m2a1.github.io/authors
+    title: Authors
+  - url: https://b3m2a1.github.io/tags
+    title: Tags
+  - url: https://b3m2a1.github.io/archives.html
+    title: Archive
+
+blogroll:
+  - url: https://b3m2a1.github.io/about.html
+    title: About
+  - url: https://b3m2a1.github.io/contact.html
+    title: Contact
+  - url: https://b3m2a1.github.io/authors
+    title: Authors
+  - url: https://b3m2a1.github.io/tags
+    title: Tags
+  - url: https://b3m2a1.github.io/archives.html
+    title: Archive
+
+# Build settings
+markdown: kramdown
+remote_theme: b3m2a1/flog
+plugins:
+  - jekyll-feed
+  - jekyll-include-cache
+  - jekyll-optional-front-matter
+  - jekyll-seo-tag
+  - jekyll-tagging
+relative_links:
+  enabled: true
+tag_page_layout: tag
+tag_page_dir: tag
+
+defaults:
+  - scope:
+      path: "" # an empty string here means all files in the project
+    values:
+      layout: "post"
+  - scope:
+      path: "index.html|about.html|404.html|search.html"
+    values:
+      layout: "page"
+  - scope:
+      path: "tag/*"
+    values:
+      layout: "tag"
+
+
+# Exclude from processing
+exclude:
+  - .idea
+  - "*.nb"
+  - old_site
+  - examples
+  - templates
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/

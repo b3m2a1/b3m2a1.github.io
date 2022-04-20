@@ -1,0 +1,1401 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     63317,       1393]
+NotebookOptionsPosition[     56243,       1278]
+NotebookOutlinePosition[     56669,       1295]
+CellTagsIndexPosition[     56626,       1292]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+   "\"\<Title\>\"", "\[Rule]", 
+    "\"\<Building External Connections in Mathematica\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "->", 
+    TemplateBox[{RowBox[{"\"Wed 21 Mar 2018 01:34:24\"", 
+        StyleBox[
+         RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{"-", "7.`"}], NumberMarks -> False, StripOnInput -> 
+            False]}], FontColor -> GrayLevel[0.5]]}],
+      RowBox[{"DateObject", "[", 
+        RowBox[{
+          RowBox[{"{", 
+            
+            RowBox[{"2018", ",", "3", ",", "21", ",", "1", ",", "34", ",", 
+              "24.983585`8.150229739870811"}], "}"}], ",", "\"Instant\"", ",",
+           "\"Gregorian\"", ",", 
+          RowBox[{"-", "7.`"}]}], "]"}]},
+     "DateObject",
+     Editable->False]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[RuleDelayed]", "Now"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<mathematica\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}]}], "\[IndentingNewLine]", 
+  "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.728879583034603*^9, 3.7288796068885202`*^9}, {
+   3.728880126017123*^9, 3.728880157201006*^9}, 3.7288802663110247`*^9, {
+   3.730610029466617*^9, 3.730610029627803*^9}, {3.7306100699499826`*^9, 
+   3.730610071440626*^9}},ExpressionUUID->"baf8bc16-0c16-4b83-9178-\
+1038ece3f5b9"],
+
+Cell[TextData[{
+ "This builds off of something I brought up on ",
+ ButtonBox["StackExchange a bit ago",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://mathematica.stackexchange.com/q/166557/38205"], None},
+  ButtonNote->"https://mathematica.stackexchange.com/q/166557/38205"],
+ " as well as some recent work I\[CloseCurlyQuote]ve done in building a nicer \
+",
+ ButtonBox["interface to Git and GitHub",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://github.com/b3m2a1/mathematica-tools/blob/master/\
+GitConnection.wl"], None},
+  ButtonNote->
+   "https://github.com/b3m2a1/mathematica-tools/blob/master/GitConnection.wl"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.728880158976364*^9, 
+  3.728880246360977*^9}},ExpressionUUID->"cf8729f0-b8ac-45d5-9c3a-\
+3e70b9173b93"],
+
+Cell["\<\
+I\[CloseCurlyQuote]m hoping to mainly lay out in a brief fashion how one can \
+tackle the really broad question of how to build interfaces and what tricks \
+can be used to make them nice.\
+\>", "Text",
+ CellChangeTimes->{{3.7288802497199583`*^9, 
+  3.7288803252693653`*^9}},ExpressionUUID->"84fb1c4c-e99c-48b3-aa05-\
+7e964065201f"],
+
+Cell["\<\
+There are many possible classifications for these types of interfaces, but \
+the major two I\[CloseCurlyQuote]ve run into are:\
+\>", "Text",
+ CellChangeTimes->{{3.728880982683619*^9, 3.728881001665765*^9}, {
+  3.728881244836343*^9, 
+  3.728881254602264*^9}},ExpressionUUID->"e316ea2e-5706-4dec-8e09-\
+7ca91c3c711a"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Restricted interfaces  \[LineSeparator]\tby this I mean interfaces where \
+there is a proscribed set of functionality the interface should implement. \
+Examples of this include APIs, CLI tools, and some packages.\
+\>", "Item",
+ CellChangeTimes->{{3.7288810041936913`*^9, 3.728881011505424*^9}, {
+  3.728881098618526*^9, 3.728881187299686*^9}, {3.728881225362875*^9, 
+  3.728881233387068*^9}, {3.7288812645241623`*^9, 
+  3.728881271540125*^9}},ExpressionUUID->"ef89cfa5-5b23-4d61-85b9-\
+83406dcc7a12"],
+
+Cell["\<\
+Unrestricted interfaces  \[LineSeparator]\tby this I mean interfaces where \
+there is a highly-flexible set of functionality that we want to implement. \
+The major example of this is programming languages.\
+\>", "Item",
+ CellChangeTimes->{{3.7288810041936913`*^9, 3.728881011505424*^9}, {
+  3.728881098618526*^9, 3.728881109170312*^9}, {3.72888114982316*^9, 
+  3.728881152873742*^9}, {3.728881195355609*^9, 3.728881223675095*^9}, {
+  3.7288812747959948`*^9, 
+  3.728881274948138*^9}},ExpressionUUID->"fad58e12-a3e7-4e69-91cc-\
+17c416cc769b"]
+}, Open  ]],
+
+Cell["\<\
+I\[CloseCurlyQuote]ll discuss the restricted case first as it\
+\[CloseCurlyQuote]s much easier to handle\
+\>", "Text",
+ CellChangeTimes->{{3.728881346335018*^9, 3.728881359188517*^9}, {
+  3.728881464607429*^9, 
+  3.728881468900939*^9}},ExpressionUUID->"68e68555-2e36-479d-bfc9-\
+684fc72291d3"],
+
+Cell[CellGroupData[{
+
+Cell["Restricted Interfaces", "Subsection",
+ CellChangeTimes->{{3.72888128151562*^9, 
+  3.728881284747773*^9}},ExpressionUUID->"b968817b-bef2-4698-885e-\
+82e5f8f8ba22"],
+
+Cell[CellGroupData[{
+
+Cell["Git", "Subsubsection",
+ CellChangeTimes->{{3.728881287331579*^9, 
+  3.728881287691942*^9}},ExpressionUUID->"a2248802-0280-4ae8-a2a7-\
+d436c064c5dd"],
+
+Cell[TextData[{
+ "When linking to Git there\[CloseCurlyQuote]s a very small set of commands \
+you really need to include. You can pretty much just look at the ",
+ ButtonBox["git book",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://git-scm.com/book/en/v2"], None},
+  ButtonNote->"https://git-scm.com/book/en/v2"],
+ " and determine what you need to include."
+}], "Text",
+ CellChangeTimes->{{3.730608877883037*^9, 
+  3.730608955863779*^9}},ExpressionUUID->"a276a95d-1530-45bc-98af-\
+bb297aec45d9"],
+
+Cell["\<\
+Once you\[CloseCurlyQuote]ve done that, all you really need to do is write a \
+general-purpose wrapper function for running Git and then register a bunch of \
+different functions that do minor work on top of that.\
+\>", "Text",
+ CellChangeTimes->{{3.7306089482153797`*^9, 
+  3.730609024909783*^9}},ExpressionUUID->"be1b8eb4-b3da-4693-b140-\
+7bf8ed8bcc84"],
+
+Cell[TextData[{
+ "I put this into a ",
+ ButtonBox["subpackage of my main application",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://github.com/b3m2a1/mathematica-BTools/blob/master/Packages/\
+External/GitConnection.m"], None},
+  ButtonNote->
+   "https://github.com/b3m2a1/mathematica-BTools/blob/master/Packages/\
+External/GitConnection.m"],
+ ". You can go there for all the details. In essence, though, I just wrote a \
+bunch of little functions to handle different parts of the Git process. For \
+example, here\[CloseCurlyQuote]s how I registered the ",
+ Cell[BoxData[
+ "GitAdd"], "InlineInput",ExpressionUUID->
+  "0e012f6e-db12-4eee-8273-1e5155d5f8fc"],
+ " function:"
+}], "Text",
+ CellChangeTimes->{{3.7306090288780212`*^9, 3.730609091045052*^9}, {
+  3.730609136414811*^9, 
+  3.730609207580798*^9}},ExpressionUUID->"fa572a71-68ca-48b4-966f-\
+ac606aca0a32"],
+
+Cell[BoxData[
+ RowBox[{"GitRegisterFunction", "[", 
+  RowBox[{"GitAdd", ",", " ", "\"\<add\>\"", ",", "\n", "\t", 
+   RowBox[{"{", "\n", "\t\t", 
+    RowBox[{
+     RowBox[{"\"\<DryRun\>\"", "->", "\"\<dry-run\>\""}], ",", "\n", "\t\t", 
+     RowBox[{"\"\<Verbose\>\"", "->", "\"\<verbose\>\""}], ",", "\n", "\t\t", 
+     
+     RowBox[{"\"\<Force\>\"", "->", "\"\<force\>\""}], ",", "\n", "\t\t", 
+     RowBox[{"\"\<Interactive\>\"", "->", "\"\<interactive\>\""}], ",", "\n", 
+     "\t\t", 
+     RowBox[{"\"\<Patch\>\"", "->", "\"\<patch\>\""}], ",", "\n", "\t\t", 
+     RowBox[{"\"\<Edit\>\"", "->", "\"\<edit\>\""}], ",", "\n", "\t\t", 
+     RowBox[{"\"\<Update\>\"", "->", "\"\<update\>\""}], ",", "\n", "\t\t", 
+     RowBox[{"\"\<NoIgnoreRemoval\>\"", "->", "\"\<no-ignore-removal\>\""}], 
+     ",", "\n", "\t\t", 
+     RowBox[{"\"\<IgnoreRemoval\>\"", "->", "\"\<ignore-removal\>\""}], ",", 
+     "\n", "\t\t", 
+     RowBox[{"\"\<IntentToAdd\>\"", "->", "\"\<intent-to-add\>\""}], ",", 
+     "\n", "\t\t", 
+     RowBox[{"\"\<Refresh\>\"", "->", "\"\<refresh\>\""}], ",", "\n", "\t\t", 
+     
+     RowBox[{"\"\<IgnoreErrors\>\"", "->", "\"\<ignore-errors\>\""}], ",", 
+     "\n", "\t\t", 
+     RowBox[{"\"\<IgnoreMissing\>\"", "->", "\"\<ignore-missing\>\""}], ",", 
+     "\n", "\t\t", 
+     RowBox[{
+     "\"\<NoWarnEmbeddedRepo\>\"", "->", "\"\<no-warn-embedded-repo\>\""}], 
+     ",", "\n", "\t\t", 
+     RowBox[{"\"\<ChangeModee\>\"", "->", "\"\<chmod\>\""}]}], "\n", "\t\t", 
+    "}"}]}], "\n", "\t", "]"}]], "Code",
+ CellChangeTimes->{{3.730609214559122*^9, 
+  3.730609217940496*^9}},ExpressionUUID->"6ca4c412-5557-4a9d-9cb3-\
+407a6d5aaa14"],
+
+Cell[TextData[{
+ "This just defines the function ",
+ Cell[BoxData["GitAdd"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "a30fc226-072b-4691-a046-2171eefe7ca7"],
+ ", the git command to call ",
+ Cell[BoxData["\"\<add\>\""], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "7a73a997-0345-4530-a3d3-08051cb3d6a3"],
+ ", and the way to map Mathematica options to Git options."
+}], "Text",
+ CellChangeTimes->{{3.7306092207404537`*^9, 
+  3.730609249148609*^9}},ExpressionUUID->"a8a0d2be-39ca-4a96-9d35-\
+86e2f4c50e12"],
+
+Cell[TextData[{
+ "Once I had all the functions I wanted I cooked them into a single ",
+ Cell[BoxData["Association"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "ddc27c8b-8a63-4dbf-a3bc-bb8f3377a2bf"],
+ " to act as a router from a name to a method:"
+}], "Text",
+ CellChangeTimes->{{3.730609253797925*^9, 3.730609266108097*^9}, {
+  3.7306093856363783`*^9, 
+  3.730609408377645*^9}},ExpressionUUID->"7514be3b-4832-4297-9357-\
+c11270ba6482"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"$GitActions", "=", "\n", "\t", 
+   RowBox[{"<|", "\n", "\t\t", 
+    RowBox[{
+     RowBox[{"\"\<Create\>\"", "->", "\n", "\t\t\t", "GitCreate"}], ",", "\n",
+      "\t\t", 
+     RowBox[{"\"\<Init\>\"", "->", "\n", "\t\t\t", "GitInit"}], ",", "\n", 
+     "\t\t", 
+     RowBox[{"\"\<Clone\>\"", "->", "\n", "\t\t\t", "GitClone"}], ",", "\n", 
+     "\t\t", 
+     RowBox[{
+     "\"\<AddGitIgnore\>\"", "->", "\n", "\t\t\t", "GitAddGitIgnore"}], ",", 
+     "\n", "\t\t", 
+     RowBox[{
+     "\"\<AddGitExclude\>\"", "->", "\n", "\t\t\t", "GitAddGitExclude"}], ",",
+      "\n", "\t\t", 
+     RowBox[{"\"\<Add\>\"", "->", "\n", "\t\t\t", "GitAdd"}], ",", "\n", 
+     "\t\t", 
+     RowBox[{"\"\<Move\>\"", "->", "\n", "\t\t\t", "GitMove"}], ",", "\n", 
+     "\t\t", "...", ",", "\n", "\t\t", 
+     RowBox[{"\"\<Archive\>\"", "->", "\n", "\t\t\t", "GitArchive"}], ",", 
+     "\n", "\t\t", 
+     RowBox[{"\"\<SVN\>\"", "->", "\n", "\t\t\t", "GitSVN"}], ",", "\n", 
+     "\t\t", 
+     RowBox[{"\"\<Bundle\>\"", "->", "\n", "\t\t\t", "GitBundle"}], ",", "\n",
+      "\t\t", 
+     RowBox[{"\"\<Daemon\>\"", "->", "\n", "\t\t\t", "GitDaemon"}], ",", "\n",
+      "\t\t", 
+     RowBox[{"\"\<Help\>\"", "->", "\n", "\t\t\t", "GitHelp"}], ",", "\n", 
+     "\t\t", 
+     RowBox[{
+     "\"\<HelpSynopsis\>\"", "->", "\n", "\t\t\t", "GitHelpSynopsis"}], ",", 
+     "\n", "\t\t", 
+     RowBox[{
+     "\"\<HelpDescription\>\"", "->", "\n", "\t\t\t", "GitHelpDescription"}], 
+     ",", "\n", "\t\t", 
+     RowBox[{"\"\<HelpOptions\>\"", "->", "\n", "\t\t\t", "GitHelpOptions"}], 
+     ",", "\n", "\t\t", 
+     RowBox[{"\"\<HelpFlags\>\"", "->", "\n", "\t\t\t", "GitHelpFlags"}], ",",
+      "\n", "\t\t", 
+     RowBox[{
+     "\"\<HelpFlagMap\>\"", "->", "\n", "\t\t\t", "GitHelpFlagMap"}]}], "\n", 
+    "\t\t", "|>"}]}], ";"}]], "Code",
+ CellChangeTimes->{{3.7306094099385023`*^9, 
+  3.7306094629292107`*^9}},ExpressionUUID->"7ee29a16-1ee7-4090-a7f1-\
+30d279942dea"],
+
+Cell[TextData[{
+ "And I define a single function that provides the true interface to Git. I \
+called that one ",
+ Cell[BoxData["Git"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "14a27890-ca47-4f48-8f38-4d7b2f128a88"],
+ ". Then you can define it (with unnecessary parts excised) like:"
+}], "Text",
+ CellChangeTimes->{{3.730609471895645*^9, 
+  3.7306095490647306`*^9}},ExpressionUUID->"83026860-8a5a-49ab-997e-\
+b65854087766"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Git", "[", "\n", "\t", 
+    RowBox[{
+     RowBox[{"command_", "?", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"KeyMemberQ", "[", 
+         RowBox[{"$gitactions", ",", 
+          RowBox[{"ToLowerCase", "@", "#"}]}], "]"}], "&"}], ")"}]}], ",", 
+     "\n", "\t", "args___"}], "\n", "\t", "]"}], ":=", "\n", "\t", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"cmd", "=", 
+       RowBox[{"$gitactions", "[", 
+        RowBox[{"ToLowerCase", "[", "command", "]"}], "]"}]}], "}"}], ",", 
+     "\n", "\t\t", 
+     RowBox[{"With", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"r", "=", 
+         RowBox[{"cmd", "[", "args", "]"}]}], "}"}], ",", "\n", "\t\t\t", 
+       RowBox[{"r", "/;", 
+        RowBox[{
+         RowBox[{"Head", "[", "r", "]"}], "=!=", "cmd"}]}]}], "\n", "\t\t\t", 
+      "]"}]}], "\n", "\t\t", "]"}]}], ";"}]], "Code",
+ CellChangeTimes->{{3.730609547092846*^9, 
+  3.730609580203273*^9}},ExpressionUUID->"08a18b4f-1dfb-4da1-a022-\
+b9e1f1206bf9"],
+
+Cell["\<\
+And even better you can add autocompletions and things to make it easy to \
+know what\[CloseCurlyQuote]s there to use. E.g.:\
+\>", "Text",
+ CellChangeTimes->{{3.730609582590878*^9, 
+  3.730609613837719*^9}},ExpressionUUID->"39524ab9-67cb-441f-b4fd-\
+86837313d72a"],
+
+Cell[BoxData[
+ RowBox[{"<<", "BTools`External`"}]], "Code",
+ CellChangeTimes->{{3.730609616167486*^9, 3.730609625125452*^9}},
+ CellLabel->"In[61]:=",ExpressionUUID->"af6f2cd6-46c0-4684-8e5f-456e309e1ce1"],
+
+Cell[BoxData[
+ GraphicsBox[
+  TagBox[RasterBox[CompressedData["
+1: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
+uW0k/TMX/x9BlJ9Q
+    "], {{0, 198}, {145, 0}}, {0, 255},
+    ColorFunction->RGBColor],
+   BoxForm`ImageTag["Byte", ColorSpace -> "RGB", Interleaving -> True],
+   Selectable->False],
+  DefaultBaseStyle->"ImageGraphics",
+  ImageSizeRaw->{145, 198},
+  PlotRange->{{0, 145}, {0, 198}}]], "Text",
+ CellChangeTimes->{{3.730609664167059*^9, 3.730609675377454*^9}},
+ CellLabel->"Out[62]=",ExpressionUUID->"79688a96-77b3-46a8-99e9-d76352bd9bde"],
+
+Cell["And then can do things like:", "Text",
+ CellChangeTimes->{{3.730609723067231*^9, 
+  3.730609730387219*^9}},ExpressionUUID->"d87d941b-433b-4750-aa1e-\
+61739077551a"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Git", "[", 
+  RowBox[{"\"\<HelpDescription\>\"", ",", " ", "\"\<rm\>\""}], "]"}]], "Code",\
+
+ CellChangeTimes->{{3.730609677398205*^9, 3.730609719123725*^9}},
+ CellLabel->"In[67]:=",ExpressionUUID->"ffed233e-adf7-44ee-ad9e-33203e299d04"],
+
+Cell[BoxData["\<\"Remove files from the index, or from the working tree and \
+the index.\\ngit rm will not remove a file from just your working directory. \
+(There\\nis no option to remove a file only from the working tree and yet \
+keep\\nit in the index; use /\.08/bin/\.08/rm if you want to do that.) The \
+files being\\nremoved have to be identical to the tip of the branch, and no \
+updates\\nto their contents can be staged in the index, though that \
+default\\nbehavior can be overridden with the -\.08-f option. When \
+-\.08--\.08-cached is given,\\nthe staged content has to match either the tip \
+of the branch or the\\nfile on disk, allowing the file to be removed from \
+just the index.\"\>"], "FormattedOutput",
+ CellChangeTimes->{3.730609719496695*^9},
+ CellLabel->"Out[67]=",ExpressionUUID->"86135583-1b32-48eb-9d0c-87ce5f1508b1"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["GitHub", "Subsubsection",
+ CellChangeTimes->{{3.728881295965475*^9, 3.7288813002379837`*^9}, {
+  3.7288813374525967`*^9, 
+  3.728881338492744*^9}},ExpressionUUID->"0321cc57-e616-4131-85bc-\
+3ddf06fd4250"],
+
+Cell[TextData[{
+ "In that package I do a similar thing for GitHub\[CloseCurlyQuote]s API, \
+except with the important exception that the default operation for each \
+registered function isn\[CloseCurlyQuote]t to actually call the API but \
+rather to build the ",
+ ButtonBox["HTTPRequest",
+  BaseStyle->"Link",
+  ButtonData->"paclet:ref/HTTPRequest"],
+ " that the function will actually use."
+}], "Text",
+ CellChangeTimes->{{3.7306097383810053`*^9, 
+  3.730609806594289*^9}},ExpressionUUID->"08594a97-4215-4e8e-8ef0-\
+c766de758453"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Unrestricted Interfaces", "Subsection",
+ CellChangeTimes->{{3.728881303662781*^9, 
+  3.7288813091971283`*^9}},ExpressionUUID->"9dfa59cb-cda9-4306-a103-\
+c991f5ca026d"],
+
+Cell[CellGroupData[{
+
+Cell["Python", "Subsubsection",
+ CellChangeTimes->{{3.728881325644981*^9, 
+  3.728881327716896*^9}},ExpressionUUID->"1e1d4537-1b5a-439b-9c9e-\
+8bc5b0f8b162"],
+
+Cell[TextData[{
+ "I developed a package for linking to python that I called ",
+ ButtonBox["PyTools",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://github.com/b3m2a1/mathematica-PyTools"], None},
+  ButtonNote->"https://github.com/b3m2a1/mathematica-PyTools"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.7288814982033253`*^9, 3.728881540810851*^9}, {
+   3.728881664302485*^9, 3.728881693592635*^9}, 
+   3.730606540135186*^9},ExpressionUUID->"8f33ecd4-870b-4c58-99a7-\
+8610feba545a"],
+
+Cell[TextData[{
+ "To marshal Mathematica code down to a python representation I built out a \
+",
+ ButtonBox["symbolic Python package",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://github.com/b3m2a1/mathematica-PyTools/blob/master/Packages/\
+Symbolic/SymbolicPython.m"], None},
+  ButtonNote->
+   "https://github.com/b3m2a1/mathematica-PyTools/blob/master/Packages/\
+Symbolic/SymbolicPython.m"],
+ ". This type of ",
+ StyleBox["symbolic conversion",
+  FontSlant->"Italic"],
+ " is a powerful way to build an interface. In it Mathematica constructs are \
+reduced to an intermediate ",
+ StyleBox["symbolic",
+  FontSlant->"Italic"],
+ " representation which Mathematica can still easily manipulate and then \
+further processing directions are defined on this symbolic form."
+}], "Text",
+ CellChangeTimes->{{3.728881696002556*^9, 3.728881721551736*^9}, {
+  3.7306057343618603`*^9, 3.730605734366253*^9}, {3.730606551366728*^9, 
+  3.730606644564437*^9}},ExpressionUUID->"a087500b-47c1-4fa5-8fde-\
+c6b5b15d65b1"],
+
+Cell["\<\
+As an example, we\[CloseCurlyQuote]ll see how I did it for this package. \
+First load the package:\
+\>", "Text",
+ CellChangeTimes->{{3.7306057363748837`*^9, 3.730605746005726*^9}, {
+  3.730606646875539*^9, 
+  3.73060665775523*^9}},ExpressionUUID->"431df1a4-23fd-4cd6-b528-\
+37269b60a477"],
+
+Cell[BoxData[
+ RowBox[{"<<", "PyTools`Symbolic`"}]], "Code",
+ CellChangeTimes->{{3.73060575022291*^9, 3.730605759413316*^9}},
+ CellLabel->"In[22]:=",ExpressionUUID->"f9ccc531-e321-4c79-8d5f-627242ca1bb1"],
+
+Cell["\<\
+Then you can take a Mathematica expression and convert it into a symbolic \
+representation of a python expression. In general this is set up so your \
+write python-like code in Mathematica:\
+\>", "Text",
+ CellChangeTimes->{{3.7306057625570087`*^9, 3.7306058097537613`*^9}, {
+  3.7306058616523943`*^9, 
+  3.7306058724909487`*^9}},ExpressionUUID->"59d17333-3976-45ae-a239-\
+0b9125a24510"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToSymbolicPython", "[", "\n", "\t", 
+  RowBox[{
+   RowBox[{"Import", "[", "\"\<PIL\>\"", "]"}], ";", "\n", "\t", 
+   RowBox[{"img", "=", 
+    RowBox[{"PIL", ".", 
+     RowBox[{"Image", "[", "]"}]}]}], ";", "\n", "\t", 
+   RowBox[{"img", ".", 
+    RowBox[{"show", "[", "]"}]}]}], "\n", "\t", "]"}]], "Code",
+ CellChangeTimes->{{3.730605811611474*^9, 3.730605838801456*^9}, {
+  3.730605873834793*^9, 3.730605886098516*^9}},
+ CellLabel->"In[25]:=",ExpressionUUID->"d70a76d8-ebd9-44ba-b615-d1cbdfebd1a6"],
+
+Cell[BoxData[
+ RowBox[{"PyColumn", "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"PyImport", "[", "\<\"PIL\"\>", "]"}], ",", 
+    RowBox[{"PyAssign", "[", 
+     RowBox[{
+      RowBox[{"PySymbol", "[", "\<\"img\"\>", "]"}], ",", 
+      RowBox[{"PyDot", "[", 
+       RowBox[{
+        RowBox[{"PySymbol", "[", "\<\"PIL\"\>", "]"}], ",", 
+        RowBox[{
+         RowBox[{"PySymbol", "[", "Image", "]"}], "[", "]"}]}], "]"}]}], 
+     "]"}], ",", 
+    RowBox[{"PyDot", "[", 
+     RowBox[{
+      RowBox[{"PySymbol", "[", "\<\"img\"\>", "]"}], ",", 
+      RowBox[{
+       RowBox[{"PySymbol", "[", "\<\"show\"\>", "]"}], "[", "]"}]}], "]"}]}], 
+   "}"}], "]"}]], "Output",
+ CellChangeTimes->{
+  3.7306058265613317`*^9, {3.730605877912484*^9, 3.7306058864528217`*^9}},
+ CellLabel->"Out[25]=",ExpressionUUID->"5018a65d-c72a-4e39-9a0a-c95106f40d47"]
+}, Open  ]],
+
+Cell["\<\
+And we can see that this has built out a rather complicates structure to \
+represent this simple program. We\[CloseCurlyQuote]ll take it bit-by-bit:\
+\>", "Text",
+ CellChangeTimes->{{3.730605889691983*^9, 
+  3.7306059205297937`*^9}},ExpressionUUID->"9797da22-e68c-47e7-8ae0-\
+59e281405ea4"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToSymbolicPython", "@", 
+  RowBox[{"Import", "[", "\"\<PIL\>\"", "]"}]}]], "Code",
+ CellChangeTimes->{{3.730605924173244*^9, 3.730605926693115*^9}},
+ CellLabel->"In[26]:=",ExpressionUUID->"91249b64-31dc-4fc3-ba73-a894e127938b"],
+
+Cell[BoxData[
+ RowBox[{"PyImport", "[", "\<\"PIL\"\>", "]"}]], "Output",
+ CellChangeTimes->{3.730605927091563*^9},
+ CellLabel->"Out[26]=",ExpressionUUID->"ff3a81f5-4f8b-42f9-9972-aa06885e4eb9"]
+}, Open  ]],
+
+Cell[TextData[{
+ "This simply maps to a symbolic structure called ",
+ Cell[BoxData["PyImport"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "5a259624-3e10-49f7-b117-9de684431830"],
+ ". If we convert that to a python string:"
+}], "Text",
+ CellChangeTimes->{{3.730605929314803*^9, 
+  3.730605969576728*^9}},ExpressionUUID->"4f59860c-cf8f-4d26-9be8-\
+1ae08b95592e"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"PyImport", "[", "\"\<PIL\>\"", "]"}], "//", "ToPython"}]], "Code",
+ CellChangeTimes->{{3.730605977284268*^9, 3.730605983032422*^9}},
+ CellLabel->"In[27]:=",ExpressionUUID->"8f8257cd-f03c-4bdd-8538-d49ec1c28cae"],
+
+Cell[BoxData["\<\"import PIL\"\>"], "Output",
+ CellChangeTimes->{3.730605983472415*^9},
+ CellLabel->"Out[27]=",ExpressionUUID->"2a7fbaa6-4adb-4152-90d7-0a86b3907731"]
+}, Open  ]],
+
+Cell[TextData[{
+ "It just registers an import statement. In fact this uses ",
+ ButtonBox["Sow",
+  BaseStyle->"Link",
+  ButtonData->"paclet:ref/Sow"],
+ " to make sure the import occurs at the header of the file. This is just \
+generally good practice."
+}], "Text",
+ CellChangeTimes->{{3.730605989728401*^9, 3.7306059989679728`*^9}, {
+  3.730606233432227*^9, 
+  3.7306062907966022`*^9}},ExpressionUUID->"edda9eee-4dfd-48d8-acdd-\
+7a6fa3f1f8a8"],
+
+Cell["Moving onto the next piece", "Text",
+ CellChangeTimes->{{3.73060630593475*^9, 
+  3.730606310045277*^9}},ExpressionUUID->"d26d5a6f-c8ac-455d-83e9-\
+1fd435aac85c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToSymbolicPython", "[", 
+  RowBox[{"img", "=", 
+   RowBox[{"PIL", ".", 
+    RowBox[{"Image", "[", "]"}]}]}], "]"}]], "Code",
+ CellChangeTimes->{{3.730606311240467*^9, 3.730606327487049*^9}},
+ CellLabel->"In[30]:=",ExpressionUUID->"719efbeb-8d1f-4ac4-9405-dd76007e1bfc"],
+
+Cell[BoxData[
+ RowBox[{"PyAssign", "[", 
+  RowBox[{
+   RowBox[{"PySymbol", "[", "\<\"img\"\>", "]"}], ",", 
+   RowBox[{"PyDot", "[", 
+    RowBox[{
+     RowBox[{"PySymbol", "[", "\<\"PIL\"\>", "]"}], ",", 
+     RowBox[{
+      RowBox[{"PySymbol", "[", "Image", "]"}], "[", "]"}]}], "]"}]}], 
+  "]"}]], "Output",
+ CellChangeTimes->{{3.7306063155563087`*^9, 3.730606327813901*^9}},
+ CellLabel->"Out[30]=",ExpressionUUID->"10acb519-0cae-4b28-a73d-d51a57fd70d9"]
+}, Open  ]],
+
+Cell["\<\
+This builds out a symbolic representation of this syntax. \
+It\[CloseCurlyQuote]s inspired by the low-level representation Mathematica \
+uses:\
+\>", "Text",
+ CellChangeTimes->{{3.73060633026897*^9, 
+  3.730606373506036*^9}},ExpressionUUID->"73910d9a-a531-41c1-82ed-\
+52a51eaefa10"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FullForm", "@", 
+  RowBox[{"Hold", "[", 
+   RowBox[{"img", "=", 
+    RowBox[{"PIL", ".", 
+     RowBox[{"Image", "[", "]"}]}]}], "]"}]}]], "Code",
+ CellChangeTimes->{{3.730606377827573*^9, 3.730606397921897*^9}},
+ CellLabel->"In[33]:=",ExpressionUUID->"1d0ce120-1500-40e8-bb0e-2385390cf35c"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   RowBox[{"Hold", "[", 
+    RowBox[{"Set", "[", 
+     RowBox[{"img", ",", 
+      RowBox[{"Dot", "[", 
+       RowBox[{"PIL", ",", 
+        RowBox[{"Image", "[", "]"}]}], "]"}]}], "]"}], "]"}],
+   ShowSpecialCharacters->False,
+   ShowStringCharacters->True,
+   NumberMarks->True],
+  FullForm]], "Output",
+ CellChangeTimes->{{3.730606384963647*^9, 3.7306063982226763`*^9}},
+ CellLabel->
+  "Out[33]//FullForm=",ExpressionUUID->"381140a6-c0b5-4950-a7b4-2f0ebcb58f44"]
+}, Open  ]],
+
+Cell[TextData[{
+ "We have a syntactic wrapper for assignment (",
+ Cell[BoxData["Set"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "1ede532b-8058-427e-8d55-39521ae27f34"],
+ ") for the ",
+ Cell[BoxData["."], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "86cbf175-39ac-48a4-9649-d68bdbe033d2"],
+ " accessor in python, and a conversion of Mathematica ",
+ Cell[BoxData["Symbol"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "392d6d36-dc01-4367-9053-00101c3b68cd"],
+ " constructs into ",
+ Cell[BoxData["PySymbol"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "4713eee6-aad1-4427-82b2-b06868ee068d"],
+ " constructs which have less ambiguity in conversion to a string."
+}], "Text",
+ CellChangeTimes->{{3.7306064020827637`*^9, 
+  3.7306064992401114`*^9}},ExpressionUUID->"ba718b32-4107-401c-8dfd-\
+0843c643005f"],
+
+Cell[TextData[{
+ "Finally, taking this all together, we have a ",
+ Cell[BoxData["PyColumn"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "14e97b4d-66df-4b3f-94b3-05fde65640ca"],
+ " expression which is just a mimic of Mathematica\[CloseCurlyQuote]s ",
+ Cell[BoxData["Column"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "ac3c3db7-cbc9-4586-88f6-97b42d974051"],
+ " function which arranges pieces line-by-line after each other. And this \
+gives a nice way to go from Mathematica-level syntax to python code:"
+}], "Text",
+ CellChangeTimes->{{3.730606509808611*^9, 3.730606518215375*^9}, {
+  3.730606665963895*^9, 
+  3.730606735835011*^9}},ExpressionUUID->"4a38f73e-9494-4005-92a3-\
+30b1004d1681"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ToSymbolicPython", "[", "\n", "\t", 
+   RowBox[{
+    RowBox[{"Import", "[", "\"\<PIL\>\"", "]"}], ";", "\n", "\t", 
+    RowBox[{"img", "=", 
+     RowBox[{"PIL", ".", 
+      RowBox[{"Image", "[", "]"}]}]}], ";", "\n", "\t", 
+    RowBox[{"img", ".", 
+     RowBox[{"show", "[", "]"}]}]}], "\n", "\t", "]"}], "//", 
+  "ToPython"}]], "Code",
+ CellChangeTimes->{{3.730606713134677*^9, 3.730606738401918*^9}},
+ CellLabel->"In[34]:=",ExpressionUUID->"fc709fa2-4b31-4737-9f7e-032230175836"],
+
+Cell[BoxData["\<\"import PIL\\nimg = PIL.Image()\\nimg.show()\\n\"\>"], \
+"Output",
+ CellChangeTimes->{3.730606738854998*^9},
+ CellLabel->"Out[34]=",ExpressionUUID->"f2a67af9-16c6-4178-ac3b-96b06c082b2f"]
+}, Open  ]],
+
+Cell["All it took was a long-symbolic detour.", "Text",
+ CellChangeTimes->{{3.7306067437855883`*^9, 
+  3.7306067502177467`*^9}},ExpressionUUID->"cc6729c0-f849-4807-a3f0-\
+2303f46c9b17"],
+
+Cell["\<\
+As a final note, the power of this approach is in its flexibility. For \
+instance, if we want to register new type conversions, we need only register \
+patterns to get from a Mathematica construct to a symbolic python one. I did \
+this for a large set of constructs, allowing one to automatically generate \
+code for things like:\
+\>", "Text",
+ CellChangeTimes->{{3.7306067519214993`*^9, 
+  3.730606828168515*^9}},ExpressionUUID->"3a58ca36-f802-41f6-ab8b-\
+0d682e9afed8"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"ToSymbolicPython", "[", "\n", "\t", 
+    RowBox[{
+     RowBox[{"myFunc", "[", "file", "]"}], ":=", "\n", "\t\t", 
+     RowBox[{"With", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"x", "=", 
+          RowBox[{"Open", "[", "file", "]"}]}], ",", " ", 
+         RowBox[{"y", "=", 
+          RowBox[{"Open", "[", 
+           RowBox[{"file2", ",", " ", "\"\<w+\>\""}], "]"}]}]}], "}"}], ",", 
+       "\n", "\t\t\t", 
+       RowBox[{"Do", "[", 
+        RowBox[{
+         RowBox[{"y", ".", 
+          RowBox[{"write", "[", "line", "]"}]}], ",", " ", 
+         RowBox[{"{", 
+          RowBox[{"line", ",", " ", "x"}], "}"}]}], "]"}]}], "\n", "\t\t\t", 
+      "]"}]}], "\n", "\t", "]"}], "//", "ToPython"}], "//", 
+  "StringTrim"}]], "Code",
+ CellChangeTimes->{{3.730606830146031*^9, 3.7306069309201107`*^9}, {
+  3.7306075006377983`*^9, 3.7306075310516787`*^9}, {3.730607721661902*^9, 
+  3.7306077318708277`*^9}, {3.730607917343924*^9, 3.730607929796791*^9}, {
+  3.730608114845665*^9, 3.730608123784461*^9}, {3.7306088019558983`*^9, 
+  3.7306088495123043`*^9}},
+ CellLabel->"In[60]:=",ExpressionUUID->"78286f22-74ce-42ee-9fd2-a0c1f9175513"],
+
+Cell[BoxData["\<\"def myFunc(file):\\n\\twith open(file) as x:\\n\\t\\twith \
+open(file2, 'w+') as y:\\n\\t\\t\\tfor line in x:\\n\\t\\t\\t\\ty.write(line)\
+\\n\\t\\t\\t\\tNone\"\>"], "Output",
+ CellChangeTimes->{{3.730607912788884*^9, 3.730607930086011*^9}, 
+   3.730608124983226*^9, {3.730608846472025*^9, 3.730608850731986*^9}},
+ CellLabel->"Out[60]=",ExpressionUUID->"8dee18c2-938c-435e-b634-f97f72f4a2f5"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["SymbolicC", "Subsubsection",
+ CellChangeTimes->{{3.728881325644981*^9, 3.728881327716896*^9}, {
+  3.728881485669445*^9, 
+  3.728881494131524*^9}},ExpressionUUID->"b2860c64-3c78-422b-ac2e-\
+71ebcc7242b1"],
+
+Cell[TextData[{
+ "SymbolicC is a package built into Mathematica that works in a similar way. \
+I\[CloseCurlyQuote]ll let ",
+ ButtonBox["its documentation",
+  BaseStyle->"Link",
+  ButtonData->"paclet:SymbolicC/tutorial/Overview"],
+ " speak for it."
+}], "Text",
+ CellChangeTimes->{{3.730606008941415*^9, 
+  3.730606066581603*^9}},ExpressionUUID->"87dea41b-8435-4f70-8050-\
+5f1e06175cff"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["MATLink", "Subsubsection",
+ CellChangeTimes->{{3.728881330020689*^9, 
+  3.7288813330847073`*^9}},ExpressionUUID->"1a205c7e-161d-4b76-90ac-\
+3f3f8332349e"],
+
+Cell["\<\
+This is a package developed by some top-tier Mathematica users to link MATLAB \
+and Mathematica. It works on the lowest-level possible and in the most \
+unrestricted way. This also makes it among the most powerful packages out \
+there.\
+\>", "Text",
+ CellChangeTimes->{{3.73060607446169*^9, 3.7306061290430307`*^9}, {
+  3.730610014526329*^9, 
+  3.730610015166271*^9}},ExpressionUUID->"431d43b3-bc21-47df-bab5-\
+231a55caedc4"],
+
+Cell[TextData[{
+ "The basic idea is to use the ",
+ ButtonBox["MathLink",
+  BaseStyle->"Link",
+  ButtonData->"paclet:tutorial/WSTPAndExternalProgramCommunicationOverview"],
+ " system to pass ",
+ StyleBox["packets",
+  FontSlant->"Italic"],
+ " around which encode the evaluation data desired. This is incredibly \
+flexible but requires a lot of work to do right."
+}], "Text",
+ CellChangeTimes->{{3.730606130683014*^9, 3.7306061808586197`*^9}, {
+  3.730606215251272*^9, 
+  3.7306062152561083`*^9}},ExpressionUUID->"007d54f8-8f28-4317-a0a8-\
+a91e2c28660f"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Hybrid Interfaces", "Subsection",
+ CellChangeTimes->{{3.7288813128225727`*^9, 3.728881313861274*^9}, {
+  3.728881471599504*^9, 
+  3.72888147376373*^9}},ExpressionUUID->"ae6f7bb8-b35b-4dbe-adf3-\
+0807d4a92e32"],
+
+Cell[CellGroupData[{
+
+Cell["Psi4", "Subsubsection",
+ CellChangeTimes->{{3.728881315948987*^9, 
+  3.7288813168372593`*^9}},ExpressionUUID->"28aa0ea1-fcae-4118-8d13-\
+c17745b1b9a9"],
+
+Cell[TextData[{
+ "I won\[CloseCurlyQuote]t go into this one much, but it\[CloseCurlyQuote]s a \
+",
+ ButtonBox["link I provide",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://github.com/b3m2a1/mathematica-ChemTools/blob/master/Packages/\
+Psi4/Psi4Connection.m"], None},
+  ButtonNote->
+   "https://github.com/b3m2a1/mathematica-ChemTools/blob/master/Packages/Psi4/\
+Psi4Connection.m"],
+ " to the software ",
+ ButtonBox["Psi4",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://www.psicode.org/"], None},
+  ButtonNote->"http://www.psicode.org/"],
+ " in my main chemistry package. What makes this a hybrid interface is that \
+the basic input for Psi4 is about 80% structured so that part can be \
+restricted, but there is also about 20% flexibility that requires a more \
+unstructured interface. To do this I use tricks somewhere in between what I \
+did for Git and for Python."
+}], "Text",
+ CellChangeTimes->{{3.730609815795545*^9, 3.730609864137105*^9}, {
+  3.730609896256081*^9, 
+  3.7306099815674543`*^9}},ExpressionUUID->"4a64aba7-3fbe-480d-ad51-\
+cf634b17c727"],
+
+Cell["Feel free to ask me more if you have comments or questions.", "Text",
+ CellChangeTimes->{{3.730609994718314*^9, 
+  3.7306100080862617`*^9}},ExpressionUUID->"0484f7d8-f669-4676-a097-\
+3b67932d6cf1"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{86, Automatic}, {Automatic, 46}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "PelicanMarkdown.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1647, 37, 219, "Metadata",ExpressionUUID->"baf8bc16-0c16-4b83-9178-1038ece3f5b9"],
+Cell[2208, 59, 787, 20, 58, "Text",ExpressionUUID->"cf8729f0-b8ac-45d5-9c3a-3e70b9173b93"],
+Cell[2998, 81, 341, 7, 58, "Text",ExpressionUUID->"84fb1c4c-e99c-48b3-aa05-7e964065201f"],
+Cell[3342, 90, 325, 7, 35, "Text",ExpressionUUID->"e316ea2e-5706-4dec-8e09-7ca91c3c711a"],
+Cell[CellGroupData[{
+Cell[3692, 101, 510, 9, 74, "Item",ExpressionUUID->"ef89cfa5-5b23-4d61-85b9-83406dcc7a12"],
+Cell[4205, 112, 551, 10, 74, "Item",ExpressionUUID->"fad58e12-a3e7-4e69-91cc-17c416cc769b"]
+}, Open  ]],
+Cell[4771, 125, 303, 7, 35, "Text",ExpressionUUID->"68e68555-2e36-479d-bfc9-684fc72291d3"],
+Cell[CellGroupData[{
+Cell[5099, 136, 168, 3, 41, "Subsection",ExpressionUUID->"b968817b-bef2-4698-885e-82e5f8f8ba22"],
+Cell[CellGroupData[{
+Cell[5292, 143, 154, 3, 40, "Subsubsection",ExpressionUUID->"a2248802-0280-4ae8-a2a7-d436c064c5dd"],
+Cell[5449, 148, 507, 12, 58, "Text",ExpressionUUID->"a276a95d-1530-45bc-98af-bb297aec45d9"],
+Cell[5959, 162, 365, 7, 58, "Text",ExpressionUUID->"be1b8eb4-b3da-4693-b140-7bf8ed8bcc84"],
+Cell[6327, 171, 873, 21, 81, "Text",ExpressionUUID->"fa572a71-68ca-48b4-966f-ac606aca0a32"],
+Cell[7203, 194, 1650, 33, 395, "Code",ExpressionUUID->"6ca4c412-5557-4a9d-9cb3-407a6d5aaa14"],
+Cell[8856, 229, 545, 13, 58, "Text",ExpressionUUID->"a8a0d2be-39ca-4a96-9d35-86e2f4c50e12"],
+Cell[9404, 244, 457, 10, 58, "Text",ExpressionUUID->"7514be3b-4832-4297-9357-c11270ba6482"],
+Cell[9864, 256, 1974, 46, 756, "Code",ExpressionUUID->"7ee29a16-1ee7-4090-a7f1-30d279942dea"],
+Cell[11841, 304, 445, 10, 58, "Text",ExpressionUUID->"83026860-8a5a-49ab-997e-b65854087766"],
+Cell[12289, 316, 1052, 30, 205, "Code",ExpressionUUID->"08a18b4f-1dfb-4da1-a022-b9e1f1206bf9"],
+Cell[13344, 348, 274, 6, 35, "Text",ExpressionUUID->"39524ab9-67cb-441f-b4fd-86837313d72a"],
+Cell[13621, 356, 204, 3, 52, "Code",ExpressionUUID->"af6f2cd6-46c0-4684-8e5f-456e309e1ce1"],
+Cell[13828, 361, 23621, 391, 213, "Text",ExpressionUUID->"79688a96-77b3-46a8-99e9-d76352bd9bde"],
+Cell[37452, 754, 170, 3, 35, "Text",ExpressionUUID->"d87d941b-433b-4750-aa1e-61739077551a"],
+Cell[CellGroupData[{
+Cell[37647, 761, 261, 5, 52, "Code",ExpressionUUID->"ffed233e-adf7-44ee-ad9e-33203e299d04"],
+Cell[37911, 768, 845, 11, 203, "FormattedOutput",ExpressionUUID->"86135583-1b32-48eb-9d0c-87ce5f1508b1"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[38805, 785, 210, 4, 40, "Subsubsection",ExpressionUUID->"0321cc57-e616-4131-85bc-3ddf06fd4250"],
+Cell[39018, 791, 531, 12, 81, "Text",ExpressionUUID->"08594a97-4215-4e8e-8ef0-c766de758453"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[39598, 809, 173, 3, 41, "Subsection",ExpressionUUID->"9dfa59cb-cda9-4306-a103-c991f5ca026d"],
+Cell[CellGroupData[{
+Cell[39796, 816, 157, 3, 40, "Subsubsection",ExpressionUUID->"1e1d4537-1b5a-439b-9c9e-8bc5b0f8b162"],
+Cell[39956, 821, 489, 12, 35, "Text",ExpressionUUID->"8f33ecd4-870b-4c58-99a7-8610feba545a"],
+Cell[40448, 835, 1015, 24, 104, "Text",ExpressionUUID->"a087500b-47c1-4fa5-8fde-c6b5b15d65b1"],
+Cell[41466, 861, 298, 7, 35, "Text",ExpressionUUID->"431df1a4-23fd-4cd6-b528-37269b60a477"],
+Cell[41767, 870, 204, 3, 52, "Code",ExpressionUUID->"f9ccc531-e321-4c79-8d5f-627242ca1bb1"],
+Cell[41974, 875, 396, 8, 58, "Text",ExpressionUUID->"59d17333-3976-45ae-a239-0b9125a24510"],
+Cell[CellGroupData[{
+Cell[42395, 887, 524, 11, 129, "Code",ExpressionUUID->"d70a76d8-ebd9-44ba-b615-d1cbdfebd1a6"],
+Cell[42922, 900, 839, 22, 77, "Output",ExpressionUUID->"5018a65d-c72a-4e39-9a0a-c95106f40d47"]
+}, Open  ]],
+Cell[43776, 925, 300, 6, 58, "Text",ExpressionUUID->"9797da22-e68c-47e7-8ae0-59e281405ea4"],
+Cell[CellGroupData[{
+Cell[44101, 935, 251, 4, 52, "Code",ExpressionUUID->"91249b64-31dc-4fc3-ba73-a894e127938b"],
+Cell[44355, 941, 193, 3, 34, "Output",ExpressionUUID->"ff3a81f5-4f8b-42f9-9972-aa06885e4eb9"]
+}, Open  ]],
+Cell[44563, 947, 381, 9, 35, "Text",ExpressionUUID->"4f59860c-cf8f-4d26-9be8-1ae08b95592e"],
+Cell[CellGroupData[{
+Cell[44969, 960, 246, 4, 52, "Code",ExpressionUUID->"8f8257cd-f03c-4bdd-8538-d49ec1c28cae"],
+Cell[45218, 966, 166, 2, 34, "Output",ExpressionUUID->"2a7fbaa6-4adb-4152-90d7-0a86b3907731"]
+}, Open  ]],
+Cell[45399, 971, 442, 11, 58, "Text",ExpressionUUID->"edda9eee-4dfd-48d8-acdd-7a6fa3f1f8a8"],
+Cell[45844, 984, 167, 3, 35, "Text",ExpressionUUID->"d26d5a6f-c8ac-455d-83e9-1fd435aac85c"],
+Cell[CellGroupData[{
+Cell[46036, 991, 293, 6, 52, "Code",ExpressionUUID->"719efbeb-8d1f-4ac4-9405-dd76007e1bfc"],
+Cell[46332, 999, 456, 11, 34, "Output",ExpressionUUID->"10acb519-0cae-4b28-a73d-d51a57fd70d9"]
+}, Open  ]],
+Cell[46803, 1013, 291, 7, 58, "Text",ExpressionUUID->"73910d9a-a531-41c1-82ed-52a51eaefa10"],
+Cell[CellGroupData[{
+Cell[47119, 1024, 314, 7, 52, "Code",ExpressionUUID->"1d0ce120-1500-40e8-bb0e-2385390cf35c"],
+Cell[47436, 1033, 498, 15, 45, "Output",ExpressionUUID->"381140a6-c0b5-4950-a7b4-2f0ebcb58f44"]
+}, Open  ]],
+Cell[47949, 1051, 879, 21, 58, "Text",ExpressionUUID->"ba718b32-4107-401c-8dfd-0843c643005f"],
+Cell[48831, 1074, 731, 15, 81, "Text",ExpressionUUID->"4a38f73e-9494-4005-92a3-30b1004d1681"],
+Cell[CellGroupData[{
+Cell[49587, 1093, 516, 12, 129, "Code",ExpressionUUID->"fc709fa2-4b31-4737-9f7e-032230175836"],
+Cell[50106, 1107, 204, 3, 98, "Output",ExpressionUUID->"f2a67af9-16c6-4178-ac3b-96b06c082b2f"]
+}, Open  ]],
+Cell[50325, 1113, 185, 3, 35, "Text",ExpressionUUID->"cc6729c0-f849-4807-a3f0-2303f46c9b17"],
+Cell[50513, 1118, 481, 9, 81, "Text",ExpressionUUID->"3a58ca36-f802-41f6-ab8b-0d682e9afed8"],
+Cell[CellGroupData[{
+Cell[51019, 1131, 1209, 29, 148, "Code",ExpressionUUID->"78286f22-74ce-42ee-9fd2-a0c1f9175513"],
+Cell[52231, 1162, 410, 5, 140, "Output",ExpressionUUID->"8dee18c2-938c-435e-b634-f97f72f4a2f5"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[52690, 1173, 209, 4, 40, "Subsubsection",ExpressionUUID->"b2860c64-3c78-422b-ac2e-71ebcc7242b1"],
+Cell[52902, 1179, 385, 10, 58, "Text",ExpressionUUID->"87dea41b-8435-4f70-8050-5f1e06175cff"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[53324, 1194, 160, 3, 40, "Subsubsection",ExpressionUUID->"1a205c7e-161d-4b76-90ac-3f3f8332349e"],
+Cell[53487, 1199, 435, 9, 81, "Text",ExpressionUUID->"431d43b3-bc21-47df-bab5-231a55caedc4"],
+Cell[53925, 1210, 551, 14, 58, "Text",ExpressionUUID->"007d54f8-8f28-4317-a0a8-a91e2c28660f"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[54525, 1230, 215, 4, 41, "Subsection",ExpressionUUID->"ae6f7bb8-b35b-4dbe-adf3-0807d4a92e32"],
+Cell[CellGroupData[{
+Cell[54765, 1238, 157, 3, 40, "Subsubsection",ExpressionUUID->"28aa0ea1-fcae-4118-8d13-c17745b1b9a9"],
+Cell[54925, 1243, 1084, 26, 104, "Text",ExpressionUUID->"4a64aba7-3fbe-480d-ad51-cf634b17c727"],
+Cell[56012, 1271, 203, 3, 35, "Text",ExpressionUUID->"0484f7d8-f669-4676-a097-3b67932d6cf1"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

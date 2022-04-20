@@ -1,0 +1,88 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      2665,         80]
+NotebookOptionsPosition[      2005,         62]
+NotebookOutlinePosition[      2437,         79]
+CellTagsIndexPosition[      2394,         76]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "Automatic"}], ",", 
+   RowBox[{"\"\<Date\>\"", "\[RuleDelayed]", "Now"}], ",", 
+   RowBox[{"\"\<Modified\>\"", "\[RuleDelayed]", "Now"}], ",", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}]}], "\[RightAssociation]"}]], "Metadata"],
+
+Cell["\<\
+On the off chance someone who is not me is reading this, hello!\
+\>", "Text",
+ CellChangeTimes->{{3.719721931802351*^9, 
+  3.719721947845743*^9}},ExpressionUUID->"5baf3b05-9c61-4bb9-8ccd-\
+8201b6fe19b1"],
+
+Cell["\<\
+I don' t care about your data. I have no use for it, and I promise I won' t \
+do anything with it.\
+\>", "Text",
+ CellChangeTimes->{{3.719721931802351*^9, 
+  3.719721947846532*^9}},ExpressionUUID->"36da6df2-82c2-48e1-8918-\
+dc3dc6551d91"],
+
+Cell[TextData[{
+ "If you' re worried about me being some shady character, that' s cool. You \
+can contact me at ",
+ ButtonBox["b3m2a1@gmail.com",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["mailto:b3m2a1@gmail.com"], None},
+  ButtonNote->"mailto:b3m2a1@gmail.com"],
+ " to vent about how shady I am."
+}], "Text",
+ CellChangeTimes->{{3.719721931802351*^9, 3.7197219445506153`*^9}, {
+  3.719722150632928*^9, 
+  3.719722150638036*^9}},ExpressionUUID->"462df228-db5f-4b94-8a07-\
+3316375ff0b3"]
+},
+WindowSize->{808, 755},
+WindowMargins->{{316, Automatic}, {Automatic, 50}},
+FrontEndVersion->"11.2 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+10, 2017)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "PelicanMarkdown.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 478, 10, 70, "Metadata",ExpressionUUID->"e2a2d247-f920-48bb-abde-97a38224501c"],
+Cell[1039, 32, 213, 5, 35, "Text",ExpressionUUID->"5baf3b05-9c61-4bb9-8ccd-8201b6fe19b1"],
+Cell[1255, 39, 248, 6, 35, "Text",ExpressionUUID->"36da6df2-82c2-48e1-8918-dc3dc6551d91"],
+Cell[1506, 47, 495, 13, 58, "Text",ExpressionUUID->"462df228-db5f-4b94-8a07-3316375ff0b3"]
+}
+]
+*)
+

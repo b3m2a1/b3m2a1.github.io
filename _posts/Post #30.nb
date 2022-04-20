@@ -1,0 +1,23 @@
+Notebook[{Cell[BoxData[RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+      RowBox[{RowBox[{"\"Title\"", "\[Rule]", "\"\""}], ",", 
+        "\[IndentingNewLine]", RowBox[{"\"Slug\"", "\[Rule]", "Automatic"}], 
+        ",", "\[IndentingNewLine]", RowBox[{"\"Date\"", "\[Rule]", 
+          TemplateBox[{RowBox[{"\"Wed 17 Apr 2019 02:37:56\"", 
+              StyleBox[RowBox[{"\"GMT\"", "\[InvisibleSpace]", StyleBox[
+                  RowBox[{"-", "7.`"}], NumberMarks -> False, StripOnInput -> 
+                   False]}], FontColor -> GrayLevel[0.5]]}], 
+            RowBox[{"DateObject", "[", RowBox[{RowBox[{"{", RowBox[
+                   {"2019", ",", "4", ",", "17", ",", "2", ",", "37", ",", 
+                    "56.475217`8.504432882211635"}], "}"}], ",", 
+                "\"Instant\"", ",", "\"Gregorian\"", ",", RowBox[
+                 {"-", "7.`"}]}], "]"}]}, "DateObject", Editable -> False]}], 
+        ",", "\[IndentingNewLine]", RowBox[{"\"Tags\"", "\[Rule]", 
+          RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+        RowBox[{"\"Authors\"", "\[Rule]", RowBox[{"{", "}"}]}], ",", 
+        "\[IndentingNewLine]", RowBox[{"\"Categories\"", "\[Rule]", 
+          RowBox[{"{", "}"}]}]}], "\[IndentingNewLine]", 
+      "\[RightAssociation]"}]], "Metadata", CellChangeTimes -> 
+    {{3.764482708364341*^9, 3.764482722472781*^9}}]}, 
+ FrontEndVersion -> "12.0 for Mac OS X x86 (64-bit) (April 8, 2019)", 
+ StyleDefinitions -> FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+   CharacterEncoding -> "UTF-8"]]

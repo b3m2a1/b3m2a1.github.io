@@ -1,0 +1,201 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      7793,        193]
+NotebookOptionsPosition[      6951,        173]
+NotebookOutlinePosition[      7375,        190]
+CellTagsIndexPosition[      7332,        187]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<About Me\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[RuleDelayed]", "Now"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[RuleDelayed]", "Now"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "\"\<about\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}]}], "\[IndentingNewLine]", 
+  "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.709866963271068*^9, 3.709866971539731*^9}, {
+  3.715038915365631*^9, 
+  3.7150389175995693`*^9}},ExpressionUUID->"36d75a49-f4a7-42f8-a401-\
+27f05a746201"],
+
+Cell["I\[CloseCurlyQuote]m a fly-by-night programmer and sorta-scientist. ", \
+"Text",
+ CellChangeTimes->{{3.722711858802927*^9, 3.722711958190947*^9}, {
+  3.722713909090015*^9, 3.72271399287885*^9}, {3.722714058296687*^9, 
+  3.72271406779734*^9}, {3.722714110019095*^9, 3.7227142294544*^9}, {
+  3.7227144120309963`*^9, 
+  3.722714451641638*^9}},ExpressionUUID->"2fb9b58c-a588-4dad-987e-\
+9861be51e86a"],
+
+Cell["\<\
+I like projects that critics rave \[OpenCurlyDoubleQuote]will never be \
+completed, never be used, and never be seen\[CloseCurlyDoubleQuote] and about \
+which my many friends and admirers say \[OpenCurlyDoubleQuote]why are you \
+doing this?\[CloseCurlyDoubleQuote], \[OpenCurlyDoubleQuote]literally this is \
+so dumb\[CloseCurlyDoubleQuote], and \[OpenCurlyDoubleQuote]there\
+\[CloseCurlyQuote]s something wrong with you\[CloseCurlyDoubleQuote]\
+\>", "Text",
+ CellChangeTimes->{{3.722711858802927*^9, 3.722711958190947*^9}, {
+  3.722713909090015*^9, 3.72271399287885*^9}, {3.722714058296687*^9, 
+  3.72271406779734*^9}, {3.722714110019095*^9, 3.7227142294544*^9}, {
+  3.7227144120309963`*^9, 3.72271447244066*^9}, {3.722714645404931*^9, 
+  3.722714923726466*^9}, {3.7227149872180767`*^9, 3.722715013871414*^9}, {
+  3.722715045187421*^9, 3.7227151102505703`*^9}, {3.7227152333952303`*^9, 
+  3.7227152609614477`*^9}, {3.722715443447865*^9, 3.722715482493581*^9}, {
+  3.722715516168668*^9, 3.722715552372349*^9}, {3.722715586752931*^9, 
+  3.722715601206758*^9}, {3.722715657524868*^9, 
+  3.722715716055242*^9}},ExpressionUUID->"4dab1992-8655-4014-9dd2-\
+ba97b1b0d0db"],
+
+Cell[TextData[{
+ "Most things I build using Mathematica and python, like ",
+ ButtonBox["this site",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://www.wolframcloud.com/objects/b3m2a1/home/main.html"], None},
+  ButtonNote->"https://www.wolframcloud.com/objects/b3m2a1/home/main.html"],
+ ", a few ",
+ ButtonBox["other",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://www.wolframcloud.com/objects/b3m2a1.paclets/PacletServer/\
+main.html"], None},
+  ButtonNote->
+   "https://www.wolframcloud.com/objects/b3m2a1.paclets/PacletServer/main.\
+html"],
+ " ",
+ ButtonBox["sites",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://www.wolframcloud.com/objects/b3m2a1.docs/main.html"], None},
+  ButtonNote->"https://www.wolframcloud.com/objects/b3m2a1.docs/main.html"],
+ ", a ",
+ ButtonBox["framework for building Pokemon games",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://github.com/b3m2a1/python-fauxkemon"], None},
+  ButtonNote->"https://github.com/b3m2a1/python-fauxkemon"],
+ ", a ",
+ ButtonBox["chemistry modeling package",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://github.com/b3m2a1/mathematica-ChemTools"], None},
+  ButtonNote->"https://github.com/b3m2a1/mathematica-ChemTools"],
+ ", a ",
+ ButtonBox["link between Mathematica and python",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://github.com/b3m2a1/mathematica-PyTools"], None},
+  ButtonNote->"https://github.com/b3m2a1/mathematica-PyTools"],
+ ", and a ",
+ ButtonBox["slew of other little utilities",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://github.com/b3m2a1/mathematica-tools"], None},
+  ButtonNote->"https://github.com/b3m2a1/mathematica-tools"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.722711858802927*^9, 3.722711976799466*^9}, {
+   3.7227120107037697`*^9, 3.7227121826792583`*^9}, {3.722713965081888*^9, 
+   3.722713967097869*^9}, {3.722714271792378*^9, 3.722714319046649*^9}, 
+   3.7227144439898033`*^9, {3.722714932651514*^9, 3.7227149705289793`*^9}, {
+   3.722715634531633*^9, 
+   3.722715648532424*^9}},ExpressionUUID->"b29d9120-6cbb-46ef-80a9-\
+e521a38f919e"],
+
+Cell[TextData[{
+ "I also enjoy 3D modelling with ",
+ ButtonBox["SketchUp",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://www.sketchup.com/"], None},
+  ButtonNote->"https://www.sketchup.com/"],
+ ", ABMs in ",
+ ButtonBox["NetLogo",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://ccl.northwestern.edu/netlogo/"], None},
+  ButtonNote->"https://ccl.northwestern.edu/netlogo/"],
+ ", and learning about ",
+ ButtonBox["math-centric programming languages",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://github.com/tlaplus"], None},
+  ButtonNote->"https://github.com/tlaplus"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.7227129604098673`*^9, 3.722713060143239*^9}, {
+  3.7227131347653723`*^9, 3.722713134770916*^9}, {3.722713666199011*^9, 
+  3.722713673150695*^9}},ExpressionUUID->"1c4c8c20-2762-4777-808c-\
+92a07952a49a"],
+
+Cell[TextData[{
+ "If you have projects you want to collaborate on or have contract work, ",
+ ButtonBox["hit me up",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["contact.html"], None},
+  ButtonNote->"contact.html"]
+}], "Text",
+ CellChangeTimes->{{3.709659999348138*^9, 3.709660001068421*^9}, {
+  3.709660146914804*^9, 3.709660262666563*^9}, {3.709660314302065*^9, 
+  3.709660325228895*^9}, {3.709660389314159*^9, 3.709660540608016*^9}, {
+  3.709660610544655*^9, 3.709660647856382*^9}, {3.709660697609817*^9, 
+  3.709660703442041*^9}, {3.709660820162078*^9, 3.70966083952398*^9}, {
+  3.709661084255536*^9, 3.7096610851419907`*^9}, {3.7098670714535227`*^9, 
+  3.709867121575182*^9}, {3.7098673425198307`*^9, 3.7098673467178717`*^9}, {
+  3.709867397855979*^9, 3.7098674178461103`*^9}, {3.710371328463991*^9, 
+  3.7103713292648*^9}, {3.722789353399797*^9, 3.722789353755547*^9}, {
+  3.731611517123155*^9, 
+  3.731611517544273*^9}},ExpressionUUID->"a3b8519b-6a7a-476f-a9aa-\
+be3032990b92"]
+},
+WindowSize->{808, 755},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "PelicanMarkdown.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 846, 19, 196, "Metadata",ExpressionUUID->"36d75a49-f4a7-42f8-a401-27f05a746201"],
+Cell[1407, 41, 403, 7, 35, "Text",ExpressionUUID->"2fb9b58c-a588-4dad-987e-9861be51e86a"],
+Cell[1813, 50, 1175, 18, 81, "Text",ExpressionUUID->"4dab1992-8655-4014-9dd2-ba97b1b0d0db"],
+Cell[2991, 70, 2114, 54, 81, "Text",ExpressionUUID->"b29d9120-6cbb-46ef-80a9-e521a38f919e"],
+Cell[5108, 126, 847, 24, 58, "Text",ExpressionUUID->"1c4c8c20-2762-4777-808c-92a07952a49a"],
+Cell[5958, 152, 989, 19, 35, "Text",ExpressionUUID->"a3b8519b-6a7a-476f-a9aa-be3032990b92"]
+}
+]
+*)
+

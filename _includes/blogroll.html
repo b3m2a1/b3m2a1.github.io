@@ -1,0 +1,31 @@
+{%- comment -%} setup: list_class {%- endcomment -%}
+{%- if list_class == nil -%}
+    {%- assign list_class = include.list_class -%}
+    {%- if list_class == nil -%}
+        {%- assign list_class = "blogroll-link-list" -%}
+    {%- endif -%}
+{%- endif -%}
+
+{%- comment -%} setup: link_class {%- endcomment -%}
+{%- if link_class == nil -%}
+    {%- assign link_class = include.list_class -%}
+    {%- if link_class == nil -%}
+        {%- assign link_class = "blogroll-link" -%}
+    {%- endif -%}
+{%- endif -%}
+
+<div class="blogroll">
+    {% if site.blogroll != nil %}
+    <ul class="{{list_class}}">
+        <h6 class="blogroll-header">Links</h6>
+        {% for link in site.blogroll %}
+            {% if link.url contains "http" %}
+                {% assign link_url = link.url %}
+            {% else %}
+                {% assign link_url = site.url | append: "/" | append: link.url %}
+            {% endif %}
+        <li class="{{link_class}}"><a href="{{link_url}}">{{link.title}}</a></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
