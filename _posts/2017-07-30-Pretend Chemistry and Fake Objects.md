@@ -1,6 +1,6 @@
 ---
-title:  Pretend Chemistry and Fake Objects
-authors: 
+title: Pretend Chemistry and Fake Objects
+authors: b3m2a1
 date: 2017-07-27 00:47:55
 disqus_ID: b3m2a1-home-48543113-471f-4f5c-b861-eaac19c0178c
 modified: 2017-07-30 00:48:07

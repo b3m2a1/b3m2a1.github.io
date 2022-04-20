@@ -1,8 +1,8 @@
 ___
 title: A Fake Object Framework
-authors: 
+authors: b3m2a1
 date: 2017-08-04 17:57:46
-disqus_ID: b3m2a1-home-26119950-8d56-478a-9339-dda09c8ae108
+disqus_id: b3m2a1-home-26119950-8d56-478a-9339-dda09c8ae108
 modified: 2017-08-06 00:58:47
 permalink: a-fake-object-framework
 tags: mathematica

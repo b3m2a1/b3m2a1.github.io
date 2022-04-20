@@ -1,6 +1,6 @@
 ---
 title: Creating a Mathematica Package Repository
-authors: 
+authors: b3m2a1
 date: 2018-05-01 22:29:20
 modified: 2018-05-02 00:05:01
 permalink: creating-a-mathematica-package-repository

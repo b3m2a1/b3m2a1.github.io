@@ -1,6 +1,6 @@
 ---
 title: Building a Mathematica Package Ecosystem, Part 1.
-authors: 
+authors: b3m2a1
 date: 2017-08-29 02:53:34
 disqus_ID: b3m2a1-home-a7f6cc97-f14d-4669-831c-dd6475ea1124
 modified: 2017-09-05 03:21:25

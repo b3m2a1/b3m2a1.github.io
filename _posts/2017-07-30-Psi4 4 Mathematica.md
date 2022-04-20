@@ -1,6 +1,6 @@
 ---
 title: Psi4 4 Mathematica
-authors: 
+authors: b3m2a1
 date: 2017-07-29 02:57:18
 disqus_ID: b3m2a1-home-9d02889c-bef6-4c6b-957d-f2bcb2914334
 modified: 2017-07-30 00:49:22

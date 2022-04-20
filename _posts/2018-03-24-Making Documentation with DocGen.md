@@ -1,6 +1,6 @@
 ---
 title: Making Documentation with DocGen
-authors: 
+authors: b3m2a1
 date: 2018-03-24 10:16:29
 modified: 2018-03-24 13:08:59
 permalink: making-documentation-with-docgen

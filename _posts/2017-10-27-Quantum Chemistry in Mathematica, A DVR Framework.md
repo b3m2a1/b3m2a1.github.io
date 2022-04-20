@@ -1,6 +1,6 @@
 ---
 title: Quantum Chemistry in Mathematica, A DVR Framework
-authors: 
+authors: b3m2a1
 date: 2017-10-26 18:30:59
 modified: 2017-10-27 17:16:58
 permalink: quantum-chemistry-in-mathematica-a-dvr-framework

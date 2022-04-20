@@ -1,6 +1,6 @@
 ---
 title: Building External Connections in Mathematica
-authors: 
+authors: b3m2a1
 date: 2018-03-21 01:34:24
 modified: 2018-03-21 01:46:06
 permalink: building-external-connections-in-mathematica

@@ -1,6 +1,6 @@
 ---
 title: Questions on the Mathematica Stack Exchange, Part 2
-authors: 
+authors: b3m2a1
 date: 2017-07-31 22:48:28
 disqus_ID: b3m2a1-home-c0734234-b9d2-4fed-ad21-f5d0e5b0c315
 modified: 2017-07-31 22:48:28

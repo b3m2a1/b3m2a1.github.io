@@ -1,6 +1,6 @@
 ---
 title: ServiceConnections - Mathematica on the Web
-authors: 
+authors: b3m2a1
 date: 2017-07-24 22:09:34
 disqus_ID: b3m2a1-home-ecfbd9f3-deea-4e81-b898-14678638e4d9
 modified: 2017-07-26 00:36:30

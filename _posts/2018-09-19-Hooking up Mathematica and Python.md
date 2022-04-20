@@ -1,5 +1,6 @@
 ---
 title: PJLink - Hooking up Mathematica and Python
+authors: b3m2a1
 date: 2018-09-19 10:08:09
 modified: 2018-09-20 02:10:19
 permalink: pjlink-hooking-up-mathematica-and-python
