@@ -1,9 +1,11 @@
-Title: Contact
-Authors: 
-Date: 2018-04-01 15:45:12
-Modified: 2018-04-01 15:45:12
-Slug: contact
-Tags: 
+---
+title: Contact
+authors: 
+date: 2018-04-01 15:45:12
+modified: 2018-04-01 15:45:12
+permalink: contact
+tags: 
+---
 
 If you want to contact me there are two good ways to do it.
 

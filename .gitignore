@@ -9,6 +9,8 @@ cmake-build-debug
 Icon?
 _site
 _layouts
+python38
+.ipynb_checkpoints
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

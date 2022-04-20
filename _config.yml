@@ -10,21 +10,20 @@ header_image: img/site-image.png
 custom_styles: theme
 discus_sitename: b3m2a1-home
 blurb_words: 48
+google_analytics_id: UA-103560228-1
 
 sitemap_roots:
   -
 sitemap_depth: 1
 
 links:
-  - url: https://b3m2a1.github.io/about.html
+  - url: https://b3m2a1.github.io/about
     title: About
-  - url: https://b3m2a1.github.io/contact.html
+  - url: https://b3m2a1.github.io/contact
     title: Contact
-  - url: https://b3m2a1.github.io/authors
-    title: Authors
   - url: https://b3m2a1.github.io/tags
     title: Tags
-  - url: https://b3m2a1.github.io/archives.html
+  - url: https://b3m2a1.github.io/archive
     title: Archive
 
 blogroll:
@@ -66,6 +65,7 @@ defaults:
 exclude:
   - .idea
   - "*.nb"
+  - "*.ipynb"
   - old_site
   - examples
   - templates
