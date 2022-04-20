@@ -1,4 +1,4 @@
-___
+---
 title: A Fake Object Framework
 authors: b3m2a1
 date: 2017-08-04 17:57:46
@@ -6,7 +6,7 @@ disqus_id: b3m2a1-home-26119950-8d56-478a-9339-dda09c8ae108
 modified: 2017-08-06 00:58:47
 permalink: a-fake-object-framework
 tags: mathematica
-___
+---
 
 
 I promised in my post on  [chemistry and objects](https://www.wolframcloud.com/objects/b3m2a1/home/-pretend-chemistry-and-fake-objects.html)  that I’d walk through the details of building an object framework in Mathematica so here we are. For those who would like to follow along,  [here](https://github.com/b3m2a1/mathematica-ObjectFramework/blob/master/Packages/ObjectFramework.m)  is the package that implements this framework.
