@@ -409,6 +409,8 @@ SpoilerGrid([[1, 2], [3, 4]], max_width='600px')
     HTMLElement(div, (HTMLElement(div, (HTMLElement(div, (HTMLElement(button, (HTMLElement(span, '1', cls=[], styl…
 
 
+![image.png]({{site.url}}/img/ec9efdba-5b1a-4351-8085-83a19e639d36.png)
+
 The interface is nothing to write home about, but it was quick and easy to implement and definitely supports my desire to be able to get prototypes done fast.
 
 You'll also notice that instead of overloading the `create_item` and `wrap_items` methods I had to overload `to_html` and `wrap_item`.
@@ -451,6 +453,8 @@ Grid([
 
     HTMLElement(div, (HTMLElement(div, (HTMLElement(div, (HTMLElement(input, '', cls=['form-range'], style={}),), …
 
+
+![image.png]({{site.url}}/img/d2322943-14e6-4a60-a1ea-0624bcb0060d.png)
 
 But with these I realized I also needed (at least) a few others. First off, I definitely needed one to track the value of a variable
 
