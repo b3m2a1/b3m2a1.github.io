@@ -5,6 +5,8 @@ permalink: jhtml-a-web-framework-for-jupyter
 tags: python jupyter
 ---
 
+_**Try this live on Binder**_ [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Binder-McUtils/Binder-McUtils/master?urlpath=git-pull%3Frepo%3Dhttps%253A%252F%252Fgithub.com%252Fb3m2a1%252Fb3m2a1.github.io%26urlpath%3Dlab%252Ftree%252Fb3m2a1.github.io%252F_posts%252F2022-04-27-JHTML%2BA%2BWeb%2BFramework%2Bfor%2BJupyter.ipynb%26branch%3Dmaster)
+
 Today we're going to be to talking about a package I've been working on intermittently for the past month, which I've been calling `JHTML`.
 If I wanted to really sell it, I'd say it's a web framework for Jupyter.
 But really at its heart, it just supplies the access to the DOM that one might expect to have, given that Jupyter runs inside the browser.
@@ -481,3 +483,37 @@ FunctionDisplay(lambda *e,opts=None,val=None,**kw: Grid([[opts, val]]), ['opts',
 
 
 ![image.png]({{site.url}}/img/2b9d5b31-9eb0-4fd5-ac4f-83ceb143aae4.png)
+
+### Custom App Layouts
+
+The flexibility afforded by all of the components outlined above should cover the vast majority of cases, but it is also true that there are some layouts that are so common it makes sense to create bespoke format classes.
+Currently, the only one I really have I've been calling `App` and it is what was used to construct the layout I wanted to be able to build when I set out on this project.
+The basic layout looks like this
+
+
+```python
+App(
+    header=["header"],
+    body=["body"],
+    toolbar=["toolbar"],
+    sidebar=["sidebar"],
+    footer=["footer"]
+)
+```
+
+
+    HTMLElement(div, (HTMLElement(div, (HTMLElement(div, (HTMLElement(nav, (HTMLElement(div, (HTMLElement(div, '<a…
+
+
+The lists are there so that rather than needing to provide a fully constructed JHTML interface, we can content as a `dict`, which also allows us to internally supply wrappers for callbacks and that sort of thing. For instance, here's a more fully fleshed-out example
+
+
+```python
+App(
+    header=["header"],
+    body=["body"],
+    toolbar=["toolbar"],
+    sidebar=["sidebar"],
+    footer=["footer"]
+)
+```
