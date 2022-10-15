@@ -229,7 +229,7 @@ But before the system was truly a solid replacement for Jupyter's built-in docst
 ?DocWalker
 ```
 
-<video autoplay>
+<video autoplay loop>
 <source 
         src="{{site.url}}/img/better-doc-with-jhtml-docs_example.mp4"
         type="video/mp4">
