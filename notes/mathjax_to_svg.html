@@ -6,10 +6,19 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta http-equiv="Content-Security-Policy" content="default-src
-  'none'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net http://www.google-analytics.com https://ssl.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' https://www.mathjax.org https://www.google-analytics.com http://www.google-analytics.com https://img.shields.io https://www.paypalobjects.com; font-src 'self' https://cdn.jsdelivr.net https://fonts.gstatic.com; connect-src 'self' https://ssl.google-analytics.com/ https://cdn.jsdelivr.net" />
+  'none'; script-src 'self' 'unsafe-inline' https://b3m2a1.github.io https://www.mathjax.org https://cdn.jsdelivr.net http://www.google-analytics.com https://ssl.google-analytics.com; style-src 'self' 'unsafe-inline' https://b3m2a1.github.io https://stackpath.bootstrapcdn.com/ https://www.mathjax.org https://fonts.googleapis.com; img-src 'self' https://b3m2a1.github.io https://www.mathjax.org https://www.google-analytics.com http://www.google-analytics.com https://img.shields.io https://www.paypalobjects.com; font-src 'self' https://cdn.jsdelivr.net https://fonts.gstatic.com; connect-src 'self' https://ssl.google-analytics.com/ https://cdn.jsdelivr.net" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="MathJax SVG output.">
 <title>MathJax to SVG </title>
+<link rel='icon' href='https://b3m2a1.github.io//favicon-32x32.png'>
+
+<!-- <link rel="stylesheet" href="/css/mathjax_styles.css"> -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://b3m2a1.github.io//assets/css/pygment_trac.css">
+<link rel="stylesheet" href="https://b3m2a1.github.io//assets/css/style.css">
+<link rel="stylesheet" href="https://b3m2a1.github.io//assets/css/theme.css">
+<link rel="stylesheet" href="/css/styles.css">
 <meta property="og:title" content="MathJax" />
 <meta name="author" content="MathJax Consortium" />
 <meta property="og:locale" content="en_US" />
@@ -25,67 +34,106 @@
 {"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"MathJax Consortium"},"description":"Beautiful math in all browsers.","headline":"MathJax","name":"MathJax","url":"https://www.mathjax.org/"}</script>
 <!-- End Jekyll SEO tag -->
 
-  <script type="text/javascript" async src="/js/main.js"></script>
+  <script type="text/javascript" async src="js/mathjax_to_svg.js"></script>
 </head>
-    <body>
+<body>
 
-    <div class="card card--popout" id="demo">
-        <h3>Live Demo</h3>
-        <p><label for="MathInput">
-        Type text in the box below.  Include some math: enter MathML as MathML tags, and wrap TeX in
-        <code>$...$</code> or <code>$$...$$</code> delimiters (or <code>\(...\)</code> and
-        <code>\[...\]</code>), and AsciiMath in <code>`...`</code> delimiters.  The text you enter
-        is actually HTML, so you can include tags if you want; but this also means you have to be
-        careful how you use less-than signs, ampersands, and other HTML special characters within
-        your math (surrounding them by spaces should be sufficient).</label>
-        </p>
-        <textarea id="MathInput" rows="10" style="width: 100%;">
-When $a \ne 0$, there are two solutions to \(ax^2 + bx + c = 0\) and they are
-$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$</textarea>
-        <br/>
-        <input type="button" value="Render HTML" id="renderHTML" onclick="typesetInput()"
-                style="float: right; font-size: initial; margin-top: .5em">
-        <br/>Preview is shown here:
-        <div id="MathPreview" class="preview"></div>
-        <a href="#to-demo" aria-label="Close pop-out" class="card--popout__close"></a>
+    <header class="main-header with-image">
+        <nav class="navbar site-navbar site-header navbar-expand-lg  with-image"  style="--finx-header-image:url(https://b3m2a1.github.io//img/site-image.png)" >
+            <div class="container-fluid header-links-container">
+                <div class="row">
+                    <button type="button" id="sidebarCollapse" class="btn toggle-sidebar-button">
+                        <i class="fas fa-align-left"></i>
+                    </button>
+                    <div class="row header-links">
+                        <a class="navbar-brand header-link" href="https://b3m2a1.github.io/">b3m2a1</a>
+                        
+        
+            
+            <a class="nav-link header-link" href="https://b3m2a1.github.io/about">About</a>
+        
+            
+            <a class="nav-link header-link" href="https://b3m2a1.github.io/contact">Contact</a>
+        
+            
+            <a class="nav-link header-link" href="https://b3m2a1.github.io/tags">Tags</a>
+        
+            
+            <a class="nav-link header-link" href="https://b3m2a1.github.io/archive">Archive</a>
+        
+
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="main-content bg-light">
+        <div class="card" id="demo">
+        <div class="card-header text-white bg-dark">
+            <h3>MathJax to SVG Exporter</h3>
         </div>
-        <div class="card card--popout" id="a11y">
-        <h3>Accessibility and reuse.</h2>
-            <h4> Accessibility </h3>
-        <p>
-            MathJax provides a powerful set of accessibility extensions that
-            provide navigation, exploration, and voicing on the client.
+        <div class="card-body">
 
-        </p>
-        <p>
-            You can find more information in <a href="https://youtu.be/6GSgTjorewQ">our introductory
-            video on YouTube</a> and our
-            <a href="https://docs.mathjax.org/en/latest/basic/accessibility.html">documentation</a>.
-        </p>
-        <hr>
-        <h3> Reuse </h3>
-        <p>
-            Using the MathJax context menu, you can access the source of any mathematical expression
-            either in MathML format, or in its original format if that was TeX or AsciiMath.</p>
-        <p>
-            To access the MathJax menu, right-click on a math formula (if you are using Windows), or
-            Control-click it (if you are using a Mac) or touble-tap and hold on a touch device.  In
-            the sub-menu “<code>Show Math as</code>” you can choose between “<code>MathML Code</code>” and
-            “<code>TeX commands</code>” to get a pop-up that allows you to copy the math source into
-            another application.  Try it out on the equation below!
-        </p>
+            <p class="text-info"><label for="MathInput">
+            Type text in the box below. 
+            Wrap TeX in
+            <code>$...$</code> or <code>$$...$$</code> delimiters.
+            The text you enter is actually HTML, so you can include tags if you want; but this also means you have to be
+            careful how you use less-than signs, ampersands, and other HTML special characters within
+            your math (surrounding them by spaces should be sufficient).
+            </label></p>
+            <textarea id="MathInput" rows="10" style="width: 100%;">
+The harmonic approximation represents the potential energy of a system in dimensionless coordinates as
+$$
+E(\Delta x) = E_0 + \frac{1}{2} \Delta x^\intercal F \Delta x
+$$
+where $E_0$ is potential of the system at the reference structure, $F$ is the Hessian at that structure, 
+and $\Delta x$ is the displacement vector in dimensionless coordinates
+</textarea>
+            <div class="row">
+                <div class="col-sm"></div>
+                <div class="col-sm">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="Renderer">Format</label>
+                        </div>
+                        <select class="custom-select" id="Renderer" onchange="setMode(this.value)">
+                            <option value="SVG" selected="selected">SVG</option>
+                            <option value="CHTML">CommonHTML</option>
+                        </select>
+                        <input type="button" class="btn btn-primary" value="Render LaTeX" id="renderHTML" onclick="typesetInput()">
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <h4>Preview:</h4>
+            <div id="MathPreview" class="preview"></div>
 
-        \[ \left [ &#8211; \frac{\hbar^2}{2 m} \frac{\partial^2}{\partial x^2} + V \right ] \Psi =
-            i \hbar \frac{\partial}{\partial t} \Psi \]
 
-        <p>
-            You can also watch <a href="https://youtu.be/VBt0Qeq5GWw">our screencast on YouTube</a> of
-            a MathJax equation being copied and pasted into a variety of applications. Note that
-            this screencast is based on MathJax v1.1 so the menu structure is a little different in
-            the current version.
-        </p>
-        <a href="#to-a11y" aria-label="Close pop-out" class="card--popout__close"></a>
+            <div class="row">
+                <div class="col-sm"></div>
+                <div class="col-sm">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" id="basic-file-name">File Name</label>
+                        </div>
+                        <input type="text" id="fileName" class="form-control" placeholder="file name" aria-label="Filename" aria-describedby="basic-file-name">
+                        <input type="button" class="btn btn-primary" value="Export" id="saveHTML" onclick="saveResult()">
+                    </div>
+                </div>
+            </div>
+
+                
+            </div>
+
+            
+        
+            <div class="card-footer">
+                This is adapted from the <a href=https://www.mathjax.org/#demo>MathJax Live Demo</a>
+            </div>
         </div>
+    </div>
+    </div>
 
     </body>
 </html>
