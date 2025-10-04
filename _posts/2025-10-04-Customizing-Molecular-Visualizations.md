@@ -1,5 +1,5 @@
 ---
-title: JHTML - Customizing Molecular Visualizations in Jupyter
+title: Customizing Molecular Visualizations in Jupyter
 date: 2025-10-04
 permalink: customizing-molecular-visualizations-in-jupyter
 tags: python jupyter chemistry
