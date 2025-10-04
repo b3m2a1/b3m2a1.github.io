@@ -87,25 +87,28 @@ Much of my work involves mapping out chemical dynamics, so being able to visuali
 int_mol = mol.modify(internals='auto') # pick reasonable internal coordinates
 int_mol.animate_coordinate(-1)
 ```
-<div id="jsmol-applet-f74449" style="width:500px; height:500px;"><script src="https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/JSmol.min.js" onload="
+<div id="jsmol-applet-12dc07" style="width:500px; height:500px;"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="tmp-120fed00-0" onload="
+                            (function() {
+                                document.getElementById('tmp-120fed00-0').remove();
+                                const frag = document.createRange().createContextualFragment(`<script src=&quot;https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/JSmol.min.js&quot; onload=&quot;
 (function() {
    $.getScript('https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/js/Jmol2.js').then(
-   () =&gt; {
+   () =&amp;gt; {
        
         if (typeof Jmol._patched === 'undefined') {
             Jmol._patched = true;
-            Jmol._serverUrl = Jmol.Info[&quot;serverURL&quot;];
+            Jmol._serverUrl = Jmol.Info[&amp;quot;serverURL&amp;quot;];
             Jmol._appletNameMap = {};
             jmolInitialize('https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/');
         };
         
        let loaded = false;
         if (!loaded) {
-            if (typeof Jmol._appletNameMap === &quot;undefined&quot;) {
+            if (typeof Jmol._appletNameMap === &amp;quot;undefined&amp;quot;) {
                 Jmol._appletNameMap = {}
             };
             loaded = true;
-            let applet = jmolAppletInline([500, 500], `19
+            let applet = jmolAppletInline([500, 500], \`19
 struct 1
 O      2.449      0.404     -0.527      0.000     -0.016     -0.208     -0.200
 C      1.254      0.308      0.200      0.000      0.109      0.128      0.051
@@ -125,19 +128,21 @@ H     -2.573     -0.527      0.092      0.000      0.002     -0.166     -0.253
 H     -0.956      1.188      1.286      0.000     -0.302     -0.156     -0.007
 H     -1.802      1.837     -0.172      0.000     -0.123     -0.074     -0.091
 H      0.180      0.855     -1.519      0.000      0.917      0.463      0.009
-H      0.614      2.283     -0.491      0.000     -0.023      0.112      0.283`, 'vibration on', '_f74449');
+H      0.614      2.283     -0.491      0.000     -0.023      0.112      0.283\`, 'vibration on', '_12dc07');
             applet.serverURL = Jmol.Info.serverURL;
-            let wrapper = document.getElementById('jsmol-applet-f74449');
+            let wrapper = document.getElementById('jsmol-applet-12dc07');
             wrapper.innerHTML = applet._code;
-            Jmol._appletNameMap['jsmol-applet-f74449'] = applet;
-            wrapper.ondelete = function() { delete Jmol._appletNameMap['jsmol-applet-f74449'] };
+            Jmol._appletNameMap['jsmol-applet-12dc07'] = applet;
+            wrapper.ondelete = function() { delete Jmol._appletNameMap['jsmol-applet-12dc07'] };
             if (''.length) {
                 document.getElementById('').innerHTML = applet._code;
             }
         }
     })
 })();
-"></script></div>
+&quot;&gt;</script&gt;`);
+                                document.head.appendChild(frag);
+                            })()"></div>
 ### Better Script Support
 
 The JSMol interface can also be a little bit finnicky, so I added a (very ugly) system for running scripts and doing screen recordings
@@ -146,25 +151,28 @@ The JSMol interface can also be a little bit finnicky, so I added a (very ugly) 
 ```python
 int_mol.animate_coordinate(0, include_script_interface=True)
 ```
-<div id="jsmol-applet-9741ff" style="width:500px; height:700px;"><div id="jsmol-applet-9741ff-applet" style="width:100%; height:500px;"><script src="https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/JSmol.min.js" onload="
+<div id="jsmol-applet-217223" style="width:500px; height:700px;"><div id="jsmol-applet-217223-applet" style="width:100%; height:500px;"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="tmp-7a76a4f6-1" onload="
+                            (function() {
+                                document.getElementById('tmp-7a76a4f6-1').remove();
+                                const frag = document.createRange().createContextualFragment(`<script src=&quot;https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/JSmol.min.js&quot; onload=&quot;
 (function() {
    $.getScript('https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/js/Jmol2.js').then(
-   () =&gt; {
+   () =&amp;gt; {
        
         if (typeof Jmol._patched === 'undefined') {
             Jmol._patched = true;
-            Jmol._serverUrl = Jmol.Info[&quot;serverURL&quot;];
+            Jmol._serverUrl = Jmol.Info[&amp;quot;serverURL&amp;quot;];
             Jmol._appletNameMap = {};
             jmolInitialize('https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/');
         };
         
        let loaded = false;
         if (!loaded) {
-            if (typeof Jmol._appletNameMap === &quot;undefined&quot;) {
+            if (typeof Jmol._appletNameMap === &amp;quot;undefined&amp;quot;) {
                 Jmol._appletNameMap = {}
             };
             loaded = true;
-            let applet = jmolAppletInline([500, 500], `19
+            let applet = jmolAppletInline([500, 500], \`19
 struct 1
 O      2.449      0.404     -0.527      0.000      0.005      0.012      0.030
 C      1.254      0.308      0.200      0.000     -0.001      0.007      0.018
@@ -184,42 +192,42 @@ H     -2.573     -0.527      0.092      0.000      0.003     -0.006     -0.019
 H     -0.956      1.188      1.286      0.000     -0.014     -0.003     -0.000
 H     -1.802      1.837     -0.172      0.000     -0.003     -0.003     -0.006
 H      0.180      0.855     -1.519      0.000      0.013      0.007      0.010
-H      0.614      2.283     -0.491      0.000     -0.001      0.006      0.017`, 'vibration on', '_9741ff');
+H      0.614      2.283     -0.491      0.000     -0.001      0.006      0.017\`, 'vibration on', '_217223');
             applet.serverURL = Jmol.Info.serverURL;
-            let wrapper = document.getElementById('jsmol-applet-9741ff-applet');
+            let wrapper = document.getElementById('jsmol-applet-217223-applet');
             wrapper.innerHTML = applet._code;
-            Jmol._appletNameMap['jsmol-applet-9741ff-applet'] = applet;
-            wrapper.ondelete = function() { delete Jmol._appletNameMap['jsmol-applet-9741ff-applet'] };
-            if ('jsmol-applet-9741ff-interface'.length) {
-                document.getElementById('jsmol-applet-9741ff-interface').innerHTML = `<div style='display:block'&gt;
-<textarea id=&quot;jsmol-applet-9741ff-applet-script-input&quot; style=&quot;width:100%;&quot;&gt;</textarea&gt;
+            Jmol._appletNameMap['jsmol-applet-217223-applet'] = applet;
+            wrapper.ondelete = function() { delete Jmol._appletNameMap['jsmol-applet-217223-applet'] };
+            if ('jsmol-applet-217223-interface'.length) {
+                document.getElementById('jsmol-applet-217223-interface').innerHTML = \`<div style='display:block'&amp;gt;
+<textarea id=&amp;quot;jsmol-applet-217223-applet-script-input&amp;quot; style=&amp;quot;width:100%;&amp;quot;&amp;gt;</textarea&amp;gt;
 
-<button id=&quot;jsmol-applet-9741ff-applet-button-input&quot; onclick=&quot;
+<button id=&amp;quot;jsmol-applet-217223-applet-button-input&amp;quot; onclick=&amp;quot;
                 (function() {
-                    const script = document.getElementById('jsmol-applet-9741ff-applet-script-input').value;
-                    const app = Jmol._appletNameMap['jsmol-applet-9741ff-applet'];
+                    const script = document.getElementById('jsmol-applet-217223-applet-script-input').value;
+                    const app = Jmol._appletNameMap['jsmol-applet-217223-applet'];
                     app._script(script);
-                    document.getElementById('jsmol-applet-9741ff-applet-script-input').value = '';
+                    document.getElementById('jsmol-applet-217223-applet-script-input').value = '';
                 })()
-                &quot;&gt;Run Script</button&gt;
+                &amp;quot;&amp;gt;Run Script</button&amp;gt;
 
-<div style=&quot;display:flex;&quot;&gt;<button onclick=&quot;
+<div style=&amp;quot;display:flex;&amp;quot;&amp;gt;<button onclick=&amp;quot;
 (function(){
   let link = document.createElement('a');
-  let base_name = 'jmolApplet_9741ff_appletdiv';
+  let base_name = 'jmolApplet_217223_appletdiv';
   link.download = base_name + '.png';
-  link.href = document.getElementById('jmolApplet_9741ff_appletdiv').getElementsByTagName('canvas')[0].toDataURL()
+  link.href = document.getElementById('jmolApplet_217223_appletdiv').getElementsByTagName('canvas')[0].toDataURL()
   link.click();
 })()
-       &quot;&gt;Save Figure</button&gt;<button onclick=&quot;
+       &amp;quot;&amp;gt;Save Figure</button&amp;gt;<button onclick=&amp;quot;
     (function(){
-        let canvas = document.getElementById('jmolApplet_9741ff_appletdiv').getElementsByTagName('canvas')[0];
+        let canvas = document.getElementById('jmolApplet_217223_appletdiv').getElementsByTagName('canvas')[0];
         
         let pollingRate = (typeof canvas.pollingRate === 'undefined') ? 30 : canvas.pollingRate;
-        let videoFormat = (typeof canvas.videoFormat === 'undefined') ? &amp;quot;video/webm&amp;quot; : canvas.videoFormat;
+        let videoFormat = (typeof canvas.videoFormat === 'undefined') ? &amp;amp;quot;video/webm&amp;amp;quot; : canvas.videoFormat;
         let videoExtension = canvas.videoExtension;
         if (typeof canvas.videoExtension === 'undefined') {
-            videoExtension = &amp;quot;&amp;quot;
+            videoExtension = &amp;amp;quot;&amp;amp;quot;
         }
         let x3DRecordingStream = canvas.captureStream(pollingRate);
         let mediaRecorder = new MediaRecorder(x3DRecordingStream, {mimeType: videoFormat});
@@ -231,7 +239,7 @@ H      0.614      2.283     -0.491      0.000     -0.001      0.006      0.017`,
         
         mediaRecorder.onstop = function(e) {
           link = document.createElement('a');
-          const base_name = 'jmolApplet_9741ff_appletdiv';
+          const base_name = 'jmolApplet_217223_appletdiv';
           const blob = mediaRecorder.frames[0];
           link.download = base_name + videoExtension;
           console.log(blob);
@@ -243,20 +251,22 @@ H      0.614      2.283     -0.491      0.000     -0.001      0.006      0.017`,
         };
         
         let duration = (typeof canvas.recordingDuration === 'undefined') ? 2 : canvas.recordingDuration;
-        setTimeout(() =&amp;gt; {mediaRecorder.stop()}, duration * 1000);
+        setTimeout(() =&amp;amp;gt; {mediaRecorder.stop()}, duration * 1000);
         mediaRecorder.start()
     })()
-           &quot;&gt;Record Animation</button&gt;<input value=&quot;2&quot; id=&quot;jsmol-applet-9741ff-applet-duration-input&quot; oninput=&quot;
+           &amp;quot;&amp;gt;Record Animation</button&amp;gt;<input value=&amp;quot;2&amp;quot; id=&amp;quot;jsmol-applet-217223-applet-duration-input&amp;quot; oninput=&amp;quot;
     (function(){
-        let canvas = document.getElementById('jsmol-applet-9741ff-applet').getElementsByTagName('canvas')[0];
-        let input = document.getElementById('jsmol-applet-9741ff-applet-duration-input');
+        let canvas = document.getElementById('jsmol-applet-217223-applet').getElementsByTagName('canvas')[0];
+        let input = document.getElementById('jsmol-applet-217223-applet-duration-input');
         
         canvas.recordingDuration = input.value;
     })()
-           &quot;&gt;</div&gt;
-</div&gt;`;
+           &amp;quot;&amp;gt;</div&amp;gt;
+</div&amp;gt;\`;
             }
         }
     })
 })();
-"></script></div><div id="jsmol-applet-9741ff-interface" style="height:200px; width:100%; padding:2rem;"></div></div>
+&quot;&gt;</script&gt;`);
+                                document.head.appendChild(frag);
+                            })()"></div><div id="jsmol-applet-217223-interface" style="height:200px; width:100%; padding:2rem;"></div></div>
