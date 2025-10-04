@@ -20,7 +20,62 @@ from Psience.Molecools import Molecule
 mol = Molecule.from_string('cyclohexanol')
 mol
 ```
-<div id="jsmol-applet-6b0900" style="width:500px; height:500px;"><script src="https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/JSmol.min.js" onload="\n(function() {\n   $.getScript(\'https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/js/Jmol2.js\').then(\n   () =&gt; {\n       \n        if (typeof Jmol._patched === \'undefined\') {\n            Jmol._patched = true;\n            Jmol._serverUrl = Jmol.Info[&quot;serverURL&quot;];\n            Jmol._appletNameMap = {};\n            jmolInitialize(\'https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/\');\n        };\n        \n       let loaded = false;\n        if (!loaded) {\n            if (typeof Jmol._appletNameMap === &quot;undefined&quot;) {\n                Jmol._appletNameMap = {}\n            };\n            loaded = true;\n            let applet = jmolAppletInline([500, 500], `19\nstruct 0\nO      2.449      0.404     -0.527\nC      1.254      0.308      0.200\nC      0.757     -1.104      0.065\nC     -0.588     -1.192      0.752\nC     -1.514     -0.343     -0.117\nC     -1.085      1.088      0.179\nC      0.282      1.237     -0.477\nH      2.279      0.002     -1.422\nH      1.427      0.549      1.263\nH      0.571     -1.321     -1.013\nH      1.446     -1.851      0.474\nH     -0.491     -0.707      1.756\nH     -0.957     -2.219      0.876\nH     -1.292     -0.489     -1.205\nH     -2.573     -0.527      0.092\nH     -0.956      1.188      1.286\nH     -1.802      1.837     -0.172\nH      0.180      0.855     -1.519\nH      0.614      2.283     -0.491`, \'\', \'_6b0900\');\n            applet.serverURL = Jmol.Info.serverURL;\n            let wrapper = document.getElementById(\'jsmol-applet-6b0900\');\n            wrapper.innerHTML = applet._code;\n            Jmol._appletNameMap[\'jsmol-applet-6b0900\'] = applet;\n            wrapper.ondelete = function() { delete Jmol._appletNameMap[\'jsmol-applet-6b0900\'] };\n            if (\'\'.length) {\n                document.getElementById(\'\').innerHTML = applet._code;\n            }\n        }\n    })\n})();\n"></script></div>
+<div id="jsmol-applet-4769d8" style="width:500px; height:500px;"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="tmp-49f604fb-d" onload="
+                            (function() {
+                                document.getElementById('tmp-49f604fb-d').remove();
+                                const frag = document.createRange().createContextualFragment(`<script src=&quot;https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/JSmol.min.js&quot; onload=&quot;
+(function() {
+   $.getScript('https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/js/Jmol2.js').then(
+   () =&amp;gt; {
+       
+        if (typeof Jmol._patched === 'undefined') {
+            Jmol._patched = true;
+            Jmol._serverUrl = Jmol.Info[&amp;quot;serverURL&amp;quot;];
+            Jmol._appletNameMap = {};
+            jmolInitialize('https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/');
+        };
+        
+       let loaded = false;
+        if (!loaded) {
+            if (typeof Jmol._appletNameMap === &amp;quot;undefined&amp;quot;) {
+                Jmol._appletNameMap = {}
+            };
+            loaded = true;
+            let applet = jmolAppletInline([500, 500], \`19
+struct 0
+O      2.449      0.404     -0.527
+C      1.254      0.308      0.200
+C      0.757     -1.104      0.065
+C     -0.588     -1.192      0.752
+C     -1.514     -0.343     -0.117
+C     -1.085      1.088      0.179
+C      0.282      1.237     -0.477
+H      2.279      0.002     -1.422
+H      1.427      0.549      1.263
+H      0.571     -1.321     -1.013
+H      1.446     -1.851      0.474
+H     -0.491     -0.707      1.756
+H     -0.957     -2.219      0.876
+H     -1.292     -0.489     -1.205
+H     -2.573     -0.527      0.092
+H     -0.956      1.188      1.286
+H     -1.802      1.837     -0.172
+H      0.180      0.855     -1.519
+H      0.614      2.283     -0.491\`, '', '_4769d8');
+            applet.serverURL = Jmol.Info.serverURL;
+            let wrapper = document.getElementById('jsmol-applet-4769d8');
+            wrapper.innerHTML = applet._code;
+            Jmol._appletNameMap['jsmol-applet-4769d8'] = applet;
+            wrapper.ondelete = function() { delete Jmol._appletNameMap['jsmol-applet-4769d8'] };
+            if (''.length) {
+                document.getElementById('').innerHTML = applet._code;
+            }
+        }
+    })
+})();
+&quot;&gt;</script&gt;`);
+                                document.head.appendChild(frag);
+                            })()"></div>
 Behind the scenes, this just uses an [embeddable version of JSMol](https://github.com/b3m2a1/jsmol-cdn) I tweaked from the source and a rich HTML construction library I built to support [JHTML](/jhtml-a-web-framework-for-jupyter). This molecules get exported directly into the HTML and so can easily be shared as well as visualized.
 
 ### Animation Support
@@ -32,7 +87,57 @@ Much of my work involves mapping out chemical dynamics, so being able to visuali
 int_mol = mol.modify(internals='auto') # pick reasonable internal coordinates
 int_mol.animate_coordinate(-1)
 ```
-<div id="jsmol-applet-6c8d24" style="width:500px; height:500px;"><script src="https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/JSmol.min.js" onload="\n(function() {\n   $.getScript(\'https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/js/Jmol2.js\').then(\n   () =&gt; {\n       \n        if (typeof Jmol._patched === \'undefined\') {\n            Jmol._patched = true;\n            Jmol._serverUrl = Jmol.Info[&quot;serverURL&quot;];\n            Jmol._appletNameMap = {};\n            jmolInitialize(\'https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/\');\n        };\n        \n       let loaded = false;\n        if (!loaded) {\n            if (typeof Jmol._appletNameMap === &quot;undefined&quot;) {\n                Jmol._appletNameMap = {}\n            };\n            loaded = true;\n            let applet = jmolAppletInline([500, 500], `19\nstruct 1\nO      2.449      0.404     -0.527      0.000     -0.016     -0.208     -0.200\nC      1.254      0.308      0.200      0.000      0.109      0.128      0.051\nC      0.757     -1.104      0.065      0.000      0.033      0.140      0.121\nC     -0.588     -1.192      0.752      0.000     -0.012      0.011      0.013\nC     -1.514     -0.343     -0.117      0.000      0.013     -0.072     -0.114\nC     -1.085      1.088      0.179      0.000     -0.129     -0.055     -0.036\nC      0.282      1.237     -0.477      0.000     -0.019      0.110      0.229\nH      2.279      0.002     -1.422      0.000     -0.286     -0.258     -0.126\nH      1.427      0.549      1.263      0.000      0.072      0.032      0.079\nH      0.571     -1.321     -1.013      0.000     -0.043      0.172      0.128\nH      1.446     -1.851      0.474      0.000      0.049      0.153      0.116\nH     -0.491     -0.707      1.756      0.000     -0.144     -0.034      0.047\nH     -0.957     -2.219      0.876      0.000      0.037     -0.016     -0.067\nH     -1.292     -0.489     -1.205      0.000      0.165     -0.047     -0.087\nH     -2.573     -0.527      0.092      0.000      0.002     -0.166     -0.253\nH     -0.956      1.188      1.286      0.000     -0.302     -0.156     -0.007\nH     -1.802      1.837     -0.172      0.000     -0.123     -0.074     -0.091\nH      0.180      0.855     -1.519      0.000      0.917      0.463      0.009\nH      0.614      2.283     -0.491      0.000     -0.023      0.112      0.283`, \'vibration on\', \'_6c8d24\');\n            applet.serverURL = Jmol.Info.serverURL;\n            let wrapper = document.getElementById(\'jsmol-applet-6c8d24\');\n            wrapper.innerHTML = applet._code;\n            Jmol._appletNameMap[\'jsmol-applet-6c8d24\'] = applet;\n            wrapper.ondelete = function() { delete Jmol._appletNameMap[\'jsmol-applet-6c8d24\'] };\n            if (\'\'.length) {\n                document.getElementById(\'\').innerHTML = applet._code;\n            }\n        }\n    })\n})();\n"></script></div>
+<div id="jsmol-applet-f74449" style="width:500px; height:500px;"><script src="https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/JSmol.min.js" onload="
+(function() {
+   $.getScript('https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/js/Jmol2.js').then(
+   () =&gt; {
+       
+        if (typeof Jmol._patched === 'undefined') {
+            Jmol._patched = true;
+            Jmol._serverUrl = Jmol.Info[&quot;serverURL&quot;];
+            Jmol._appletNameMap = {};
+            jmolInitialize('https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/');
+        };
+        
+       let loaded = false;
+        if (!loaded) {
+            if (typeof Jmol._appletNameMap === &quot;undefined&quot;) {
+                Jmol._appletNameMap = {}
+            };
+            loaded = true;
+            let applet = jmolAppletInline([500, 500], `19
+struct 1
+O      2.449      0.404     -0.527      0.000     -0.016     -0.208     -0.200
+C      1.254      0.308      0.200      0.000      0.109      0.128      0.051
+C      0.757     -1.104      0.065      0.000      0.033      0.140      0.121
+C     -0.588     -1.192      0.752      0.000     -0.012      0.011      0.013
+C     -1.514     -0.343     -0.117      0.000      0.013     -0.072     -0.114
+C     -1.085      1.088      0.179      0.000     -0.129     -0.055     -0.036
+C      0.282      1.237     -0.477      0.000     -0.019      0.110      0.229
+H      2.279      0.002     -1.422      0.000     -0.286     -0.258     -0.126
+H      1.427      0.549      1.263      0.000      0.072      0.032      0.079
+H      0.571     -1.321     -1.013      0.000     -0.043      0.172      0.128
+H      1.446     -1.851      0.474      0.000      0.049      0.153      0.116
+H     -0.491     -0.707      1.756      0.000     -0.144     -0.034      0.047
+H     -0.957     -2.219      0.876      0.000      0.037     -0.016     -0.067
+H     -1.292     -0.489     -1.205      0.000      0.165     -0.047     -0.087
+H     -2.573     -0.527      0.092      0.000      0.002     -0.166     -0.253
+H     -0.956      1.188      1.286      0.000     -0.302     -0.156     -0.007
+H     -1.802      1.837     -0.172      0.000     -0.123     -0.074     -0.091
+H      0.180      0.855     -1.519      0.000      0.917      0.463      0.009
+H      0.614      2.283     -0.491      0.000     -0.023      0.112      0.283`, 'vibration on', '_f74449');
+            applet.serverURL = Jmol.Info.serverURL;
+            let wrapper = document.getElementById('jsmol-applet-f74449');
+            wrapper.innerHTML = applet._code;
+            Jmol._appletNameMap['jsmol-applet-f74449'] = applet;
+            wrapper.ondelete = function() { delete Jmol._appletNameMap['jsmol-applet-f74449'] };
+            if (''.length) {
+                document.getElementById('').innerHTML = applet._code;
+            }
+        }
+    })
+})();
+"></script></div>
 ### Better Script Support
 
 The JSMol interface can also be a little bit finnicky, so I added a (very ugly) system for running scripts and doing screen recordings
@@ -41,4 +146,117 @@ The JSMol interface can also be a little bit finnicky, so I added a (very ugly) 
 ```python
 int_mol.animate_coordinate(0, include_script_interface=True)
 ```
-<div id="jsmol-applet-76f3fd" style="width:500px; height:700px;"><div id="jsmol-applet-76f3fd-applet" style="width:100%; height:500px;"><script src="https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/JSmol.min.js" onload="\n(function() {\n   $.getScript(\'https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/js/Jmol2.js\').then(\n   () =&gt; {\n       \n        if (typeof Jmol._patched === \'undefined\') {\n            Jmol._patched = true;\n            Jmol._serverUrl = Jmol.Info[&quot;serverURL&quot;];\n            Jmol._appletNameMap = {};\n            jmolInitialize(\'https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/\');\n        };\n        \n       let loaded = false;\n        if (!loaded) {\n            if (typeof Jmol._appletNameMap === &quot;undefined&quot;) {\n                Jmol._appletNameMap = {}\n            };\n            loaded = true;\n            let applet = jmolAppletInline([500, 500], `19\nstruct 1\nO      2.449      0.404     -0.527      0.000      0.005      0.012      0.030\nC      1.254      0.308      0.200      0.000     -0.001      0.007      0.018\nC      0.757     -1.104      0.065      0.000      0.005      0.005      0.010\nC     -0.588     -1.192      0.752      0.000     -0.001     -0.001     -0.002\nC     -1.514     -0.343     -0.117      0.000      0.004     -0.002     -0.009\nC     -1.085      1.088      0.179      0.000     -0.004     -0.001     -0.002\nC      0.282      1.237     -0.477      0.000      0.002      0.005      0.011\nH      2.279      0.002     -1.422      0.000     -0.146     -0.367     -0.822\nH      1.427      0.549      1.263      0.000     -0.012      0.005      0.020\nH      0.571     -1.321     -1.013      0.000      0.015      0.007      0.008\nH      1.446     -1.851      0.474      0.000      0.003      0.007      0.015\nH     -0.491     -0.707      1.756      0.000     -0.012     -0.003     -0.000\nH     -0.957     -2.219      0.876      0.000      0.001     -0.002     -0.008\nH     -1.292     -0.489     -1.205      0.000      0.014      0.002     -0.007\nH     -2.573     -0.527      0.092      0.000      0.003     -0.006     -0.019\nH     -0.956      1.188      1.286      0.000     -0.014     -0.003     -0.000\nH     -1.802      1.837     -0.172      0.000     -0.003     -0.003     -0.006\nH      0.180      0.855     -1.519      0.000      0.013      0.007      0.010\nH      0.614      2.283     -0.491      0.000     -0.001      0.006      0.017`, \'vibration on\', \'_76f3fd\');\n            applet.serverURL = Jmol.Info.serverURL;\n            let wrapper = document.getElementById(\'jsmol-applet-76f3fd-applet\');\n            wrapper.innerHTML = applet._code;\n            Jmol._appletNameMap[\'jsmol-applet-76f3fd-applet\'] = applet;\n            wrapper.ondelete = function() { delete Jmol._appletNameMap[\'jsmol-applet-76f3fd-applet\'] };\n            if (\'jsmol-applet-76f3fd-interface\'.length) {\n                document.getElementById(\'jsmol-applet-76f3fd-interface\').innerHTML = `<div style=\'display:block\'&gt;\n<textarea id=&quot;jsmol-applet-76f3fd-applet-script-input&quot; style=&quot;width:100%;&quot;&gt;</textarea&gt;\n\n<button id=&quot;jsmol-applet-76f3fd-applet-button-input&quot; onclick=&quot;\n                (function() {\n                    const script = document.getElementById(\'jsmol-applet-76f3fd-applet-script-input\').value;\n                    const app = Jmol._appletNameMap[\'jsmol-applet-76f3fd-applet\'];\n                    app._script(script);\n                    document.getElementById(\'jsmol-applet-76f3fd-applet-script-input\').value = \'\';\n                })()\n                &quot;&gt;Run Script</button&gt;\n\n<div style=&quot;display:flex;&quot;&gt;<button onclick=&quot;\n(function(){\n  let link = document.createElement(\'a\');\n  let base_name = \'jmolApplet_76f3fd_appletdiv\';\n  link.download = base_name + \'.png\';\n  link.href = document.getElementById(\'jmolApplet_76f3fd_appletdiv\').getElementsByTagName(\'canvas\')[0].toDataURL()\n  link.click();\n})()\n       &quot;&gt;Save Figure</button&gt;<button onclick=&quot;\n    (function(){\n        let canvas = document.getElementById(\'jmolApplet_76f3fd_appletdiv\').getElementsByTagName(\'canvas\')[0];\n        \n        let pollingRate = (typeof canvas.pollingRate === \'undefined\') ? 30 : canvas.pollingRate;\n        let videoFormat = (typeof canvas.videoFormat === \'undefined\') ? &amp;quot;video/webm&amp;quot; : canvas.videoFormat;\n        let videoExtension = canvas.videoExtension;\n        if (typeof canvas.videoExtension === \'undefined\') {\n            videoExtension = &amp;quot;&amp;quot;\n        }\n        let x3DRecordingStream = canvas.captureStream(pollingRate);\n        let mediaRecorder = new MediaRecorder(x3DRecordingStream, {mimeType: videoFormat});\n        \n        mediaRecorder.frames = [];\n        mediaRecorder.ondataavailable = function(e) {\n          mediaRecorder.frames.push(e.data);\n        };\n        \n        mediaRecorder.onstop = function(e) {\n          link = document.createElement(\'a\');\n          const base_name = \'jmolApplet_76f3fd_appletdiv\';\n          const blob = mediaRecorder.frames[0];\n          link.download = base_name + videoExtension;\n          console.log(blob);\n          const blobURL = window.URL.createObjectURL(blob);\n          link.href = blobURL;\n          console.log(blobURL);\n          mediaRecorder.frames = [];\n          link.click();\n        };\n        \n        let duration = (typeof canvas.recordingDuration === \'undefined\') ? 2 : canvas.recordingDuration;\n        setTimeout(() =&amp;gt; {mediaRecorder.stop()}, duration * 1000);\n        mediaRecorder.start()\n    })()\n           &quot;&gt;Record Animation</button&gt;<input value=&quot;2&quot; id=&quot;jsmol-applet-76f3fd-applet-duration-input&quot; oninput=&quot;\n    (function(){\n        let canvas = document.getElementById(\'jsmol-applet-76f3fd-applet\').getElementsByTagName(\'canvas\')[0];\n        let input = document.getElementById(\'jsmol-applet-76f3fd-applet-duration-input\');\n        \n        canvas.recordingDuration = input.value;\n    })()\n           &quot;&gt;</div&gt;\n</div&gt;`;\n            }\n        }\n    })\n})();\n"></script></div><div id="jsmol-applet-76f3fd-interface" style="height:200px; width:100%; padding:2rem;"></div></div>
+<div id="jsmol-applet-9741ff" style="width:500px; height:700px;"><div id="jsmol-applet-9741ff-applet" style="width:100%; height:500px;"><script src="https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/JSmol.min.js" onload="
+(function() {
+   $.getScript('https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/js/Jmol2.js').then(
+   () =&gt; {
+       
+        if (typeof Jmol._patched === 'undefined') {
+            Jmol._patched = true;
+            Jmol._serverUrl = Jmol.Info[&quot;serverURL&quot;];
+            Jmol._appletNameMap = {};
+            jmolInitialize('https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/');
+        };
+        
+       let loaded = false;
+        if (!loaded) {
+            if (typeof Jmol._appletNameMap === &quot;undefined&quot;) {
+                Jmol._appletNameMap = {}
+            };
+            loaded = true;
+            let applet = jmolAppletInline([500, 500], `19
+struct 1
+O      2.449      0.404     -0.527      0.000      0.005      0.012      0.030
+C      1.254      0.308      0.200      0.000     -0.001      0.007      0.018
+C      0.757     -1.104      0.065      0.000      0.005      0.005      0.010
+C     -0.588     -1.192      0.752      0.000     -0.001     -0.001     -0.002
+C     -1.514     -0.343     -0.117      0.000      0.004     -0.002     -0.009
+C     -1.085      1.088      0.179      0.000     -0.004     -0.001     -0.002
+C      0.282      1.237     -0.477      0.000      0.002      0.005      0.011
+H      2.279      0.002     -1.422      0.000     -0.146     -0.367     -0.822
+H      1.427      0.549      1.263      0.000     -0.012      0.005      0.020
+H      0.571     -1.321     -1.013      0.000      0.015      0.007      0.008
+H      1.446     -1.851      0.474      0.000      0.003      0.007      0.015
+H     -0.491     -0.707      1.756      0.000     -0.012     -0.003     -0.000
+H     -0.957     -2.219      0.876      0.000      0.001     -0.002     -0.008
+H     -1.292     -0.489     -1.205      0.000      0.014      0.002     -0.007
+H     -2.573     -0.527      0.092      0.000      0.003     -0.006     -0.019
+H     -0.956      1.188      1.286      0.000     -0.014     -0.003     -0.000
+H     -1.802      1.837     -0.172      0.000     -0.003     -0.003     -0.006
+H      0.180      0.855     -1.519      0.000      0.013      0.007      0.010
+H      0.614      2.283     -0.491      0.000     -0.001      0.006      0.017`, 'vibration on', '_9741ff');
+            applet.serverURL = Jmol.Info.serverURL;
+            let wrapper = document.getElementById('jsmol-applet-9741ff-applet');
+            wrapper.innerHTML = applet._code;
+            Jmol._appletNameMap['jsmol-applet-9741ff-applet'] = applet;
+            wrapper.ondelete = function() { delete Jmol._appletNameMap['jsmol-applet-9741ff-applet'] };
+            if ('jsmol-applet-9741ff-interface'.length) {
+                document.getElementById('jsmol-applet-9741ff-interface').innerHTML = `<div style='display:block'&gt;
+<textarea id=&quot;jsmol-applet-9741ff-applet-script-input&quot; style=&quot;width:100%;&quot;&gt;</textarea&gt;
+
+<button id=&quot;jsmol-applet-9741ff-applet-button-input&quot; onclick=&quot;
+                (function() {
+                    const script = document.getElementById('jsmol-applet-9741ff-applet-script-input').value;
+                    const app = Jmol._appletNameMap['jsmol-applet-9741ff-applet'];
+                    app._script(script);
+                    document.getElementById('jsmol-applet-9741ff-applet-script-input').value = '';
+                })()
+                &quot;&gt;Run Script</button&gt;
+
+<div style=&quot;display:flex;&quot;&gt;<button onclick=&quot;
+(function(){
+  let link = document.createElement('a');
+  let base_name = 'jmolApplet_9741ff_appletdiv';
+  link.download = base_name + '.png';
+  link.href = document.getElementById('jmolApplet_9741ff_appletdiv').getElementsByTagName('canvas')[0].toDataURL()
+  link.click();
+})()
+       &quot;&gt;Save Figure</button&gt;<button onclick=&quot;
+    (function(){
+        let canvas = document.getElementById('jmolApplet_9741ff_appletdiv').getElementsByTagName('canvas')[0];
+        
+        let pollingRate = (typeof canvas.pollingRate === 'undefined') ? 30 : canvas.pollingRate;
+        let videoFormat = (typeof canvas.videoFormat === 'undefined') ? &amp;quot;video/webm&amp;quot; : canvas.videoFormat;
+        let videoExtension = canvas.videoExtension;
+        if (typeof canvas.videoExtension === 'undefined') {
+            videoExtension = &amp;quot;&amp;quot;
+        }
+        let x3DRecordingStream = canvas.captureStream(pollingRate);
+        let mediaRecorder = new MediaRecorder(x3DRecordingStream, {mimeType: videoFormat});
+        
+        mediaRecorder.frames = [];
+        mediaRecorder.ondataavailable = function(e) {
+          mediaRecorder.frames.push(e.data);
+        };
+        
+        mediaRecorder.onstop = function(e) {
+          link = document.createElement('a');
+          const base_name = 'jmolApplet_9741ff_appletdiv';
+          const blob = mediaRecorder.frames[0];
+          link.download = base_name + videoExtension;
+          console.log(blob);
+          const blobURL = window.URL.createObjectURL(blob);
+          link.href = blobURL;
+          console.log(blobURL);
+          mediaRecorder.frames = [];
+          link.click();
+        };
+        
+        let duration = (typeof canvas.recordingDuration === 'undefined') ? 2 : canvas.recordingDuration;
+        setTimeout(() =&amp;gt; {mediaRecorder.stop()}, duration * 1000);
+        mediaRecorder.start()
+    })()
+           &quot;&gt;Record Animation</button&gt;<input value=&quot;2&quot; id=&quot;jsmol-applet-9741ff-applet-duration-input&quot; oninput=&quot;
+    (function(){
+        let canvas = document.getElementById('jsmol-applet-9741ff-applet').getElementsByTagName('canvas')[0];
+        let input = document.getElementById('jsmol-applet-9741ff-applet-duration-input');
+        
+        canvas.recordingDuration = input.value;
+    })()
+           &quot;&gt;</div&gt;
+</div&gt;`;
+            }
+        }
+    })
+})();
+"></script></div><div id="jsmol-applet-9741ff-interface" style="height:200px; width:100%; padding:2rem;"></div></div>
