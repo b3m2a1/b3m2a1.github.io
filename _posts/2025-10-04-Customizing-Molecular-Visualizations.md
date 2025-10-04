@@ -20,21 +20,23 @@ from Psience.Molecools import Molecule
 mol = Molecule.from_string('cyclohexanol')
 mol
 ```
-<div id="jsmol-applet-4769d8" style="width:500px; height:500px;"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="tmp-49f604fb-d" onload="
+
+
+<div class="jhtml"><div id="jsmol-applet-bf0e6e" style="width:500px; height:500px;"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="tmp-ba42c6c5-9" onload="
                             (function() {
-                                document.getElementById('tmp-49f604fb-d').remove();
+                                document.getElementById('tmp-ba42c6c5-9').remove();
                                 const frag = document.createRange().createContextualFragment(`<script src=&quot;https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/JSmol.min.js&quot; onload=&quot;
 (function() {
    $.getScript('https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/js/Jmol2.js').then(
    () =&amp;gt; {
-       
+
         if (typeof Jmol._patched === 'undefined') {
             Jmol._patched = true;
             Jmol._serverUrl = Jmol.Info[&amp;quot;serverURL&amp;quot;];
             Jmol._appletNameMap = {};
             jmolInitialize('https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/');
         };
-        
+
        let loaded = false;
         if (!loaded) {
             if (typeof Jmol._appletNameMap === &amp;quot;undefined&amp;quot;) {
@@ -43,30 +45,30 @@ mol
             loaded = true;
             let applet = jmolAppletInline([500, 500], \`19
 struct 0
-O      2.449      0.404     -0.527
-C      1.254      0.308      0.200
-C      0.757     -1.104      0.065
-C     -0.588     -1.192      0.752
-C     -1.514     -0.343     -0.117
-C     -1.085      1.088      0.179
-C      0.282      1.237     -0.477
-H      2.279      0.002     -1.422
-H      1.427      0.549      1.263
-H      0.571     -1.321     -1.013
-H      1.446     -1.851      0.474
-H     -0.491     -0.707      1.756
-H     -0.957     -2.219      0.876
-H     -1.292     -0.489     -1.205
-H     -2.573     -0.527      0.092
-H     -0.956      1.188      1.286
-H     -1.802      1.837     -0.172
-H      0.180      0.855     -1.519
-H      0.614      2.283     -0.491\`, '', '_4769d8');
+O      1.812     -0.007     -1.117
+C      1.291      0.088      0.190
+C      0.527     -1.217      0.409
+C     -0.657     -1.142     -0.547
+C     -1.601     -0.143      0.116
+C     -0.970      1.201     -0.066
+C      0.441      1.296      0.373
+H      2.573     -0.632     -1.040
+H      2.145      0.148      0.879
+H      1.212     -2.045      0.171
+H      0.150     -1.295      1.441
+H     -0.286     -0.665     -1.485
+H     -1.135     -2.112     -0.722
+H     -2.550     -0.209     -0.414
+H     -1.662     -0.438      1.174
+H     -1.108      1.510     -1.129
+H     -1.571      1.933      0.527
+H      0.463      1.605      1.450
+H      0.925      2.124     -0.211\`, '', '_bf0e6e');
             applet.serverURL = Jmol.Info.serverURL;
-            let wrapper = document.getElementById('jsmol-applet-4769d8');
+            let wrapper = document.getElementById('jsmol-applet-bf0e6e');
             wrapper.innerHTML = applet._code;
-            Jmol._appletNameMap['jsmol-applet-4769d8'] = applet;
-            wrapper.ondelete = function() { delete Jmol._appletNameMap['jsmol-applet-4769d8'] };
+            Jmol._appletNameMap['jsmol-applet-bf0e6e'] = applet;
+            wrapper.ondelete = function() { delete Jmol._appletNameMap['jsmol-applet-bf0e6e'] };
             if (''.length) {
                 document.getElementById('').innerHTML = applet._code;
             }
@@ -75,7 +77,9 @@ H      0.614      2.283     -0.491\`, '', '_4769d8');
 })();
 &quot;&gt;</script&gt;`);
                                 document.head.appendChild(frag);
-                            })()"></div>
+                            })()"></div></div>
+
+
 Behind the scenes, this just uses an [embeddable version of JSMol](https://github.com/b3m2a1/jsmol-cdn) I tweaked from the source and a rich HTML construction library I built to support [JHTML](/jhtml-a-web-framework-for-jupyter). This molecules get exported directly into the HTML and so can easily be shared as well as visualized.
 
 ### Animation Support
@@ -87,21 +91,23 @@ Much of my work involves mapping out chemical dynamics, so being able to visuali
 int_mol = mol.modify(internals='auto') # pick reasonable internal coordinates
 int_mol.animate_coordinate(-1)
 ```
-<div id="jsmol-applet-12dc07" style="width:500px; height:500px;"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="tmp-120fed00-0" onload="
+
+
+<div class="jhtml"><div id="jsmol-applet-4d5136" style="width:500px; height:500px;"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="tmp-02e25222-9" onload="
                             (function() {
-                                document.getElementById('tmp-120fed00-0').remove();
+                                document.getElementById('tmp-02e25222-9').remove();
                                 const frag = document.createRange().createContextualFragment(`<script src=&quot;https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/JSmol.min.js&quot; onload=&quot;
 (function() {
    $.getScript('https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/js/Jmol2.js').then(
    () =&amp;gt; {
-       
+
         if (typeof Jmol._patched === 'undefined') {
             Jmol._patched = true;
             Jmol._serverUrl = Jmol.Info[&amp;quot;serverURL&amp;quot;];
             Jmol._appletNameMap = {};
             jmolInitialize('https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/');
         };
-        
+
        let loaded = false;
         if (!loaded) {
             if (typeof Jmol._appletNameMap === &amp;quot;undefined&amp;quot;) {
@@ -110,30 +116,30 @@ int_mol.animate_coordinate(-1)
             loaded = true;
             let applet = jmolAppletInline([500, 500], \`19
 struct 1
-O      2.449      0.404     -0.527      0.000     -0.016     -0.208     -0.200
-C      1.254      0.308      0.200      0.000      0.109      0.128      0.051
-C      0.757     -1.104      0.065      0.000      0.033      0.140      0.121
-C     -0.588     -1.192      0.752      0.000     -0.012      0.011      0.013
-C     -1.514     -0.343     -0.117      0.000      0.013     -0.072     -0.114
-C     -1.085      1.088      0.179      0.000     -0.129     -0.055     -0.036
-C      0.282      1.237     -0.477      0.000     -0.019      0.110      0.229
-H      2.279      0.002     -1.422      0.000     -0.286     -0.258     -0.126
-H      1.427      0.549      1.263      0.000      0.072      0.032      0.079
-H      0.571     -1.321     -1.013      0.000     -0.043      0.172      0.128
-H      1.446     -1.851      0.474      0.000      0.049      0.153      0.116
-H     -0.491     -0.707      1.756      0.000     -0.144     -0.034      0.047
-H     -0.957     -2.219      0.876      0.000      0.037     -0.016     -0.067
-H     -1.292     -0.489     -1.205      0.000      0.165     -0.047     -0.087
-H     -2.573     -0.527      0.092      0.000      0.002     -0.166     -0.253
-H     -0.956      1.188      1.286      0.000     -0.302     -0.156     -0.007
-H     -1.802      1.837     -0.172      0.000     -0.123     -0.074     -0.091
-H      0.180      0.855     -1.519      0.000      0.917      0.463      0.009
-H      0.614      2.283     -0.491      0.000     -0.023      0.112      0.283\`, 'vibration on', '_12dc07');
+O      1.812     -0.007     -1.117      0.000      0.094      0.053     -0.015
+C      1.291      0.088      0.190      0.000      0.022      0.138     -0.050
+C      0.527     -1.217      0.409      0.000     -0.246      0.314     -0.033
+C     -0.657     -1.142     -0.547      0.000     -0.296     -0.547     -0.092
+C     -1.601     -0.143      0.116      0.000      0.205     -0.108     -0.007
+C     -0.970      1.201     -0.066      0.000      0.140     -0.042      0.126
+C      0.441      1.296      0.373      0.000      0.115      0.152      0.082
+H      2.573     -0.632     -1.040      0.000      0.013     -0.039      0.044
+H      2.145      0.148      0.879      0.000     -0.057      0.096      0.052
+H      1.212     -2.045      0.171      0.000     -0.171      0.327      0.140
+H      0.150     -1.295      1.441      0.000     -0.344      0.670     -0.042
+H     -0.286     -0.665     -1.485      0.000      0.081     -0.790     -0.067
+H     -1.135     -2.112     -0.722      0.000     -0.986     -0.139     -0.471
+H     -2.550     -0.209     -0.414      0.000      0.277      0.419     -0.203
+H     -1.662     -0.438      1.174      0.000      0.054     -0.439     -0.108
+H     -1.108      1.510     -1.129      0.000      0.115      0.008      0.144
+H     -1.571      1.933      0.527      0.000      0.062     -0.155      0.186
+H      0.463      1.605      1.450      0.000      0.113      0.070      0.105
+H      0.925      2.124     -0.211      0.000      0.067      0.227      0.149\`, 'vibration on', '_4d5136');
             applet.serverURL = Jmol.Info.serverURL;
-            let wrapper = document.getElementById('jsmol-applet-12dc07');
+            let wrapper = document.getElementById('jsmol-applet-4d5136');
             wrapper.innerHTML = applet._code;
-            Jmol._appletNameMap['jsmol-applet-12dc07'] = applet;
-            wrapper.ondelete = function() { delete Jmol._appletNameMap['jsmol-applet-12dc07'] };
+            Jmol._appletNameMap['jsmol-applet-4d5136'] = applet;
+            wrapper.ondelete = function() { delete Jmol._appletNameMap['jsmol-applet-4d5136'] };
             if (''.length) {
                 document.getElementById('').innerHTML = applet._code;
             }
@@ -142,7 +148,9 @@ H      0.614      2.283     -0.491      0.000     -0.023      0.112      0.283\`
 })();
 &quot;&gt;</script&gt;`);
                                 document.head.appendChild(frag);
-                            })()"></div>
+                            })()"></div></div>
+
+
 ### Better Script Support
 
 The JSMol interface can also be a little bit finnicky, so I added a (very ugly) system for running scripts and doing screen recordings
@@ -151,21 +159,23 @@ The JSMol interface can also be a little bit finnicky, so I added a (very ugly) 
 ```python
 int_mol.animate_coordinate(0, include_script_interface=True)
 ```
-<div id="jsmol-applet-217223" style="width:500px; height:700px;"><div id="jsmol-applet-217223-applet" style="width:100%; height:500px;"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="tmp-7a76a4f6-1" onload="
+
+
+<div class="jhtml"><div id="jsmol-applet-9c37f8" style="width:500px; height:700px;"><div id="jsmol-applet-9c37f8-applet" style="width:100%; height:500px;"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="tmp-134a8df1-e" onload="
                             (function() {
-                                document.getElementById('tmp-7a76a4f6-1').remove();
+                                document.getElementById('tmp-134a8df1-e').remove();
                                 const frag = document.createRange().createContextualFragment(`<script src=&quot;https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/JSmol.min.js&quot; onload=&quot;
 (function() {
    $.getScript('https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/js/Jmol2.js').then(
    () =&amp;gt; {
-       
+
         if (typeof Jmol._patched === 'undefined') {
             Jmol._patched = true;
             Jmol._serverUrl = Jmol.Info[&amp;quot;serverURL&amp;quot;];
             Jmol._appletNameMap = {};
             jmolInitialize('https://cdn.jsdelivr.net/gh/b3m2a1/jsmol-cdn@16.3.7.9/jsmol/');
         };
-        
+
        let loaded = false;
         if (!loaded) {
             if (typeof Jmol._appletNameMap === &amp;quot;undefined&amp;quot;) {
@@ -174,55 +184,55 @@ int_mol.animate_coordinate(0, include_script_interface=True)
             loaded = true;
             let applet = jmolAppletInline([500, 500], \`19
 struct 1
-O      2.449      0.404     -0.527      0.000      0.005      0.012      0.030
-C      1.254      0.308      0.200      0.000     -0.001      0.007      0.018
-C      0.757     -1.104      0.065      0.000      0.005      0.005      0.010
-C     -0.588     -1.192      0.752      0.000     -0.001     -0.001     -0.002
-C     -1.514     -0.343     -0.117      0.000      0.004     -0.002     -0.009
-C     -1.085      1.088      0.179      0.000     -0.004     -0.001     -0.002
-C      0.282      1.237     -0.477      0.000      0.002      0.005      0.011
-H      2.279      0.002     -1.422      0.000     -0.146     -0.367     -0.822
-H      1.427      0.549      1.263      0.000     -0.012      0.005      0.020
-H      0.571     -1.321     -1.013      0.000      0.015      0.007      0.008
-H      1.446     -1.851      0.474      0.000      0.003      0.007      0.015
-H     -0.491     -0.707      1.756      0.000     -0.012     -0.003     -0.000
-H     -0.957     -2.219      0.876      0.000      0.001     -0.002     -0.008
-H     -1.292     -0.489     -1.205      0.000      0.014      0.002     -0.007
-H     -2.573     -0.527      0.092      0.000      0.003     -0.006     -0.019
-H     -0.956      1.188      1.286      0.000     -0.014     -0.003     -0.000
-H     -1.802      1.837     -0.172      0.000     -0.003     -0.003     -0.006
-H      0.180      0.855     -1.519      0.000      0.013      0.007      0.010
-H      0.614      2.283     -0.491      0.000     -0.001      0.006      0.017\`, 'vibration on', '_217223');
+O      1.812     -0.007     -1.117      0.000     -0.004      0.006      0.000
+C      1.291      0.088      0.190      0.000      0.003     -0.005      0.004
+C      0.527     -1.217      0.409      0.000      0.004     -0.007     -0.003
+C     -0.657     -1.142     -0.547      0.000     -0.001      0.001      0.004
+C     -1.601     -0.143      0.116      0.000      0.002     -0.005      0.017
+C     -0.970      1.201     -0.066      0.000      0.001     -0.003      0.025
+C      0.441      1.296      0.373      0.000      0.004     -0.006      0.018
+H      2.573     -0.632     -1.040      0.000     -0.004      0.005     -0.009
+H      2.145      0.148      0.879      0.000      0.006     -0.010     -0.000
+H      1.212     -2.045      0.171      0.000      0.003     -0.005     -0.013
+H      0.150     -1.295      1.441      0.000      0.010     -0.015     -0.001
+H     -0.286     -0.665     -1.485      0.000     -0.006      0.008      0.006
+H     -1.135     -2.112     -0.722      0.000     -0.002      0.002     -0.001
+H     -2.550     -0.209     -0.414      0.000     -0.000     -0.001      0.022
+H     -1.662     -0.438      1.174      0.000      0.008     -0.013      0.015
+H     -1.108      1.510     -1.129      0.000     -0.122      0.266     -0.873
+H     -1.571      1.933      0.527      0.000      0.004     -0.008      0.034
+H      0.463      1.605      1.450      0.000      0.009     -0.015      0.020
+H      0.925      2.124     -0.211      0.000      0.000     -0.002      0.022\`, 'vibration on', '_9c37f8');
             applet.serverURL = Jmol.Info.serverURL;
-            let wrapper = document.getElementById('jsmol-applet-217223-applet');
+            let wrapper = document.getElementById('jsmol-applet-9c37f8-applet');
             wrapper.innerHTML = applet._code;
-            Jmol._appletNameMap['jsmol-applet-217223-applet'] = applet;
-            wrapper.ondelete = function() { delete Jmol._appletNameMap['jsmol-applet-217223-applet'] };
-            if ('jsmol-applet-217223-interface'.length) {
-                document.getElementById('jsmol-applet-217223-interface').innerHTML = \`<div style='display:block'&amp;gt;
-<textarea id=&amp;quot;jsmol-applet-217223-applet-script-input&amp;quot; style=&amp;quot;width:100%;&amp;quot;&amp;gt;</textarea&amp;gt;
+            Jmol._appletNameMap['jsmol-applet-9c37f8-applet'] = applet;
+            wrapper.ondelete = function() { delete Jmol._appletNameMap['jsmol-applet-9c37f8-applet'] };
+            if ('jsmol-applet-9c37f8-interface'.length) {
+                document.getElementById('jsmol-applet-9c37f8-interface').innerHTML = \`<div style='display:block'&amp;gt;
+<textarea id=&amp;quot;jsmol-applet-9c37f8-applet-script-input&amp;quot; style=&amp;quot;width:100%;&amp;quot;&amp;gt;</textarea&amp;gt;
 
-<button id=&amp;quot;jsmol-applet-217223-applet-button-input&amp;quot; onclick=&amp;quot;
+<button id=&amp;quot;jsmol-applet-9c37f8-applet-button-input&amp;quot; onclick=&amp;quot;
                 (function() {
-                    const script = document.getElementById('jsmol-applet-217223-applet-script-input').value;
-                    const app = Jmol._appletNameMap['jsmol-applet-217223-applet'];
+                    const script = document.getElementById('jsmol-applet-9c37f8-applet-script-input').value;
+                    const app = Jmol._appletNameMap['jsmol-applet-9c37f8-applet'];
                     app._script(script);
-                    document.getElementById('jsmol-applet-217223-applet-script-input').value = '';
+                    document.getElementById('jsmol-applet-9c37f8-applet-script-input').value = '';
                 })()
                 &amp;quot;&amp;gt;Run Script</button&amp;gt;
 
 <div style=&amp;quot;display:flex;&amp;quot;&amp;gt;<button onclick=&amp;quot;
 (function(){
   let link = document.createElement('a');
-  let base_name = 'jmolApplet_217223_appletdiv';
+  let base_name = 'jmolApplet_9c37f8_appletdiv';
   link.download = base_name + '.png';
-  link.href = document.getElementById('jmolApplet_217223_appletdiv').getElementsByTagName('canvas')[0].toDataURL()
+  link.href = document.getElementById('jmolApplet_9c37f8_appletdiv').getElementsByTagName('canvas')[0].toDataURL()
   link.click();
 })()
        &amp;quot;&amp;gt;Save Figure</button&amp;gt;<button onclick=&amp;quot;
     (function(){
-        let canvas = document.getElementById('jmolApplet_217223_appletdiv').getElementsByTagName('canvas')[0];
-        
+        let canvas = document.getElementById('jmolApplet_9c37f8_appletdiv').getElementsByTagName('canvas')[0];
+
         let pollingRate = (typeof canvas.pollingRate === 'undefined') ? 30 : canvas.pollingRate;
         let videoFormat = (typeof canvas.videoFormat === 'undefined') ? &amp;amp;quot;video/webm&amp;amp;quot; : canvas.videoFormat;
         let videoExtension = canvas.videoExtension;
@@ -231,15 +241,15 @@ H      0.614      2.283     -0.491      0.000     -0.001      0.006      0.017\`
         }
         let x3DRecordingStream = canvas.captureStream(pollingRate);
         let mediaRecorder = new MediaRecorder(x3DRecordingStream, {mimeType: videoFormat});
-        
+
         mediaRecorder.frames = [];
         mediaRecorder.ondataavailable = function(e) {
           mediaRecorder.frames.push(e.data);
         };
-        
+
         mediaRecorder.onstop = function(e) {
           link = document.createElement('a');
-          const base_name = 'jmolApplet_217223_appletdiv';
+          const base_name = 'jmolApplet_9c37f8_appletdiv';
           const blob = mediaRecorder.frames[0];
           link.download = base_name + videoExtension;
           console.log(blob);
@@ -249,16 +259,16 @@ H      0.614      2.283     -0.491      0.000     -0.001      0.006      0.017\`
           mediaRecorder.frames = [];
           link.click();
         };
-        
+
         let duration = (typeof canvas.recordingDuration === 'undefined') ? 2 : canvas.recordingDuration;
         setTimeout(() =&amp;amp;gt; {mediaRecorder.stop()}, duration * 1000);
         mediaRecorder.start()
     })()
-           &amp;quot;&amp;gt;Record Animation</button&amp;gt;<input value=&amp;quot;2&amp;quot; id=&amp;quot;jsmol-applet-217223-applet-duration-input&amp;quot; oninput=&amp;quot;
+           &amp;quot;&amp;gt;Record Animation</button&amp;gt;<input value=&amp;quot;2&amp;quot; id=&amp;quot;jsmol-applet-9c37f8-applet-duration-input&amp;quot; oninput=&amp;quot;
     (function(){
-        let canvas = document.getElementById('jsmol-applet-217223-applet').getElementsByTagName('canvas')[0];
-        let input = document.getElementById('jsmol-applet-217223-applet-duration-input');
-        
+        let canvas = document.getElementById('jsmol-applet-9c37f8-applet').getElementsByTagName('canvas')[0];
+        let input = document.getElementById('jsmol-applet-9c37f8-applet-duration-input');
+
         canvas.recordingDuration = input.value;
     })()
            &amp;quot;&amp;gt;</div&amp;gt;
@@ -269,7 +279,9 @@ H      0.614      2.283     -0.491      0.000     -0.001      0.006      0.017\`
 })();
 &quot;&gt;</script&gt;`);
                                 document.head.appendChild(frag);
-                            })()"></div><div id="jsmol-applet-217223-interface" style="height:200px; width:100%; padding:2rem;"></div></div>
+                            })()"></div><div id="jsmol-applet-9c37f8-interface" style="height:200px; width:100%; padding:2rem;"></div></div></div>
+
+
 ## X3D
 
 JSMol is great, but sometimes you want a richer rendering environment and more direct control. For that, I added support for rendering with [X3D]()
@@ -278,8 +290,17 @@ JSMol is great, but sometimes you want a richer rendering environment and more d
 ```python
 mol.plot(backend='x3d', highlight_atoms=[0, 1, 2])
 ```
-<X3D width="440px" height="390px" profile="Immersive" version="3.3"><head></head><Scene><Viewpoint orientation="0.0 0.0 1.0 0.0" position="0.0 0.0 10.0" viewAll="True"></Viewpoint><Transform translation="2.1503 0.3801 -0.345" rotation="0.3632 -0.0 0.5973 1.6395"><Shape><Appearance><Material diffuseColor="white" emissiveColor="green"></Material></Appearance><Cylinder height="0.7006963230769048" radius="0.1"></Cylinder></Shape></Transform><Transform translation="1.5531 0.3321 0.0182" rotation="0.3632 -0.0 0.5973 1.6395"><Shape><Appearance><Material diffuseColor="white" emissiveColor="green"></Material></Appearance><Cylinder height="0.7006963230769048" radius="0.1"></Cylinder></Shape></Transform><Transform translation="1.1301 -0.045 0.166" rotation="-0.0675 0.0 0.2487 2.7917"><Shape><Appearance><Material diffuseColor="white" emissiveColor="green"></Material></Appearance><Cylinder height="0.7516364651946013" radius="0.1"></Cylinder></Shape></Transform><Transform translation="0.8814 -0.7511 0.0985" rotation="-0.0675 0.0 0.2487 2.7917"><Shape><Appearance><Material diffuseColor="white" emissiveColor="green"></Material></Appearance><Cylinder height="0.7516364651946013" radius="0.1"></Cylinder></Shape></Transform><Transform translation="0.4209 -1.1262 0.2365" rotation="0.3434 -0.0 0.6723 1.629"><Shape><Appearance><Material diffuseColor="white" emissiveColor="green"></Material></Appearance><Cylinder height="0.7562116280999207" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-0.2514 -1.1702 0.5798" rotation="0.3434 -0.0 0.6723 1.629"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.7562116280999207" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-0.8191 -0.9799 0.5344" rotation="-0.4341 0.0 0.463 0.9812"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.7636502304322156" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-1.2822 -0.5553 0.1003" rotation="-0.4341 0.0 0.463 0.9812"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.7636502304322156" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-1.4065 0.0148 -0.0429" rotation="0.1477 0.0 -0.2144 0.3489"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.7615117197180706" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-1.1921 0.7304 0.1048" rotation="0.1477 0.0 -0.2144 0.3489"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.7615117197180705" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-0.7432 1.1255 0.0148" rotation="-0.3277 0.0 -0.6833 1.4727"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.7614795569033532" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-0.0599 1.2001 -0.3128" rotation="-0.3277 0.0 -0.6833 1.4727"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.7614795569033532" radius="0.1"></Cylinder></Shape></Transform><Transform translation="0.5249 1.005 -0.3076" rotation="0.3382 0.0 -0.4864 2.2359"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.7528918542394454" radius="0.1"></Cylinder></Shape></Transform><Transform translation="1.0112 0.5403 0.0307" rotation="0.3382 0.0 -0.4864 2.2359"><Shape><Appearance><Material diffuseColor="white" emissiveColor="green"></Material></Appearance><Cylinder height="0.7528918542394453" radius="0.1"></Cylinder></Shape></Transform><Transform translation="2.4066 0.3037 -0.7506" rotation="-0.4479 0.0 0.0849 1.986"><Shape><Appearance><Material diffuseColor="white" emissiveColor="green"></Material></Appearance><Cylinder height="0.4981805064309063" radius="0.1"></Cylinder></Shape></Transform><Transform translation="2.3217 0.1027 -1.1985" rotation="-0.4479 0.0 0.0849 1.986"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Cylinder height="0.4981805064309062" radius="0.1"></Cylinder></Shape></Transform><Transform translation="1.2975 0.3683 0.4655" rotation="0.5315 0.0 -0.0861 1.3506"><Shape><Appearance><Material diffuseColor="white" emissiveColor="green"></Material></Appearance><Cylinder height="0.5517841034441395" radius="0.1"></Cylinder></Shape></Transform><Transform translation="1.3835 0.4888 0.9971" rotation="0.5315 0.0 -0.0861 1.3506"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Cylinder height="0.5517841034441393" radius="0.1"></Cylinder></Shape></Transform><Transform translation="0.7104 -1.1585 -0.2046" rotation="-0.5387 0.0 0.0933 1.767"><Shape><Appearance><Material diffuseColor="white" emissiveColor="green"></Material></Appearance><Cylinder height="0.557365025745207" radius="0.1"></Cylinder></Shape></Transform><Transform translation="0.6172 -1.2671 -0.7432" rotation="-0.5387 0.0 0.0933 1.767"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Cylinder height="0.5573650257452071" radius="0.1"></Cylinder></Shape></Transform><Transform translation="0.9294 -1.2908 0.1671" rotation="0.2047 0.0 -0.3446 2.3206"><Shape><Appearance><Material diffuseColor="white" emissiveColor="green"></Material></Appearance><Cylinder height="0.5476945059240254" radius="0.1"></Cylinder></Shape></Transform><Transform translation="1.274 -1.664 0.3718" rotation="0.2047 0.0 -0.3446 2.3206"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Cylinder height="0.5476945059240255" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-0.5635 -1.0709 1.0027" rotation="0.5023 0.0 -0.0481 1.1225"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.5599519593492053" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-0.5155 -0.8281 1.505" rotation="0.5023 0.0 -0.0481 1.1225"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Cylinder height="0.5599519593492056" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-0.68 -1.4488 0.7826" rotation="0.0623 -0.0 0.1848 2.7786"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.5490511821865314" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-0.8647 -1.9621 0.8449" rotation="0.0623 -0.0 0.1848 2.7786"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Cylinder height="0.5490511821865316" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-1.4583 -0.3794 -0.3888" rotation="-0.5441 0.0 -0.1107 1.7012"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.5599602086288802" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-1.3476 -0.4522 -0.9328" rotation="-0.5441 0.0 -0.1107 1.7012"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Cylinder height="0.5599602086288802" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-1.7786 -0.389 -0.0645" rotation="0.1044 -0.0 0.5299 1.7393"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.5478195521371154" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-2.3085 -0.4809 0.0399" rotation="0.1044 -0.0 0.5299 1.7393"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Cylinder height="0.5478195521371159" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-1.0527 1.1131 0.4555" rotation="0.5536 0.0 -0.0644 1.4817"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.5595156176216934" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-0.9884 1.1629 1.009" rotation="0.5536 0.0 -0.0644 1.4817"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Cylinder height="0.5595156176216934" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-1.2643 1.2754 0.091"
- rotation="-0.1755 0.0 0.3588 0.8179"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.5473460853204031" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-1.6231 1.6496 -0.0845" rotation="-0.1755 0.0 0.3588 0.8179"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Cylinder height="0.547346085320403" radius="0.1"></Cylinder></Shape></Transform><Transform translation="0.2564 1.1419 -0.7372" rotation="-0.521 0.0 0.0506 1.9206"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.5571425683034565" radius="0.1"></Cylinder></Shape></Transform><Transform translation="0.2058 0.951 -1.2581" rotation="-0.521 0.0 0.0506 1.9206"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Cylinder height="0.5571425683034564" radius="0.1"></Cylinder></Shape></Transform><Transform translation="0.3647 1.4988 -0.4803" rotation="-0.0072 0.0 -0.166 0.3076"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.5487279179277982" radius="0.1"></Cylinder></Shape></Transform><Transform translation="0.5307 2.0218 -0.4875" rotation="-0.0072 0.0 -0.166 0.3076"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Cylinder height="0.5487279179277982" radius="0.1"></Cylinder></Shape></Transform><Transform translation="2.449 0.4042 -0.5266"><Shape><Appearance><Material diffuseColor="white" emissiveColor="green"></Material></Appearance><Sphere radius="0.38"></Sphere></Shape></Transform><Transform translation="1.2544 0.308 0.1998"><Shape><Appearance><Material diffuseColor="white" emissiveColor="green"></Material></Appearance><Sphere radius="0.425"></Sphere></Shape></Transform><Transform translation="0.7571 -1.1042 0.0648"><Shape><Appearance><Material diffuseColor="white" emissiveColor="green"></Material></Appearance><Sphere radius="0.425"></Sphere></Shape></Transform><Transform translation="-0.5876 -1.1922 0.7515"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Sphere radius="0.425"></Sphere></Shape></Transform><Transform translation="-1.5137 -0.343 -0.1167"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Sphere radius="0.425"></Sphere></Shape></Transform><Transform translation="-1.0849 1.0882 0.1787"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Sphere radius="0.425"></Sphere></Shape></Transform><Transform translation="0.2817 1.2373 -0.4767"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Sphere radius="0.425"></Sphere></Shape></Transform><Transform translation="2.2793 0.0022 -1.4224"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Sphere radius="0.3"></Sphere></Shape></Transform><Transform translation="1.4266 0.549 1.2628"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Sphere radius="0.3"></Sphere></Shape></Transform><Transform translation="0.5706 -1.3214 -1.0125"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Sphere radius="0.3"></Sphere></Shape></Transform><Transform translation="1.4463 -1.8506 0.4741"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Sphere radius="0.3"></Sphere></Shape></Transform><Transform translation="-0.4914 -0.7068 1.7561"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Sphere radius="0.3"></Sphere></Shape></Transform><Transform translation="-0.9571 -2.2188 0.876"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Sphere radius="0.3"></Sphere></Shape></Transform><Transform translation="-1.2922 -0.4886 -1.2048"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Sphere radius="0.3"></Sphere></Shape></Transform><Transform translation="-2.5734 -0.5268 0.0921"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Sphere radius="0.3"></Sphere></Shape></Transform><Transform translation="-0.9562 1.1878 1.2858"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Sphere radius="0.3"></Sphere></Shape></Transform><Transform translation="-1.8025 1.8367 -0.1723"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Sphere radius="0.3"></Sphere></Shape></Transform><Transform translation="0.1804 0.8555 -1.5186"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Sphere radius="0.3"></Sphere></Shape></Transform><Transform translation="0.6137 2.2833 -0.4911"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Sphere radius="0.3"></Sphere></Shape></Transform></Scene></X3D>
+
+
+<div class="jhtml"><figure id="x3d-99ec7d9b-fdbe-427b-9e86-0d8a3266f212"><X3D width="440px" height="390px" profile="Immersive" version="3.3"><head></head><Scene><Viewpoint orientation="0.0 0.0 1.0 0.0" position="0.0 0.0 10.0" viewAll="True"></Viewpoint><Background skyColor="1.0 1.0 1.0"></Background><Transform translation="2.1503 0.3801 -0.345" rotation="0.3632 -0.0 0.5973 1.6395"><Shape><Appearance><Material diffuseColor="white" emissiveColor="green"></Material></Appearance><Cylinder height="0.7006963230769048" radius="0.1"></Cylinder></Shape></Transform><Transform translation="1.5531 0.3321 0.0182" rotation="0.3632 -0.0 0.5973 1.6395"><Shape><Appearance><Material diffuseColor="white" emissiveColor="green"></Material></Appearance><Cylinder height="0.7006963230769048" radius="0.1"></Cylinder></Shape></Transform><Transform translation="1.1301 -0.045 0.166" rotation="-0.0675 0.0 0.2487 2.7917"><Shape><Appearance><Material diffuseColor="white" emissiveColor="green"></Material></Appearance><Cylinder height="0.7516364651946013" radius="0.1"></Cylinder></Shape></Transform><Transform translation="0.8814 -0.7511 0.0985" rotation="-0.0675 0.0 0.2487 2.7917"><Shape><Appearance><Material diffuseColor="white" emissiveColor="green"></Material></Appearance><Cylinder height="0.7516364651946013" radius="0.1"></Cylinder></Shape></Transform><Transform translation="0.4209 -1.1262 0.2365" rotation="0.3434 -0.0 0.6723 1.629"><Shape><Appearance><Material diffuseColor="white" emissiveColor="green"></Material></Appearance><Cylinder height="0.7562116280999207" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-0.2514 -1.1702 0.5798" rotation="0.3434 -0.0 0.6723 1.629"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.7562116280999207" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-0.8191 -0.9799 0.5344" rotation="-0.4341 0.0 0.463 0.9812"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.7636502304322156" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-1.2822 -0.5553 0.1003" rotation="-0.4341 0.0 0.463 0.9812"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.7636502304322156" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-1.4065 0.0148 -0.0429" rotation="0.1477 0.0 -0.2144 0.3489"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.7615117197180706" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-1.1921 0.7304 0.1048" rotation="0.1477 0.0 -0.2144 0.3489"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.7615117197180705" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-0.7432 1.1255 0.0148" rotation="-0.3277 0.0 -0.6833 1.4727"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.7614795569033532" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-0.0599 1.2001 -0.3128" rotation="-0.3277 0.0 -0.6833 1.4727"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.7614795569033532" radius="0.1"></Cylinder></Shape></Transform><Transform translation="0.5249 1.005 -0.3076" rotation="0.3382 0.0 -0.4864 2.2359"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.7528918542394454" radius="0.1"></Cylinder></Shape></Transform><Transform translation="1.0112 0.5403 0.0307" rotation="0.3382 0.0 -0.4864 2.2359"><Shape><Appearance><Material diffuseColor="white" emissiveColor="green"></Material></Appearance><Cylinder height="0.7528918542394453" radius="0.1"></Cylinder></Shape></Transform><Transform translation="2.4066 0.3037 -0.7506" rotation="-0.4479 0.0 0.0849 1.986"><Shape><Appearance><Material diffuseColor="white" emissiveColor="green"></Material></Appearance><Cylinder height="0.4981805064309063" radius="0.1"></Cylinder></Shape></Transform><Transform translation="2.3217 0.1027 -1.1985" rotation="-0.4479 0.0 0.0849 1.986"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Cylinder height="0.4981805064309062" radius="0.1"></Cylinder></Shape></Transform><Transform translation="1.2975 0.3683 0.4655" rotation="0.5315 0.0 -0.0861 1.3506"><Shape><Appearance><Material diffuseColor="white" emissiveColor="green"></Material></Appearance><Cylinder height="0.5517841034441395" radius="0.1"></Cylinder></Shape></Transform><Transform translation="1.3835 0.4888 0.9971" rotation="0.5315 0.0 -0.0861 1.3506"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Cylinder height="0.5517841034441393" radius="0.1"></Cylinder></Shape></Transform><Transform translation="0.7104 -1.1585 -0.2046" rotation="-0.5387 0.0 0.0933 1.767"><Shape><Appearance><Material diffuseColor="white" emissiveColor="green"></Material></Appearance><Cylinder height="0.557365025745207" radius="0.1"></Cylinder></Shape></Transform><Transform translation="0.6172 -1.2671 -0.7432" rotation="-0.5387 0.0 0.0933 1.767"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Cylinder height="0.5573650257452071" radius="0.1"></Cylinder></Shape></Transform><Transform translation="0.9294 -1.2908 0.1671" rotation="0.2047 0.0 -0.3446 2.3206"><Shape><Appearance><Material diffuseColor="white" emissiveColor="green"></Material></Appearance><Cylinder height="0.5476945059240254" radius="0.1"></Cylinder></Shape></Transform><Transform translation="1.274 -1.664 0.3718" rotation="0.2047 0.0 -0.3446 2.3206"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Cylinder height="0.5476945059240255" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-0.5635 -1.0709 1.0027" rotation="0.5023 0.0 -0.0481 1.1225"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.5599519593492053" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-0.5155 -0.8281 1.505" rotation="0.5023 0.0 -0.0481 1.1225"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Cylinder height="0.5599519593492056" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-0.68 -1.4488 0.7826" rotation="0.0623 -0.0 0.1848 2.7786"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.5490511821865314" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-0.8647 -1.9621 0.8449" rotation="0.0623 -0.0 0.1848 2.7786"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Cylinder height="0.5490511821865316" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-1.4583 -0.3794 -0.3888" rotation="-0.5441 0.0 -0.1107 1.7012"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.5599602086288802" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-1.3476 -0.4522 -0.9328" rotation="-0.5441 0.0 -0.1107 1.7012"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Cylinder height="0.5599602086288802" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-1.7786 -0.389 -0.0645" rotation="0.1044 -0.0 0.5299 1.7393"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.5478195521371154" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-2.3085 -0.4809 0.0399" rotation="0.1044 -0.0 0.5299 1.7393"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Cylinder height="0.5478195521371159" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-1.0527 1.1131 0.4555" rotation="0.5536 0.0 -0.0644 1.4817"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.5595156176216934" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-0.9884 1.1629 1.009" rotation="0.5536 0.0 -0.0644 1.4817"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Cylinder
+ height="0.5595156176216934" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-1.2643 1.2754 0.091" rotation="-0.1755 0.0 0.3588 0.8179"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.5473460853204031" radius="0.1"></Cylinder></Shape></Transform><Transform translation="-1.6231 1.6496 -0.0845" rotation="-0.1755 0.0 0.3588 0.8179"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Cylinder height="0.547346085320403" radius="0.1"></Cylinder></Shape></Transform><Transform translation="0.2564 1.1419 -0.7372" rotation="-0.521 0.0 0.0506 1.9206"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.5571425683034565" radius="0.1"></Cylinder></Shape></Transform><Transform translation="0.2058 0.951 -1.2581" rotation="-0.521 0.0 0.0506 1.9206"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Cylinder height="0.5571425683034564" radius="0.1"></Cylinder></Shape></Transform><Transform translation="0.3647 1.4988 -0.4803" rotation="-0.0072 0.0 -0.166 0.3076"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Cylinder height="0.5487279179277982" radius="0.1"></Cylinder></Shape></Transform><Transform translation="0.5307 2.0218 -0.4875" rotation="-0.0072 0.0 -0.166 0.3076"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Cylinder height="0.5487279179277982" radius="0.1"></Cylinder></Shape></Transform><Transform translation="2.449 0.4042 -0.5266"><Shape><Appearance><Material diffuseColor="white" emissiveColor="green"></Material></Appearance><Sphere radius="0.38"></Sphere></Shape></Transform><Transform translation="1.2544 0.308 0.1998"><Shape><Appearance><Material diffuseColor="white" emissiveColor="green"></Material></Appearance><Sphere radius="0.425"></Sphere></Shape></Transform><Transform translation="0.7571 -1.1042 0.0648"><Shape><Appearance><Material diffuseColor="white" emissiveColor="green"></Material></Appearance><Sphere radius="0.425"></Sphere></Shape></Transform><Transform translation="-0.5876 -1.1922 0.7515"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Sphere radius="0.425"></Sphere></Shape></Transform><Transform translation="-1.5137 -0.343 -0.1167"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Sphere radius="0.425"></Sphere></Shape></Transform><Transform translation="-1.0849 1.0882 0.1787"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Sphere radius="0.425"></Sphere></Shape></Transform><Transform translation="0.2817 1.2373 -0.4767"><Shape><Appearance><Material diffuseColor="#909090"></Material></Appearance><Sphere radius="0.425"></Sphere></Shape></Transform><Transform translation="2.2793 0.0022 -1.4224"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Sphere radius="0.3"></Sphere></Shape></Transform><Transform translation="1.4266 0.549 1.2628"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Sphere radius="0.3"></Sphere></Shape></Transform><Transform translation="0.5706 -1.3214 -1.0125"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Sphere radius="0.3"></Sphere></Shape></Transform><Transform translation="1.4463 -1.8506 0.4741"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Sphere radius="0.3"></Sphere></Shape></Transform><Transform translation="-0.4914 -0.7068 1.7561"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Sphere radius="0.3"></Sphere></Shape></Transform><Transform translation="-0.9571 -2.2188 0.876"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Sphere radius="0.3"></Sphere></Shape></Transform><Transform translation="-1.2922 -0.4886 -1.2048"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Sphere radius="0.3"></Sphere></Shape></Transform><Transform translation="-2.5734 -0.5268 0.0921"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Sphere radius="0.3"></Sphere></Shape></Transform><Transform translation="-0.9562 1.1878 1.2858"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Sphere radius="0.3"></Sphere></Shape></Transform><Transform translation="-1.8025 1.8367 -0.1723"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Sphere radius="0.3"></Sphere></Shape></Transform><Transform translation="0.1804 0.8555 -1.5186"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Sphere radius="0.3"></Sphere></Shape></Transform><Transform translation="0.6137 2.2833 -0.4911"><Shape><Appearance><Material diffuseColor="#ffffff"></Material></Appearance><Sphere radius="0.3"></Sphere></Shape></Transform></Scene></X3D><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" id="tmp-4ee2b37e-a" onload="
+                    (function() {
+                        document.getElementById(&quot;tmp-4ee2b37e-a&quot;).remove();
+                        const frag = document.createRange().createContextualFragment(`<script src=&quot;https://www.x3dom.org/download/1.8.3/x3dom-full.js&quot;&gt;</script&gt;`);
+                        document.head.appendChild(frag);
+                    })()"></figure></div>
+
+
 This gives you complete control over the rendering process, but of course means you need to render everything yourself. Still, it allows you to, render interesting scenes like plotting the intersections of the van der Waals spheres of your atoms
 
 
@@ -300,34 +321,4 @@ mol2.get_surface().plot(figure=fig,
                         const frag = document.createRange().createContextualFragment(`<script src=&quot;https://www.x3dom.org/download/1.8.3/x3dom-full.js&quot;&gt;</script&gt;`);
                         document.head.appendChild(frag);
                     })()"></figure></div>
-
-
-
-```python
-surf = mol.get_surface()
-```
-
-
-```python
-?surf.plot
-```
-
-
-    [0;31mSignature:[0m
-    [0msurf[0m[0;34m.[0m[0mplot[0m[0;34m([0m[0;34m[0m
-    [0;34m[0m    [0mfigure[0m[0;34m=[0m[0;32mNone[0m[0;34m,[0m[0;34m[0m
-    [0;34m[0m    [0;34m*[0m[0;34m,[0m[0;34m[0m
-    [0;34m[0m    [0mpoints[0m[0;34m=[0m[0;32mNone[0m[0;34m,[0m[0;34m[0m
-    [0;34m[0m    [0mfunction[0m[0;34m=[0m[0;32mNone[0m[0;34m,[0m[0;34m[0m
-    [0;34m[0m    [0msphere_color[0m[0;34m=[0m[0;34m'white'[0m[0;34m,[0m[0;34m[0m
-    [0;34m[0m    [0msphere_style[0m[0;34m=[0m[0;32mNone[0m[0;34m,[0m[0;34m[0m
-    [0;34m[0m    [0mpoint_style[0m[0;34m=[0m[0;32mNone[0m[0;34m,[0m[0;34m[0m
-    [0;34m[0m    [0mpoint_values[0m[0;34m=[0m[0;32mNone[0m[0;34m,[0m[0;34m[0m
-    [0;34m[0m    [0mdistance_units[0m[0;34m=[0m[0;34m'Angstroms'[0m[0;34m,[0m[0;34m[0m
-    [0;34m[0m    [0mplot_intersections[0m[0;34m=[0m[0;32mFalse[0m[0;34m,[0m[0;34m[0m
-    [0;34m[0m    [0;34m**[0m[0metc[0m[0;34m,[0m[0;34m[0m
-    [0;34m[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-    [0;31mDocstring:[0m <no docstring>
-    [0;31mFile:[0m      ~/Documents/UW/Research/Development/McUtils/McUtils/Zachary/Surfaces/SphereUnionSurface.py
-    [0;31mType:[0m      method
 
