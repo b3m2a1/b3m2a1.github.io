@@ -44,7 +44,7 @@ window.MathJax = {
           });
         }
 
-        window.saveResult = function() {
+        window.prepResult = function() {
 
           let renderer = document.getElementById('Renderer').value
           let node = document.getElementById('MathPreview')
@@ -77,6 +77,13 @@ window.MathJax = {
             fmt = "data:image/svg+xml;charset=utf-8";
             extension = ".svg"
           }
+
+          return source
+        }
+
+        window.saveResult = function() {
+
+          let source = prepResult();
           let svgBlob = new Blob([source], {type:fmt});
           let svgUrl = URL.createObjectURL(svgBlob);
           let downloadLink = document.createElement("a");
@@ -91,6 +98,20 @@ window.MathJax = {
           downloadLink.click();
           document.body.removeChild(downloadLink);
         }
+
+        window.copyResult = function() {
+
+            let source = prepResult();
+
+            navigator.clipboard.writeText(source).then(() => {
+              alert("copied");
+            }).catch(err => {
+              // Error callback
+              alert("failed to copy");
+              console.error('Could not copy text: ', err);
+            });
+            
+          }
 
         input.oninput = typesetInput;
       }
