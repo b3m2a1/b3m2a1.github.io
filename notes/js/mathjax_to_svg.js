@@ -70,20 +70,26 @@ window.MathJax = {
               source = source.replace(/^<svg/, '<svg xmlns:xlink="http://www.w3.org/1999/xlink"');
             }
             
-            //add xml declaration
-            source = '<?xml version="1.0" standalone="no"?>\r\n' + source;
-            
             //convert svg source to URI data scheme.
             fmt = "data:image/svg+xml;charset=utf-8";
             extension = ".svg"
           }
 
-          return source
+          return [source, fmt, extension]
         }
 
         window.saveResult = function() {
 
-          let source = prepResult();
+          let sourceData = prepResult();
+          let source = sourceData[0];
+          let fmt = sourceData[1];
+          let extension = sourceData[2];
+          
+          if (extension == ".svg") {
+            //add xml declaration
+            source = '<?xml version="1.0" standalone="no"?>\r\n' + source;
+          }
+
           let svgBlob = new Blob([source], {type:fmt});
           let svgUrl = URL.createObjectURL(svgBlob);
           let downloadLink = document.createElement("a");
@@ -101,7 +107,8 @@ window.MathJax = {
 
         window.copyResult = function() {
 
-            let source = prepResult();
+            let sourceData = prepResult();
+            let source = sourceData[0];
 
             navigator.clipboard.writeText(source).then(() => {
               alert("copied");
@@ -110,7 +117,7 @@ window.MathJax = {
               alert("failed to copy");
               console.error('Could not copy text: ', err);
             });
-            
+
           }
 
         input.oninput = typesetInput;
