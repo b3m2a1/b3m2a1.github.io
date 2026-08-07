@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'unsafe-inline' https://stackpath.bootstrapcdn.com https://b3m2a1.github.io https://fonts.googleapis.com; img-src 'self' data: blob: https://b3m2a1.github.io; font-src https://fonts.gstatic.com https://cdn.jsdelivr.net; connect-src https://cdn.jsdelivr.net;">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Create syntax-highlighted code and output cards as PowerPoint-ready SVG files.">
+  <title>Code and Output to SVG</title>
+  <link rel="icon" href="https://b3m2a1.github.io//favicon-32x32.png">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://b3m2a1.github.io//assets/css/pygment_trac.css">
+  <link rel="stylesheet" href="https://b3m2a1.github.io//assets/css/style.css">
+  <link rel="stylesheet" href="https://b3m2a1.github.io//assets/css/theme.css">
+  <style>
+    body { min-height: 100vh; background: #f8f9fa; }
+    .main-content { min-height: calc(100vh - 74px); padding: 2rem 1rem; }
+    #demo { width: min(1180px, 100%); margin: 0 auto; box-shadow: 0 .35rem 1.2rem rgba(0,0,0,.08); }
+    .card-header h3 { margin: 0; }
+    .field-label { font-weight: 600; margin-bottom: .4rem; }
+    textarea { font-family: Consolas, "Liberation Mono", Menlo, monospace; tab-size: 4; }
+    #CodeInput { min-height: 220px; }
+    #OutputText { min-height: 135px; }
+    .control-row { margin-top: 1rem; }
+    .control-row .input-group { margin-bottom: .65rem; }
+    .input-group-text { min-width: 118px; justify-content: center; }
+    .preview-shell { overflow: auto; min-height: 290px; padding: 1.5rem; border: 1px solid #d4d7da; border-radius: .25rem; background-color: #fff; background-image: linear-gradient(45deg,#f3f3f3 25%,transparent 25%),linear-gradient(-45deg,#f3f3f3 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#f3f3f3 75%),linear-gradient(-45deg,transparent 75%,#f3f3f3 75%); background-size: 20px 20px; background-position: 0 0,0 10px,10px -10px,-10px 0; }
+    #SvgPreview { width: min(100%, 960px); margin: auto; }
+    #SvgPreview svg { display: block; width: 100%; height: auto; filter: drop-shadow(0 8px 14px rgba(0,0,0,.12)); }
+    .image-input { display: none; }
+    .range-readout { min-width: 74px; color: #495057; background: #f2f3f4; }
+    .status-line { min-height: 1.4rem; margin-top: .45rem; font-size: .86rem; }
+    .card-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .75rem; }
+    .help-copy code { white-space: nowrap; }
+    @media (max-width: 767px) {
+      .main-content { padding: 1rem .4rem; }
+      .input-group-text { min-width: 98px; }
+      .preview-shell { padding: .65rem; }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</head>
+<body>
+  <header class="main-header with-image">
+    <nav class="navbar site-navbar site-header navbar-expand-lg with-image" style="--finx-header-image:url(https://b3m2a1.github.io//img/site-image.png)">
+      <div class="container-fluid header-links-container">
+        <div class="row">
+          <button type="button" id="sidebarCollapse" class="btn toggle-sidebar-button" aria-label="Toggle sidebar">
+            <i class="fas fa-align-left"></i>
+          </button>
+          <div class="row header-links">
+            <a class="navbar-brand header-link" href="https://b3m2a1.github.io/">b3m2a1</a>
+            <a class="nav-link header-link" href="https://b3m2a1.github.io/about">About</a>
+            <a class="nav-link header-link" href="https://b3m2a1.github.io/contact">Contact</a>
+            <a class="nav-link header-link" href="https://b3m2a1.github.io/tags">Tags</a>
+            <a class="nav-link header-link" href="https://b3m2a1.github.io/archive">Archive</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="main-content bg-light">
+    <div class="card" id="demo">
+      <div class="card-header text-white bg-dark">
+        <h3>Code and Output to SVG Exporter</h3>
+      </div>
+      <div class="card-body">
+        <p class="text-info help-copy">
+          <label for="CodeInput">Paste code below, select its language, and add output as text or an image. The code panel and text output grow automatically. Exported SVGs can be inserted into PowerPoint with <code>Insert → Pictures</code>.</label>
+        </p>
+
+        <label class="field-label" for="CodeInput">Code</label>
+        <textarea id="CodeInput" rows="10" class="form-control" spellcheck="false">transpiler = TeXTranspiler(
+    figure_renaming_function=TeXTranspiler.figure,
+    bib_renaming_function=lambda _: "bibliography.bib",
+)</textarea>
+
+        <div class="row control-row">
+          <div class="col-md-6">
+            <div class="input-group">
+              <div class="input-group-prepend"><label class="input-group-text" for="Language">Language</label></div>
+              <select class="custom-select" id="Language">
+                <option value="python" selected>Python</option>
+                <option value="javascript">JavaScript</option>
+                <option value="typescript">TypeScript</option>
+                <option value="jsx">JSX</option>
+                <option value="tsx">TSX</option>
+                <option value="bash">Bash</option>
+                <option value="json">JSON</option>
+                <option value="markup">HTML / XML</option>
+                <option value="css">CSS</option>
+                <option value="sql">SQL</option>
+                <option value="r">R</option>
+                <option value="julia">Julia</option>
+                <option value="plain">Plain text</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="input-group">
+              <div class="input-group-prepend"><label class="input-group-text" for="OutputMode">Output</label></div>
+              <select class="custom-select" id="OutputMode">
+                <option value="text" selected>Text</option>
+                <option value="image">Image</option>
+              </select>
+              <div class="input-group-append"><button class="btn btn-primary" id="RenderButton" type="button">Render SVG</button></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="TextOutputGroup">
+          <label class="field-label" for="OutputText">Output text</label>
+          <textarea id="OutputText" rows="5" class="form-control">Compilation completed successfully.
+Output written to paper.tex</textarea>
+        </div>
+        <div id="ImageOutputGroup" class="image-input">
+          <label class="field-label" for="OutputImage">Output image</label>
+          <input type="file" class="form-control-file border rounded p-2" id="OutputImage" accept="image/*">
+          <small class="form-text text-muted">The selected image is embedded inside the exported SVG.</small>
+        </div>
+
+        <div class="row control-row">
+          <div class="col-lg-4">
+            <div class="input-group input-group-sm">
+              <div class="input-group-prepend"><label class="input-group-text" for="FontSize">Code size</label></div>
+              <input type="range" class="custom-range form-control" id="FontSize" min="4" max="44" value="14">
+              <div class="input-group-append"><span class="input-group-text range-readout" id="FontSizeValue">14 px</span></div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="input-group input-group-sm">
+              <div class="input-group-prepend"><label class="input-group-text" for="CardWidth">Card width</label></div>
+              <input type="range" class="custom-range form-control" id="CardWidth" min="100" max="1800" step="20" value="720">
+              <div class="input-group-append"><span class="input-group-text range-readout" id="CardWidthValue">720 px</span></div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="input-group input-group-sm">
+              <div class="input-group-prepend"><label class="input-group-text" for="ContentWidthScaling">Content Scaling</label></div>
+              <input type="range" class="custom-range form-control" id="ContentWidthScaling" min="1" max="100" step="1" value="100">
+              <div class="input-group-append"><span class="input-group-text range-readout" id="ContentWidthScalingValue">100%</span></div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="input-group input-group-sm">
+              <div class="input-group-prepend"><label class="input-group-text" for="OutputHeight">Output height</label></div>
+              <input type="range" class="custom-range form-control" id="OutputHeight" min="80" max="900" step="20" value="120">
+              <div class="input-group-append"><span class="input-group-text range-readout" id="OutputHeightValue">360 px</span></div>
+            </div>
+          </div>
+          <!-- <div class="col-lg-4">
+            <div class="input-group">
+                <div class="input-group-prepend"><label class="input-group-text" for="FontFamily">Font</label></div>
+                <select class="custom-select" id="FontFamily">
+                  <option value="Menlo" selected>Menlo</option>
+                  <option value="javascript">JavaScript</option>
+                  <option value="typescript">TypeScript</option>
+                  <option value="jsx">JSX</option>
+                  <option value="tsx">TSX</option>
+                  <option value="bash">Bash</option>
+                  <option value="json">JSON</option>
+                  <option value="markup">HTML / XML</option>
+                  <option value="css">CSS</option>
+                  <option value="sql">SQL</option>
+                  <option value="r">R</option>
+                  <option value="julia">Julia</option>
+                  <option value="plain">Plain text</option>
+                </select>
+            </div>
+          </div> -->
+        </div>
+        <div class="d-flex align-items-center flex-wrap mb-3" style="gap: 1rem;">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="WrapCode" checked>
+            <label class="custom-control-label" for="WrapCode">Wrap long code lines</label>
+          </div>
+          <button type="button" class="btn btn-outline-secondary btn-sm" id="ToggleOutput" aria-pressed="false">Hide Output</button>
+        </div>
+
+        <hr>
+        <h4>Preview:</h4>
+        <div class="preview-shell"><div id="SvgPreview"></div></div>
+        <div class="status-line text-muted" id="StatusLine" aria-live="polite"></div>
+
+        <div class="row control-row">
+          <div class="col-sm"></div>
+          <div class="col-lg-8">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend"><label class="input-group-text" for="FileName">File Name</label></div>
+              <input type="text" id="FileName" class="form-control" value="code-output-card" aria-label="Filename">
+              <div class="input-group-append">
+                <button type="button" class="btn btn-primary" id="ExportSvg">Export SVG</button>
+                <button type="button" class="btn btn-primary" id="ExportPng">Export PNG</button>
+                <button type="button" class="btn btn-primary" id="CopySvg">Copy</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <span>This is adapted from the <a href="https://www.mathjax.org/#demo">MathJax Live Demo</a></span>
+        <span>Syntax highlighting by <a href="https://prismjs.com/">PrismJS</a></span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    "use strict";
+    Prism.plugins.autoloader.languages_path = "https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/";
+
+    const COLORS = {
+      comment: "#6a737d", prolog: "#6a737d", doctype: "#6a737d", cdata: "#6a737d",
+      punctuation: "#24292f", property: "#0550ae", tag: "#116329", boolean: "#cf222e",
+      number: "#0550ae", constant: "#0550ae", symbol: "#0550ae", deleted: "#82071e",
+      selector: "#116329", "attr-name": "#0550ae", string: "#0a3069", char: "#0a3069",
+      builtin: "#8250df", inserted: "#116329", operator: "#cf222e", entity: "#953800",
+      url: "#0a3069", variable: "#953800", atrule: "#8250df", "attr-value": "#0a3069",
+      function: "#8250df", "class-name": "#953800", keyword: "#cf222e", regex: "#0a3069",
+      important: "#cf222e"
+    };
+
+    const $ = (id) => document.getElementById(id);
+    let currentSvg = "";
+    let outputImage = "";
+    let outputImageRatio = 16 / 9;
+    let outputHidden = false;
+
+    function escapeXml(value) {
+      return String(value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;").replace(/'/g, "&apos;");
+    }
+
+    function flattenToken(token, inherited = "#24292f") {
+      if (typeof token === "string") return [{ text: token, color: inherited }];
+      const color = COLORS[token.type] || inherited;
+      return Array.isArray(token.content)
+        ? token.content.flatMap((part) => flattenToken(part, color))
+        : flattenToken(token.content, color);
+    }
+
+    function getTokenLines(code, language) {
+      const grammar = Prism.languages[language];
+      const tokens = grammar ? Prism.tokenize(code, grammar) : [code];
+      const lines = [[]];
+      tokens.flatMap((token) => flattenToken(token)).forEach(({ text, color }) => {
+        text.split("\n").forEach((part, index, parts) => {
+          if (part) lines[lines.length - 1].push({ text: part, color });
+          if (index < parts.length - 1) lines.push([]);
+        });
+      });
+      return lines;
+    }
+
+    function wrapTokens(lines, maxChars, enabled) {
+      if (!enabled) return lines;
+      const result = [];
+      lines.forEach((line) => {
+        let row = [], used = 0;
+        line.forEach((token) => {
+          let rest = token.text;
+          while (rest.length) {
+            const room = Math.max(1, maxChars - used);
+            const part = rest.slice(0, room);
+            row.push({ text: part, color: token.color });
+            used += part.length;
+            rest = rest.slice(room);
+            if (used >= maxChars) { result.push(row); row = []; used = 0; }
+          }
+        });
+        if (row.length || line.length === 0) result.push(row);
+      });
+      return result;
+    }
+
+    function wrapText(text, maxChars) {
+      const rows = [];
+      String(text).split("\n").forEach((paragraph) => {
+        if (!paragraph) { rows.push(""); return; }
+        let rest = paragraph;
+        while (rest.length > maxChars) {
+          let at = rest.lastIndexOf(" ", maxChars);
+          if (at < Math.floor(maxChars * .55)) at = maxChars;
+          rows.push(rest.slice(0, at));
+          rest = rest.slice(at).trimStart();
+        }
+        rows.push(rest);
+      });
+      return rows.length ? rows : [""];
+    }
+
+    function clamp(val, min, max) {
+      return Math.max(min, Math.min(max, val));
+    }
+
+    function mix(a, b, t) {
+      return a * (1 - t) + b * t;
+    }
+
+    function smoothMin(a, b, k = 10) {
+      let h = clamp(0.5 + 0.5 * (b - a) / k, 0.0, 1.0);
+      return mix(b, a, h) - k * h * (1.0 - h);
+    }
+
+    function smoothMax(a, b, k = 10) {
+      return Math.log(Math.exp(k * a) + Math.exp(k * b)) / k;
+    }
+
+    function buildSvg() {
+      const code = $("CodeInput").value || " ";
+      const language = $("Language").value;
+      const outputMode = $("OutputMode").value;
+      const totalWidth = Number($("CardWidth").value);
+      const widthScaling = Number($("ContentWidthScaling").value) / 100;
+      const width = totalWidth;
+      const fontSize = Number($("FontSize").value) * width / 720;
+      const outputMinHeight = Number($("OutputHeight").value);
+      const wrapCode = $("WrapCode").checked;
+      const outer = smoothMin(18, width/35);
+      const gap = smoothMin(12, width/50);
+      const padX = smoothMin(12, width/50) + (width * (1 - widthScaling));
+      const padY = smoothMin(18, width/50);
+      const innerWidth = width - 2 * outer;
+      const lineHeight = Math.round(fontSize * 1.42);
+      const maxCodeChars = Math.max(12, Math.floor((innerWidth - 2 * padX) * (1.7 * widthScaling) / fontSize));
+      const rows = wrapTokens(getTokenLines(code, language), maxCodeChars, wrapCode);
+      const codeHeight = Math.max(lineHeight + 2 * padY, rows.length * lineHeight + 2 * padY);
+      const outputFont = fontSize * 0.68;
+      const outputLine = outputFont * 1.55;
+      const outputRows = wrapText($("OutputText").value || " ", Math.max(15, Math.floor((innerWidth - 2 * padX) / (outputFont * .57))));
+      const naturalTextHeight = outputRows.length * outputLine + 2 * padY;
+      const naturalImageHeight = outputImage ? (innerWidth - 2 * padX) / outputImageRatio + 2 * padY : 0;
+      const outputHeight = outputHidden ? 0 : Math.max(outputMinHeight, outputMode === "text" ? naturalTextHeight : naturalImageHeight);
+      const outputY = outer + codeHeight + gap;
+      const height = outer * 2 + codeHeight + (outputHidden ? 0 : gap + outputHeight);
+      const codeX = outer + padX;
+      const bgColor = "#fafafa";
+      const borderColor = "#cfcfcf";
+      const panelColor = "#ececec";
+      const outputColor = "#ffffff";
+      const fontColor = "#6c757d";
+      const fontFamily = "Aptos Mono,Consolas,Menlo,monospace";
+      const outputFontFamily = "Aptos,Arial,sans-serif";
+      const strokeWidth = Math.min(2, width/500);
+      const outerRadius = Math.min(innerWidth, height) / 50;
+      const innerRadius = outerRadius - gap / 2;
+
+      const codeText = rows.map((row, index) => {
+        const spans = row.map((token) => `<tspan fill="${token.color}">${escapeXml(token.text)}</tspan>`).join("");
+        return `<text x="${codeX}" y="${outer + padY + fontSize + index * lineHeight}" font-family="${fontFamily}" font-size="${fontSize}" xml:space="preserve">${spans || " "}</text>`;
+      }).join("");
+
+      let outputContent;
+      if (outputMode === "image" && outputImage) {
+        outputContent = `<image href="${outputImage}" x="${outer + padX}" y="${outputY + padY}" width="${innerWidth - 2 * padX}" height="${Math.max(1, outputHeight - 2 * padY)}" preserveAspectRatio="xMidYMid meet"/>`;
+      } else if (outputMode === "image") {
+        outputContent = `<text x="${outer + padX}" y="${outputY + padY + outputFont}" fill="${fontColor}" font-family="${outputFontFamily}" font-size="${outputFont}">Choose an output image above.</text>`;
+      } else {
+        outputContent = outputRows.map((row, index) => `<text x="${outer + padX}" y="${outputY + padY + outputFont + index * outputLine}" fill="#24292f" font-family="${outputFontFamily}" font-size="${outputFont}" xml:space="preserve">${escapeXml(row || " ")}</text>`).join("");
+      }
+
+      return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${totalWidth}" height="${height}" viewBox="0 0 ${totalWidth} ${height}">
+        <rect width="${totalWidth}" height="${height}" fill="#ffffff"/>
+        <rect x="1" y="1" width="${width - 2}" height="${height - 2}" rx="${outerRadius}" fill="${bgColor}" stroke="${borderColor}" stroke-width="${strokeWidth}"/>
+        <rect x="${outer}" y="${outer}" width="${innerWidth}" rx="${innerRadius}" height="${codeHeight}" fill="${panelColor}" stroke="${borderColor}" stroke-width="${strokeWidth}"/>
+        ${codeText}
+        ${outputHidden ? "" : `<rect x="${outer}" y="${outputY}" rx="${innerRadius}" width="${innerWidth}" height="${outputHeight}" fill="${outputColor}" stroke="${borderColor}" stroke-width="${strokeWidth}"/>${outputContent}`}
+      </svg>`;
+    }
+
+    function renderSvg(message = "Preview updated.") {
+      const language = $("Language").value;
+      const finish = () => {
+        currentSvg = buildSvg();
+        $("SvgPreview").innerHTML = currentSvg;
+        $("StatusLine").textContent = message;
+      };
+      if (language !== "plain" && !Prism.languages[language]) {
+        $("StatusLine").textContent = `Loading ${language} syntax highlighting…`;
+        Prism.plugins.autoloader.loadLanguages(language, finish);
+      } else finish();
+    }
+
+    function safeFileName(extension) {
+      const base = ($("FileName").value || "code-output-card").trim().replace(/\.(svg|png)$/i, "");
+      return `${base || "code-output-card"}.${extension}`;
+    }
+
+    function downloadBlob(blob, name) {
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = name;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+    }
+
+    function exportSvg() {
+      renderSvg("SVG ready for download.");
+      downloadBlob(new Blob([currentSvg], { type: "image/svg+xml;charset=utf-8" }), safeFileName("svg"));
+    }
+
+    function exportPng() {
+      renderSvg("Rendering 2× PNG…");
+      const url = URL.createObjectURL(new Blob([currentSvg], { type: "image/svg+xml;charset=utf-8" }));
+      const image = new Image();
+      image.onload = () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = image.width * 2;
+        canvas.height = image.height * 2;
+        const context = canvas.getContext("2d");
+        context.scale(2, 2);
+        context.drawImage(image, 0, 0);
+        canvas.toBlob((blob) => {
+          if (blob) downloadBlob(blob, safeFileName("png"));
+          $("StatusLine").textContent = "PNG downloaded at 2× resolution.";
+        }, "image/png");
+        URL.revokeObjectURL(url);
+      };
+      image.onerror = () => { $("StatusLine").textContent = "PNG rendering failed; export SVG instead."; URL.revokeObjectURL(url); };
+      image.src = url;
+    }
+
+    async function copySvg() {
+      renderSvg("SVG source copied.");
+      try { await navigator.clipboard.writeText(currentSvg); }
+      catch (_) {
+        const helper = document.createElement("textarea");
+        helper.value = currentSvg; helper.style.position = "fixed"; helper.style.opacity = "0";
+        document.body.appendChild(helper); helper.select(); document.execCommand("copy"); helper.remove();
+      }
+    }
+
+    function updateOutputMode() {
+      const isImage = $("OutputMode").value === "image";
+      $("TextOutputGroup").style.display = isImage ? "none" : "block";
+      $("ImageOutputGroup").style.display = isImage ? "block" : "none";
+      renderSvg();
+    }
+
+    function toggleOutput() {
+      outputHidden = !outputHidden;
+      const button = $("ToggleOutput");
+      button.textContent = outputHidden ? "Show Output" : "Hide Output";
+      button.setAttribute("aria-pressed", String(outputHidden));
+      ["OutputMode", "OutputText", "OutputImage", "OutputHeight"].forEach((id) => { $(id).disabled = outputHidden; });
+      $("TextOutputGroup").style.opacity = outputHidden ? ".5" : "1";
+      $("ImageOutputGroup").style.opacity = outputHidden ? ".5" : "1";
+      renderSvg(outputHidden ? "Output panel hidden." : "Output panel shown.");
+    }
+
+    $("OutputImage").addEventListener("change", (event) => {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        outputImage = String(reader.result);
+        const probe = new Image();
+        probe.onload = () => { outputImageRatio = probe.width / probe.height; renderSvg("Output image loaded."); };
+        probe.src = outputImage;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    ["CardWidth", "ContentWidthScaling", "FontSize", "OutputHeight"].forEach((id) => {
+      $(id).addEventListener("input", () => {
+        $(`${id}Value`).textContent = `${$(id).value} px`;
+        renderSvg();
+      });
+    });
+    $("OutputMode").addEventListener("change", updateOutputMode);
+    $("Language").addEventListener("change", () => renderSvg());
+    $("WrapCode").addEventListener("change", () => renderSvg());
+    $("ToggleOutput").addEventListener("click", toggleOutput);
+    $("RenderButton").addEventListener("click", () => renderSvg());
+    $("ExportSvg").addEventListener("click", exportSvg);
+    $("ExportPng").addEventListener("click", exportPng);
+    $("CopySvg").addEventListener("click", copySvg);
+
+    let liveTimer;
+    ["CodeInput", "OutputText"].forEach((id) => $(id).addEventListener("input", () => {
+      clearTimeout(liveTimer);
+      liveTimer = setTimeout(() => renderSvg(), 180);
+    }));
+
+    renderSvg("Ready.");
+  </script>
+</body>
+</html>
